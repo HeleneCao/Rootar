@@ -25,4 +25,9 @@ public class Themes {
     public void setLibelleThemes(String libelleThemes) {
         this.libelleThemes = libelleThemes;
     }
+
+    @Override
+    public String toString() {
+        return libelleThemes ;
+    }
 }

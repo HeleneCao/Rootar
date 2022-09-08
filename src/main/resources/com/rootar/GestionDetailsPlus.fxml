@@ -13,14 +13,21 @@
       <Label layoutX="207.0" layoutY="17.0" text="Ville" />
       <Label layoutX="350.0" layoutY="17.0" text="Evenement" />
       <ListView fx:id="event" layoutX="324.0" layoutY="42.0" prefHeight="154.0" prefWidth="111.0" />
-      <TextArea fx:id="detailsDC" layoutX="28.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
-      <Label layoutX="861.0" layoutY="442.0" text="Détails" />
-      <ListView layoutX="34.0" layoutY="242.0" prefHeight="171.0" prefWidth="127.0" />
-      <Label layoutX="52.0" layoutY="215.0" text="dc" />
-      <TextArea fx:id="detailsTypeC" layoutX="263.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
-      <TextArea fx:id="detailsEvent" layoutX="498.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <TextArea fx:id="detailsDC" layoutX="16.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <Label fx:id="detailsObjets" layoutX="747.0" layoutY="425.0" text="categories" />
+      <ListView fx:id="listeThemes" layoutX="34.0" layoutY="242.0" prefHeight="171.0" prefWidth="127.0" />
+      <Label layoutX="52.0" layoutY="215.0" text="them" />
+      <TextArea fx:id="detailsTypeC" layoutX="249.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <TextArea fx:id="detailsEvent" layoutX="477.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
       <Label layoutX="59.0" layoutY="425.0" prefHeight="17.0" prefWidth="127.0" text="donnees climatique" />
       <Label layoutX="286.0" layoutY="417.0" prefHeight="17.0" prefWidth="166.0" text="type climat" />
       <Label layoutX="563.0" layoutY="425.0" prefHeight="17.0" prefWidth="139.0" text="event de" />
+      <TextArea fx:id="detailsCategories" layoutX="700.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <ListView fx:id="listeObjets" layoutX="217.0" layoutY="245.0" prefHeight="160.0" prefWidth="149.0" />
+      <Label layoutX="230.0" layoutY="224.0" text="Liste objet" />
+      <ListView fx:id="listeRepEtr" layoutX="435.0" layoutY="253.0" prefHeight="160.0" prefWidth="200.0" />
+      <Label layoutX="477.0" layoutY="207.0" text="rep etr" />
+      <TextArea fx:id="detailsRepEtr" layoutX="684.0" layoutY="255.0" prefHeight="160.0" prefWidth="200.0" />
+      <Label layoutX="747.0" layoutY="199.0" prefHeight="17.0" prefWidth="111.0" text="details rep trangere" />
    </children>
 </AnchorPane>

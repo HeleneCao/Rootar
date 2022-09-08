@@ -3,14 +3,13 @@ package com.rootar;
 import com.rootar.MenuApp;
 import com.rootar.metier.Continent;
 import com.rootar.metier.Pays;
+import com.rootar.metier.RepresentationEtrangere;
+import com.rootar.metier.Themes;
 import com.rootar.service.RootarSearch;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 public class RootarController {
     @FXML
@@ -59,6 +58,10 @@ public class RootarController {
     private TableColumn<Pays,String> colLibelleMonnaie;
     @FXML
     private TableColumn<Pays,String> colNationalite;
+    @FXML
+    private ListView <Themes> listeThemes;
+    @FXML
+    private ListView <RepresentationEtrangere> listeRepEtrangeres;
     private ServiceRootar serviceRootar;
     private Pays paysSelected;
 
@@ -105,7 +108,8 @@ public class RootarController {
             //langue.setText(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues());
            // langue.setText(serviceRootar.getLanguesFilter("an"));
             langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
-
+            listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
+            listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
         }
 
 

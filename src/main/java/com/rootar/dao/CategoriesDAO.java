@@ -18,17 +18,18 @@ public class CategoriesDAO extends DAO <Categories, Categories>{
     public Categories getCategoriesByObjet(Objet objet) {
 
         Categories categories= new Categories();
-        String SQL= " select * from categories where id_categories=(select id_categories from objet where id_objet= ?)";
+        String SQL= " select * from categories where id_categories in (select id_categories from objet where id_objet=?)";
         try (PreparedStatement pstmt = connexion.prepareStatement(SQL)){
 
 
             // Determine the column set column
 
-            pstmt.setInt(1,categories.getIdCategories());
+            pstmt.setInt(1,objet.getIdObjet());
             rs = pstmt.executeQuery();
 
 
             while (rs.next()) {
+                System.out.println(" id : "+rs.getString(2));
 
                 categories = new Categories(rs.getInt(1),rs.getString(2));
             }

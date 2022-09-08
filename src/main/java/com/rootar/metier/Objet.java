@@ -39,4 +39,9 @@ public class Objet {
     public void setCategories(Categories categories) {
         this.categories = categories;
     }
+
+    @Override
+    public String toString() {
+        return libelleObjet;
+    }
 }

@@ -30,4 +30,9 @@ public class Categories {
     public void setLibelleCategories(String libelleCategories) {
         this.libelleCategories = libelleCategories;
     }
+
+    @Override
+    public String toString() {
+        return  libelleCategories ;
+    }
 }

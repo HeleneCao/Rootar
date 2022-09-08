@@ -22,6 +22,13 @@ public class RepresentationEtrangere {
         ville = new Ville();
     }
 
+    public RepresentationEtrangere(int idRepEtrangere, String libelleRepEtrangere, String telephone, String adresse) {
+        this.idRepEtrangere = idRepEtrangere;
+        this.libelleRepEtrangere = libelleRepEtrangere;
+        this.telephone = telephone;
+        this.adresse = adresse;
+    }
+
     public int getIdRepEtrangere() {
         return idRepEtrangere;
     }
@@ -52,5 +59,10 @@ public class RepresentationEtrangere {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    @Override
+    public String toString() {
+        return libelleRepEtrangere ;
     }
 }

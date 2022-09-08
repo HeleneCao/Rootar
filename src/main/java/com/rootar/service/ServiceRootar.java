@@ -25,6 +25,7 @@ public class ServiceRootar {
 
     }
     public Langues getLanguesFilter(String id){
+
         return DAOFactory.getLanguesDAO().getAllByID(id);
     }
     public ArrayList<Region> getRegionFilterByPays(Pays pays){
@@ -45,9 +46,25 @@ public class ServiceRootar {
     public ArrayList<DonneesClimat> getDonneesClimatByRegion(Region region){
         return DAOFactory.getDonneesClimatDAO().getDonneesClimatByRegion(region);
     }
+
+    public Categories getCategoriesFilterbyObject(Objet objet){
+        return DAOFactory.getCategoriesDAO().getCategoriesByObjet(objet);
+    }
     public ArrayList<Pays> getPaysFiltre()
     {
         return paysFiltre;
+    }
+    public ArrayList<Themes> getThemesByPays(Pays pays){
+        return DAOFactory.getThemesDAO().getThemesByPays(pays);
+    }
+    public ArrayList<Themes> getThemesByRegion(Region region){
+        return DAOFactory.getThemesDAO().getThemesByRegion(region);
+    }
+    public ArrayList<RepresentationEtrangere> getRepEtrangeresByPays(Pays pays){
+        return DAOFactory.getRepresentationEtrangereDAO().getRepEtrangeresByPays(pays);
+    }
+    public ArrayList<RepresentationEtrangere> getRepEtrangeresByVille(Ville ville){
+        return DAOFactory.getRepresentationEtrangereDAO().getRepEtrangeresByVille(ville);
     }
 
     public ArrayList<Continent> getContinentFiltre()
@@ -55,6 +72,9 @@ public class ServiceRootar {
         return continentFiltre;
     }
 
+    public ArrayList<Objet> getObjetFilterByPays(Pays pays){
+        return  DAOFactory.getObjetDAO().getObjetByPays(pays);
+    }
     public boolean insertArticle(Pays pays) {
         return true;
     }

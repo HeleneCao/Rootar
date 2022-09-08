@@ -1,9 +1,6 @@
 package com.rootar;
 
-import com.rootar.metier.Evenements;
-import com.rootar.metier.Pays;
-import com.rootar.metier.Region;
-import com.rootar.metier.Ville;
+import com.rootar.metier.*;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -32,6 +29,17 @@ public class DetailsPLusController {
     @FXML
     private TextArea detailsTypeC;
     @FXML
+    private TextArea detailsRepEtr;
+    @FXML
+    private ListView listeThemes;
+    @FXML
+    private ListView <Objet> listeObjets;
+    @FXML
+    private ListView<RepresentationEtrangere> listeRepEtr;
+
+    @FXML
+    private TextArea detailsCategories;
+    @FXML
     private void initialize(){
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
@@ -43,12 +51,17 @@ public class DetailsPLusController {
         region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherVilles( newValue));
         region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherTypeClimat(newValue));
         region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherDonneesClimat(newValue));
+        region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherThemesByRegion(newValue));
+        afficherObjet(paysSelected);
+
+
 
     }
     public void afficherVilles(Region regionSelected){
 
        ville.setItems(FXCollections.observableArrayList(serviceRootar.getVilleFilterByRegion(regionSelected)));
        ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherEvent(newValue));
+        ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherRepEtrByVille(newValue));
     }
     public void afficherEvent(Ville villeSelected){
 
@@ -56,6 +69,7 @@ public class DetailsPLusController {
         event.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> detailsEvent(newValue));
 
     }
+
     public void detailsEvent(Evenements event){
 
 
@@ -83,6 +97,40 @@ public class DetailsPLusController {
         }
         detailsDC.setText(fieldArea.toString());
     }
+
+    public void afficherObjet(Pays paysSelected){
+
+        listeObjets.setItems(FXCollections.observableArrayList(serviceRootar.getObjetFilterByPays(paysSelected)));
+        listeObjets.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherCategories(newValue));
+    }
+
+    public void afficherCategories(Objet objet){
+        System.out.println("kaka" +serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
+        detailsCategories.setText(serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
+
+
+    }
+    public void afficherThemesByRegion(Region region){
+        listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByRegion(region)));
+
+    }
+    public void afficherRepEtrByVille(Ville ville){
+        listeRepEtr.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByVille(ville)));
+        listeRepEtr.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherDetailsRepEtr(newValue));
+    }
+    public  void afficherDetailsRepEtr(RepresentationEtrangere representationEtrangere){
+        StringBuilder fieldArea = new StringBuilder("");
+
+        fieldArea.append(representationEtrangere.getLibelleRepEtrangere()+"\n");
+        fieldArea.append(representationEtrangere.getAdresse()+"\n");
+        fieldArea.append(representationEtrangere.getTelephone()+"\n");
+
+
+        detailsRepEtr.setText(fieldArea.toString());
+
+    }
+
+
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
