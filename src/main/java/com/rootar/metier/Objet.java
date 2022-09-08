@@ -7,9 +7,13 @@ public class Objet {
     private Categories categories;
 
     public Objet() {
+
+    }
+
+    public Objet(int idObjet, String libelleObjet) {
         this.idObjet = idObjet;
         this.libelleObjet = libelleObjet;
-        this.categories = categories;
+        categories=new Categories();
     }
 
     public int getIdObjet() {

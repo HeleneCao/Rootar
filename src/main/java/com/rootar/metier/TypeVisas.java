@@ -10,6 +10,9 @@ public class TypeVisas {
         this.libelleTypeVisas = libelleTypeVisas;
     }
 
+    public TypeVisas() {
+    }
+
     public int getIdTypeVisas() {
         return idTypeVisas;
     }

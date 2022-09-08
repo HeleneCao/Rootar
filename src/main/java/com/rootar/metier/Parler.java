@@ -3,9 +3,9 @@ package com.rootar.metier;
 public class Parler {
 
     private int idPays;
-    private int idLangues;
+    private String idLangues;
 
-    public Parler(int idPays, int idLangues) {
+    public Parler(int idPays, String idLangues) {
         this.idPays = idPays;
         this.idLangues = idLangues;
     }
@@ -18,11 +18,11 @@ public class Parler {
         this.idPays = idPays;
     }
 
-    public int getIdLangues() {
+    public String getIdLangues() {
         return idLangues;
     }
 
-    public void setIdLangues(int idLangues) {
+    public void setIdLangues(String idLangues) {
         this.idLangues = idLangues;
     }
 }

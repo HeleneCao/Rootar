@@ -9,6 +9,10 @@ public class Priorite {
         this.libellePriorite = libellePriorite;
     }
 
+    public Priorite() {
+
+    }
+
     public int getIdPriorite() {
         return idPriorite;
     }

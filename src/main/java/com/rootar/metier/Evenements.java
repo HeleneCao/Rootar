@@ -20,7 +20,20 @@ public class Evenements {
         this.dateDebutEvenements = dateDebutEvenements;
         this.dateFinEvenements = dateFinEvenements;
         this.descriptionEvenements = descriptionEvenements;
-        this.ville = ville;
+        ville = new Ville();
+    }
+
+    public Evenements(int idEvenements, String libelleEvenements) {
+        this.idEvenements = idEvenements;
+        this.libelleEvenements = libelleEvenements;
+    }
+
+    public Evenements(int idEvenements, String libelleEvenements, String dateDebutEvenements, String dateFinEvenements, String descriptionEvenements) {
+        this.idEvenements = idEvenements;
+        this.libelleEvenements = libelleEvenements;
+        this.dateDebutEvenements = dateDebutEvenements;
+        this.dateFinEvenements = dateFinEvenements;
+        this.descriptionEvenements = descriptionEvenements;
     }
 
     public int getIdEvenements() {
@@ -69,5 +82,10 @@ public class Evenements {
 
     public void setVille(Ville ville) {
         this.ville = ville;
+    }
+
+    @Override
+    public String toString() {
+        return libelleEvenements;
     }
 }

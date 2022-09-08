@@ -10,6 +10,9 @@ public class TypeClimat {
         this.libelleTypeClimat = libelleTypeClimat;
     }
 
+    public TypeClimat() {
+    }
+
     public int getIdTypeClimat() {
         return idTypeClimat;
     }

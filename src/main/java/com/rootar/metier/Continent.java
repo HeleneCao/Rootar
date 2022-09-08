@@ -4,12 +4,16 @@ public class Continent {
 
     private int idContinent;
     private String nomContinentFr;
-    private String getNomContinentAng;
+    private String nomContinentAng;
 
     public Continent() {
+
+    }
+
+    public Continent(int idContinent, String nomContinentFr) {
         this.idContinent = idContinent;
         this.nomContinentFr = nomContinentFr;
-        this.getNomContinentAng = getNomContinentAng;
+        this.nomContinentAng = nomContinentAng;
     }
 
     public int getIdContinent() {
@@ -29,10 +33,10 @@ public class Continent {
     }
 
     public String getGetNomContinentAng() {
-        return getNomContinentAng;
+        return nomContinentAng;
     }
 
-    public void setGetNomContinentAng(String getNomContinentAng) {
-        this.getNomContinentAng = getNomContinentAng;
+    public void setGetNomContinentAng(String nomContinentAng) {
+        this.nomContinentAng = nomContinentAng;
     }
 }

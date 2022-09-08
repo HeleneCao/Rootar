@@ -1,5 +1,10 @@
 package com.rootar.metier;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Pays {
     private int idPays;
     private String nomPaysFr;
@@ -12,12 +17,86 @@ public class Pays {
     private String devise;
     private String feteNationale;
     private String indicatifTel;
+    private Continent continent;
+    private Monnaie monnaie;
+    private Visas visas;
+
+    public Pays() {
+    }
+
+    public Continent getContinent() {
+        return continent;
+    }
+
+    public void setContinent(Continent continent) {
+        this.continent = continent;
+    }
+
+    public Monnaie getMonnaie() {
+        return monnaie;
+    }
+
+    public void setMonnaie(Monnaie monnaie) {
+        this.monnaie = monnaie;
+    }
+
+    public Visas getVisas() {
+        return visas;
+    }
+
+    public void setVisas(Visas visas) {
+        this.visas = visas;
+    }
 
     public Pays(int idPays, String nomPaysFr) {
         this.idPays = idPays;
         this.nomPaysFr = nomPaysFr;
+        continent = new Continent();
+        monnaie = new Monnaie();
+        visas = new Visas();
     }
 
+    public Pays(int idPays, String codePays,String nomPaysFr,  String nomPaysAng, String nationalite, String capitale,int nbreHabitant,  int superficie, String devise, String feteNationale, String indicatifTel,Continent continent,Monnaie monnaie) {
+        this.idPays = idPays;
+        this.nomPaysFr = nomPaysFr;
+        this.codePays = codePays;
+        this.nomPaysAng = nomPaysAng;
+        this.nationalite = nationalite;
+        this.capitale = capitale;
+        this.nbreHabitant = nbreHabitant;
+        this.superficie = superficie;
+        this.devise = devise;
+        this.feteNationale = feteNationale;
+        this.indicatifTel = indicatifTel;
+        this.continent=continent;
+        this.monnaie=monnaie;
+    }
+
+    public Pays(int idPays, String nomPaysFr, Continent continent) {
+        this.idPays = idPays;
+        this.nomPaysFr = nomPaysFr;
+        this.continent = continent;
+    }
+    public StringProperty codePaysProperty()
+    {
+        return new SimpleStringProperty(codePays);
+    }
+    public StringProperty nomPaysFrProperty()
+    {
+        return new SimpleStringProperty(nomPaysFr);
+    }
+    public StringProperty nomContinentProperty()
+    {
+        return new SimpleStringProperty(this.continent.getNomContinentFr());
+    }
+    public StringProperty libelleMonnaieProperty()
+    {
+        return new SimpleStringProperty(this.monnaie.getLibelleMonnaie());
+    }
+    public StringProperty nationaliteProperty()
+    {
+        return new SimpleStringProperty(nationalite);
+    }
     public int getIdPays() {
         return idPays;
     }

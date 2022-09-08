@@ -7,6 +7,10 @@ public class Categories {
     private String libelleCategories;
 
     public Categories() {
+
+    }
+
+    public Categories(int idCategories, String libelleCategories) {
         this.idCategories = idCategories;
         this.libelleCategories = libelleCategories;
     }

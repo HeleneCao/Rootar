@@ -2,7 +2,7 @@ package com.rootar.metier;
 
 public class DonneesClimat {
 
-    private int idRegion;
+    private int idRegion ;
 
     private int mois;
 
@@ -16,22 +16,25 @@ public class DonneesClimat {
 
     private int tauxHumidite;
 
+
     public DonneesClimat() {
-        this.idRegion = idRegion;
+
+    }
+
+    public DonneesClimat( int mois, String libelleMois) {
+
+        this.mois = mois;
+        this.libelleMois = libelleMois;
+    }
+
+    public DonneesClimat(int idRegion,int mois, String libelleMois, float temperatureMin, float temperatureMax, float temperatureMoy, int tauxHumidite) {
+        this.idRegion=idRegion;
         this.mois = mois;
         this.libelleMois = libelleMois;
         this.temperatureMin = temperatureMin;
         this.temperatureMax = temperatureMax;
         this.temperatureMoy = temperatureMoy;
         this.tauxHumidite = tauxHumidite;
-    }
-
-    public int getIdRegion() {
-        return idRegion;
-    }
-
-    public void setIdRegion(int idRegion) {
-        this.idRegion = idRegion;
     }
 
     public int getMois() {

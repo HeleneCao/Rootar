@@ -9,6 +9,9 @@ public class Ville {
         this.nomVille = nomVille;
     }
 
+    public Ville() {
+    }
+
     public int getIdVille() {
         return idVille;
     }
@@ -23,5 +26,10 @@ public class Ville {
 
     public void setNomVille(String nomVille) {
         this.nomVille = nomVille;
+    }
+
+    @Override
+    public String toString() {
+        return nomVille ;
     }
 }

@@ -7,9 +7,19 @@ public class RepresentationEtrangere {
     private String telephone;
     private String adresse;
 
+    private Pays pays;
+
+    private Ville ville;
+
+
+    public RepresentationEtrangere() {
+    }
+
     public RepresentationEtrangere(int idRepEtrangere, String libelleRepEtrangere) {
         this.idRepEtrangere = idRepEtrangere;
         this.libelleRepEtrangere = libelleRepEtrangere;
+        pays = new Pays();
+        ville = new Ville();
     }
 
     public int getIdRepEtrangere() {

@@ -8,12 +8,18 @@ public class Visas {
         private int delaiObtention;
         private Float prixVisas;
 
+        private TypeVisas typeVisas;
+
 
     public Visas(int idVisas, int dureeValidite, int delaiObtention, Float prixVisas) {
         this.idVisas = idVisas;
         this.dureeValidite = dureeValidite;
         this.delaiObtention = delaiObtention;
         this.prixVisas = prixVisas;
+        typeVisas = new TypeVisas();
+    }
+
+    public Visas() {
     }
 
     public int getIdVisas() {
