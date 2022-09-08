@@ -3,6 +3,8 @@ package com.rootar.metier;
 public class Visas {
 
 
+        //zez
+
         private int idVisas;
         private int dureeValidite;
         private int delaiObtention;
