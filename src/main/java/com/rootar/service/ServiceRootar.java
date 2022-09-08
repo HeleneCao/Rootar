@@ -79,14 +79,14 @@ public class ServiceRootar {
     public ArrayList<Objet> getObjetFilterByPays(Pays pays){
         return  DAOFactory.getObjetDAO().getObjetByPays(pays);
     }
-    public boolean insertArticle(Pays pays) {
+    public boolean insertPays(Pays pays) {
+        return DAOFactory.getPaysDAO().insert(pays);
+    }
+    public boolean updatePays(Pays pays) {
         return true;
     }
-    public boolean updateArticle(Pays pays) {
-        return true;
-    }
-    public boolean deleteArticle(Pays pays) {
-        return true;
+    public boolean deletePays(Pays pays) {
+        return DAOFactory.getPaysDAO().delete(pays);
     }
 
 }

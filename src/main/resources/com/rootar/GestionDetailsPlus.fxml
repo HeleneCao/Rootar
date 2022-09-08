@@ -7,27 +7,27 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rootar.DetailsPLusController">
    <children>
-      <ListView fx:id="region" layoutX="28.0" layoutY="42.0" prefHeight="154.0" prefWidth="139.0" />
-      <Label layoutX="28.0" layoutY="17.0" text="Region" />
+      <ListView fx:id="region" layoutX="22.0" layoutY="42.0" prefHeight="154.0" prefWidth="139.0" />
+      <Label layoutX="28.0" layoutY="17.0" prefHeight="17.0" prefWidth="59.0" text="Régions" />
       <ListView fx:id="ville" layoutX="197.0" layoutY="42.0" prefHeight="154.0" prefWidth="94.0" />
-      <Label layoutX="207.0" layoutY="17.0" text="Ville" />
-      <Label layoutX="350.0" layoutY="17.0" text="Evenement" />
-      <ListView fx:id="event" layoutX="324.0" layoutY="42.0" prefHeight="154.0" prefWidth="111.0" />
-      <TextArea fx:id="detailsDC" layoutX="16.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
-      <Label fx:id="detailsObjets" layoutX="747.0" layoutY="425.0" text="categories" />
-      <ListView fx:id="listeThemes" layoutX="34.0" layoutY="242.0" prefHeight="171.0" prefWidth="127.0" />
-      <Label layoutX="52.0" layoutY="215.0" text="them" />
-      <TextArea fx:id="detailsTypeC" layoutX="249.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
-      <TextArea fx:id="detailsEvent" layoutX="477.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
-      <Label layoutX="59.0" layoutY="425.0" prefHeight="17.0" prefWidth="127.0" text="donnees climatique" />
-      <Label layoutX="286.0" layoutY="417.0" prefHeight="17.0" prefWidth="166.0" text="type climat" />
-      <Label layoutX="563.0" layoutY="425.0" prefHeight="17.0" prefWidth="139.0" text="event de" />
-      <TextArea fx:id="detailsCategories" layoutX="700.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <Label layoutX="207.0" layoutY="17.0" text="Villes " />
+      <Label layoutX="477.0" layoutY="17.0" text="Evenements" />
+      <ListView fx:id="event" layoutX="477.0" layoutY="42.0" prefHeight="154.0" prefWidth="149.0" />
+      <TextArea fx:id="detailsDC" layoutX="259.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <Label fx:id="detailsObjets" layoutX="28.0" layoutY="225.0" text="Catégories" />
+      <ListView fx:id="listeThemes" layoutX="324.0" layoutY="42.0" prefHeight="154.0" prefWidth="127.0" />
+      <Label layoutX="324.0" layoutY="17.0" text="Theme" />
+      <TextArea fx:id="detailsTypeC" layoutX="22.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
+      <TextArea fx:id="detailsEvent" layoutX="662.0" layoutY="42.0" prefHeight="154.0" prefWidth="214.0" />
+      <Label layoutX="243.0" layoutY="442.0" prefHeight="17.0" prefWidth="127.0" text="Donnees climatiques" />
+      <Label layoutX="22.0" layoutY="442.0" prefHeight="17.0" prefWidth="166.0" text="Type climat" />
+      <Label layoutX="665.0" layoutY="17.0" prefHeight="17.0" prefWidth="139.0" text="Description évènement" />
+      <TextArea fx:id="detailsCategories" layoutX="22.0" layoutY="245.0" prefHeight="160.0" prefWidth="174.0" />
       <ListView fx:id="listeObjets" layoutX="217.0" layoutY="245.0" prefHeight="160.0" prefWidth="149.0" />
-      <Label layoutX="230.0" layoutY="224.0" text="Liste objet" />
-      <ListView fx:id="listeRepEtr" layoutX="435.0" layoutY="253.0" prefHeight="160.0" prefWidth="200.0" />
-      <Label layoutX="477.0" layoutY="207.0" text="rep etr" />
-      <TextArea fx:id="detailsRepEtr" layoutX="684.0" layoutY="255.0" prefHeight="160.0" prefWidth="200.0" />
-      <Label layoutX="747.0" layoutY="199.0" prefHeight="17.0" prefWidth="111.0" text="details rep trangere" />
+      <Label layoutX="230.0" layoutY="224.0" text="Liste objets" />
+      <ListView fx:id="listeRepEtr" layoutX="392.0" layoutY="245.0" prefHeight="160.0" prefWidth="200.0" />
+      <Label layoutX="387.0" layoutY="224.0" text="Représentation étrangères" />
+      <TextArea fx:id="detailsRepEtr" layoutX="635.0" layoutY="245.0" prefHeight="160.0" prefWidth="200.0" />
+      <Label layoutX="619.0" layoutY="225.0" prefHeight="17.0" prefWidth="230.0" text="Informations représentations étrangères" />
    </children>
 </AnchorPane>

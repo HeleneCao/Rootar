@@ -4,9 +4,7 @@ import com.rootar.metier.Continent;
 import com.rootar.metier.Monnaie;
 import com.rootar.metier.Pays;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class PaysDAO extends DAO <Pays, Pays>{
@@ -53,8 +51,36 @@ public class PaysDAO extends DAO <Pays, Pays>{
     }
 
     @Override
-    public boolean insert(Pays objet) {
-        return false;
+    public boolean insert(Pays pays) {
+
+        String SQL = "INSERT INTO PAYS (ID_PAYS, CODE_PAYS, NOM_PAYS_FR, NOM_PAYS_ANG, NATIONALITE, CAPITALE, NOMBRE_HABITANT, SUPERFICIE, DEVISE, FETE_NATIONALE, " +
+                "INDICATIF_TELEPHONIQUE, ID_CONTINENT, ID_MONNAIE, ID_VISAS)"+" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(pays !=null) {
+                pStmt.setInt(1, pays.getIdPays());
+                pStmt.setString(2,pays.getCodePays());
+                pStmt.setString(3, pays.getNomPaysFr());
+                pStmt.setString(4,pays.getNomPaysAng());
+                pStmt.setString(5, pays.getNationalite());
+                pStmt.setString(6, pays.getCapitale());
+                pStmt.setInt(7, pays.getNbreHabitant());
+                pStmt.setInt(8, pays.getSuperficie());
+                pStmt.setString(9, pays.getDevise());
+                pStmt.setString(10, pays.getFeteNationale());
+                pStmt.setString(11, pays.getIndicatifTel());
+                pStmt.setInt(12, pays.getContinent().getIdContinent());
+                pStmt.setInt(13, pays.getMonnaie().getIdMonnaie());
+                pStmt.setNull(14, Types.NULL);
+                pStmt.execute();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
@@ -63,7 +89,14 @@ public class PaysDAO extends DAO <Pays, Pays>{
     }
 
     @Override
-    public boolean delete(Pays object) {
-        return false;
+    public boolean delete(Pays pays) {
+        try(Statement stmt = connexion.createStatement()){
+            String delete = "DELETE FROM PAYS WHERE ID_PAYS = " + pays.getIdPays();
+            stmt.execute(delete);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

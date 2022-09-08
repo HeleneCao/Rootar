@@ -149,4 +149,9 @@ public class RootarController {
         menuApp.showEdit();
 
     }
+
+    @FXML
+    public void supprimer(){
+        serviceRootar.deletePays(paysSelected);
+    }
 }

@@ -114,7 +114,7 @@
                     </rowConstraints>
                     <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="227.0" text="Modifier" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="244.0" text="Supprimer" GridPane.columnIndex="1" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="244.0" text="Supprimer" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
                 <GridPane fx:id="gridpaneDetails" prefHeight="469.0" prefWidth="444.0" GridPane.columnIndex="2" GridPane.rowIndex="1">

@@ -83,14 +83,32 @@ public class GestionAMSController {
     public boolean isConfirmed() {
         return confirmed;
     }
+
+    @FXML
+    public void annuler(){
+        confirmed = false;
+        dialogStage.close();
+    }
     @FXML
     public void ajouter() {
         Pays pays = new Pays();
         if (pays != null) {
+            pays.setIdPays(Integer.valueOf(idPays.getText()));
+            pays.setCodePays(codePays.getText());
+            pays.setNomPaysFr(nomPaysFr.getText());
+            pays.setNomPaysAng(nomPaysAng.getText());
+            pays.setNationalite(Nationalite.getText());
+            pays.setCapitale(capitale.getText());
+            pays.setNbreHabitant(Integer.valueOf(nombreHabitant.getText()));
+            pays.setSuperficie(Integer.valueOf(superficie.getText()));
+            pays.setDevise(devise.getText());
+            pays.setFeteNationale(feteNationale.getText());
+            pays.setIndicatifTel(indicatifTel.getText());
+            pays.setContinent(continent.getValue());
+            pays.setMonnaie((monnaie.getValue()));
 
-            System.out.println("helene doit créer la methode insert");
-            //if (serviceRootar.insertArticle(pays))
-               // dialogStage.close();
+            serviceRootar.insertPays(pays);
+            dialogStage.close();
 
         }
     }
@@ -138,4 +156,6 @@ public class GestionAMSController {
 
         alert.showAndWait();
     }
+
+
 }
