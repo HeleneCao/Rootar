@@ -71,6 +71,10 @@ public class ServiceRootar {
     {
         return continentFiltre;
     }
+    public ArrayList<Monnaie> getMonnaieFiltre()
+    {
+        return DAOFactory.getMonnaieDAO().getAll();
+    }
 
     public ArrayList<Objet> getObjetFilterByPays(Pays pays){
         return  DAOFactory.getObjetDAO().getObjetByPays(pays);

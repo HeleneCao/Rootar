@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="602.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rootar.GestionAMSController">
+    <children>
+        <GridPane layoutX="80.0" layoutY="125.0" prefHeight="434.0" prefWidth="495.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="125.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Nom pays Ang" GridPane.rowIndex="3" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Code pays" GridPane.rowIndex="1" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Capitale" GridPane.rowIndex="5" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Nom pays fr" GridPane.rowIndex="2" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Nombre habitant" GridPane.rowIndex="6" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Superficie" GridPane.rowIndex="7" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Devise" GridPane.rowIndex="8" />
+                <ComboBox fx:id="continent" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="243.0" promptText="Continent" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                <ComboBox fx:id="monnaie" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="247.0" promptText="Monnaie" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                <TextField fx:id="nomPaysAng" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="nomPaysFr" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="codePays" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="248.0" text="Id pays :" />
+                <Label maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="248.0" text="Nationalite" GridPane.rowIndex="4" />
+                <TextField fx:id="Nationalite" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouter" prefHeight="25.0" prefWidth="261.0" text="Confirmer" GridPane.rowIndex="14" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <Label layoutX="10.0" layoutY="331.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Fête nationale" GridPane.rowIndex="9" />
+            <Label layoutX="10.0" layoutY="313.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Indicatif Téléphonique" GridPane.rowIndex="10" />
+            <Label layoutX="10.0" layoutY="346.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Continent" GridPane.rowIndex="11" />
+            <Label layoutX="10.0" layoutY="328.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Monnaie" GridPane.rowIndex="12" />
+            <Label layoutX="10.0" layoutY="357.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Visas" GridPane.rowIndex="13" />
+            <TextField fx:id="superficie" layoutX="258.0" layoutY="127.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="nombreHabitant" layoutX="258.0" layoutY="127.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="capitale" layoutX="258.0" layoutY="127.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="indicatifTel" layoutX="258.0" layoutY="214.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="feteNationale" layoutX="258.0" layoutY="214.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="devise" layoutX="258.0" layoutY="214.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="idPays" layoutX="258.0" layoutY="301.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+            <TextField fx:id="visas" layoutX="258.0" layoutY="301.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            </children>
+        </GridPane>
+        <Label fx:id="titres" alignment="CENTER" layoutX="73.0" layoutY="56.0" prefHeight="53.0" prefWidth="524.0" text="Label" AnchorPane.leftAnchor="73.0" AnchorPane.rightAnchor="65.0">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

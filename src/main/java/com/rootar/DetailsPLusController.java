@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class DetailsPLusController {
     private MenuApp menuApp;
     private ServiceRootar serviceRootar;
     private StringBuilder fieldArea;
+    private Stage dialogStage;
 
     @FXML
     private ListView <Region> region;
@@ -133,5 +135,10 @@ public class DetailsPLusController {
 
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
+    }
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+
+
     }
 }

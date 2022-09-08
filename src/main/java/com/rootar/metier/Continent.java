@@ -39,4 +39,9 @@ public class Continent {
     public void setGetNomContinentAng(String nomContinentAng) {
         this.nomContinentAng = nomContinentAng;
     }
+
+    @Override
+    public String toString() {
+        return nomContinentFr;
+    }
 }

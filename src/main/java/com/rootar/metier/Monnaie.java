@@ -29,4 +29,9 @@ public class Monnaie {
     public void setLibelleMonnaie(String libelleMonnaie) {
         this.libelleMonnaie = libelleMonnaie;
     }
+
+    @Override
+    public String toString() {
+        return libelleMonnaie;
+    }
 }

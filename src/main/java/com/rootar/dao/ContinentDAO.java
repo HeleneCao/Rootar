@@ -1,11 +1,16 @@
 package com.rootar.dao;
 
 import com.rootar.metier.Continent;
+import com.rootar.metier.Priorite;
+import com.rootar.metier.Sante;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ContinentDAO extends DAO <Continent, Continent>{
+    private ResultSet rs;
     protected ContinentDAO(Connection connexion) {
         super(connexion);
     }
@@ -17,7 +22,29 @@ public class ContinentDAO extends DAO <Continent, Continent>{
 
     @Override
     public ArrayList<Continent> getAll() {
-        return null;
+       ArrayList <Continent> continent= new ArrayList<>();
+        String SQL= " select * from continent ";
+        try (PreparedStatement pstmt = connexion.prepareStatement(SQL)){
+
+
+            // Determine the column set column
+
+
+            rs = pstmt.executeQuery();
+
+
+            while (rs.next()) {
+
+                continent.add(new Continent(rs.getInt(1),rs.getString(2)));
+            }
+            rs.close();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return continent;
     }
 
     @Override

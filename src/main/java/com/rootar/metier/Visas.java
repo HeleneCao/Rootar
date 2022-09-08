@@ -53,4 +53,9 @@ public class Visas {
     public void setPrixVisas(Float prixVisas) {
         this.prixVisas = prixVisas;
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

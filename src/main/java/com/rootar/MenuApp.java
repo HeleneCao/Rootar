@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,9 +49,12 @@ public class MenuApp extends Application {
             AnchorPane menuLayout = (AnchorPane) loader.load();
 
             Scene scene = new Scene(menuLayout);
+            dialogStage = new Stage();
             primaryStage.setScene(scene);
-
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
             DetailsPLusController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
             if (paysSelected!=null){
                 controller.afficherRegion(paysSelected);
             }
@@ -62,7 +66,32 @@ public class MenuApp extends Application {
         }
 
     }
+    public void showEdit() {
+        try {
 
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMS.fxml"));
+            AnchorPane anchorPane=(AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle("");
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            /*if (articleSelected!=null)
+                controller.afficherArticle(articleSelected,supprimer);*/
+            controller.setTitle("");
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;

@@ -144,4 +144,9 @@ public class RootarController {
     public void afficherRegion(){
         menuApp.showDetailsPlus(paysSelected);
     }
+    @FXML
+    public void ajouter(){
+        menuApp.showEdit();
+
+    }
 }
