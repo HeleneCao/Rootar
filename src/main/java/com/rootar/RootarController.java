@@ -5,6 +5,7 @@ import com.rootar.metier.Continent;
 import com.rootar.metier.Pays;
 import com.rootar.metier.RepresentationEtrangere;
 import com.rootar.metier.Themes;
+import com.rootar.outils.FenetreAlert;
 import com.rootar.service.RootarSearch;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
@@ -64,10 +65,11 @@ public class RootarController {
     private ListView <RepresentationEtrangere> listeRepEtrangeres;
     private ServiceRootar serviceRootar;
     private Pays paysSelected;
-
+    private FenetreAlert fenetreAlert;
     private MenuApp menuApp;
     @FXML
     private void initialize() {
+        fenetreAlert=new FenetreAlert();
         serviceRootar=new ServiceRootar();
         paysSelected= new Pays();
         tableRootar.setItems(FXCollections.observableArrayList(serviceRootar.getFilteredPays()));
@@ -156,6 +158,9 @@ public class RootarController {
 
     @FXML
     public void supprimer(){
-        serviceRootar.deletePays(paysSelected);
+       if( serviceRootar.deletePays(paysSelected)) {
+           fenetreAlert.fenetreInformation("Suppression du pays", "Pays supprimé");
+       }
+
     }
 }
