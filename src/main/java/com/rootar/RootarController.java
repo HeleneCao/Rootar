@@ -149,6 +149,10 @@ public class RootarController {
         menuApp.showEdit();
 
     }
+    @FXML
+    public void modifier(){
+        menuApp.showEdit(paysSelected);
+    }
 
     @FXML
     public void supprimer(){

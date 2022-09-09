@@ -84,8 +84,36 @@ public class PaysDAO extends DAO <Pays, Pays>{
     }
 
     @Override
-    public boolean update(Pays object) {
-        return false;
+    public boolean update(Pays pays) {
+        String SQL = "update PAYS set CODE_PAYS = ?,NOM_PAYS_FR=?,NOM_PAYS_ANG = ?,NATIONALITE = ?,CAPITALE = ?,NOMBRE_HABITANT = ?,SUPERFICIE=? ,DEVISE=?,  FETE_NATIONALE=?, INDICATIF_TELEPHONIQUE=?, ID_CONTINENT=?, ID_MONNAIE=?, ID_VISAS=?  where ID_PAYS = ?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(pays !=null) {
+
+                pStmt.setString(1,pays.getCodePays());
+                pStmt.setString(2, pays.getNomPaysFr());
+                pStmt.setString(3,pays.getNomPaysAng());
+                pStmt.setString(4, pays.getNationalite());
+                pStmt.setString(5, pays.getCapitale());
+                pStmt.setInt(6, pays.getNbreHabitant());
+                pStmt.setInt(7, pays.getSuperficie());
+                pStmt.setString(8, pays.getDevise());
+                pStmt.setString(9, pays.getFeteNationale());
+                pStmt.setString(10, pays.getIndicatifTel());
+                pStmt.setInt(11, pays.getContinent().getIdContinent());
+                pStmt.setInt(12, pays.getMonnaie().getIdMonnaie());
+                pStmt.setNull(13, Types.NULL);
+                pStmt.setInt(14, pays.getIdPays());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.rootar.metier.Pays;
 import com.rootar.metier.Visas;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ public class GestionAMSController {
     @FXML
     private TextField nomPaysAng;
     @FXML
-    private TextField Nationalite;
+    private TextField nationalite;
     @FXML
     private TextField capitale;
     @FXML
@@ -45,14 +46,16 @@ public class GestionAMSController {
 
     private boolean choixBouton ;
     private ServiceRootar serviceRootar;
+    private Pays paysSeleted;
 
 
     @FXML
     private Label titres;
     @FXML
     private void initialize() {
-        serviceRootar = new ServiceRootar();
-        initAjouter();
+        paysSeleted= new Pays();
+   serviceRootar = new ServiceRootar();
+    initAjouter();
 
 
     }
@@ -93,11 +96,12 @@ public class GestionAMSController {
     public void ajouter() {
         Pays pays = new Pays();
         if (pays != null) {
+
             pays.setIdPays(Integer.valueOf(idPays.getText()));
             pays.setCodePays(codePays.getText());
             pays.setNomPaysFr(nomPaysFr.getText());
             pays.setNomPaysAng(nomPaysAng.getText());
-            pays.setNationalite(Nationalite.getText());
+            pays.setNationalite(nationalite.getText());
             pays.setCapitale(capitale.getText());
             pays.setNbreHabitant(Integer.valueOf(nombreHabitant.getText()));
             pays.setSuperficie(Integer.valueOf(superficie.getText()));
@@ -106,19 +110,36 @@ public class GestionAMSController {
             pays.setIndicatifTel(indicatifTel.getText());
             pays.setContinent(continent.getValue());
             pays.setMonnaie((monnaie.getValue()));
-
             serviceRootar.insertPays(pays);
             dialogStage.close();
 
         }
     }
+    
+    @FXML
+    public void modifierPays() {
+        Pays pays = new Pays();
+        if(paysSeleted.getCodePays() != null){
 
-    public void modifierArticle() {
 
-
+            pays.setIdPays(Integer.valueOf(idPays.getText()));
+            pays.setCodePays(codePays.getText());
+            pays.setNomPaysFr(nomPaysFr.getText());
+            pays.setNomPaysAng(nomPaysAng.getText());
+            pays.setNationalite(nationalite.getText());
+            pays.setCapitale(capitale.getText());
+            pays.setNbreHabitant(Integer.valueOf(nombreHabitant.getText()));
+            pays.setSuperficie(Integer.valueOf(superficie.getText()));
+            pays.setDevise(devise.getText());
+            pays.setFeteNationale(feteNationale.getText());
+            pays.setIndicatifTel(indicatifTel.getText());
+            pays.setContinent(continent.getValue());
+            pays.setMonnaie(monnaie.getValue());
+            if(serviceRootar.updatePays(pays))
+                System.out.println("update done");
+            dialogStage.close();
+        }
     }
-
-
 
     public void supprimerArticle(){
 
@@ -157,5 +178,22 @@ public class GestionAMSController {
         alert.showAndWait();
     }
 
+
+    public void afficherArticle(Pays paysSelected) {
+        this.paysSeleted=paysSelected;
+        idPays.setText(String.valueOf(paysSelected.getIdPays()));
+        codePays.setText(paysSelected.getCodePays());
+        nomPaysFr.setText(paysSelected.getNomPaysFr());
+        nomPaysAng.setText(paysSelected.getNomPaysAng());
+        nationalite.setText(paysSelected.getNationalite());
+        capitale.setText(paysSelected.getCapitale());
+        nombreHabitant.setText(String.valueOf(paysSelected.getNbreHabitant()));
+        superficie.setText(String.valueOf(paysSelected.getSuperficie()));
+        devise.setText(paysSelected.getDevise());
+        feteNationale.setText(paysSelected.getFeteNationale());
+        indicatifTel.setText(paysSelected.getIndicatifTel());
+
+
+    }
 
 }

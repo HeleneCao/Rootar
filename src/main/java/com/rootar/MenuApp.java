@@ -92,6 +92,33 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
     }
+    public void showEdit(Pays paysSelected) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMS.fxml"));
+            AnchorPane anchorPane=(AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle("");
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            if (paysSelected!=null)
+                System.out.println("fuck");
+                controller.afficherArticle(paysSelected);
+            controller.setTitle("");
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;

@@ -83,7 +83,7 @@ public class ServiceRootar {
         return DAOFactory.getPaysDAO().insert(pays);
     }
     public boolean updatePays(Pays pays) {
-        return true;
+        return DAOFactory.getPaysDAO().update(pays);
     }
     public boolean deletePays(Pays pays) {
         return DAOFactory.getPaysDAO().delete(pays);
