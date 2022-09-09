@@ -4,6 +4,7 @@ import com.rootar.metier.Continent;
 import com.rootar.metier.Monnaie;
 import com.rootar.metier.Pays;
 import com.rootar.metier.Visas;
+import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -48,6 +49,8 @@ public class GestionAMSController {
     private ServiceRootar serviceRootar;
     private Pays paysSeleted;
 
+    private FenetreAlert fenetreAlert;
+
 
     @FXML
     private Label titres;
@@ -56,6 +59,7 @@ public class GestionAMSController {
         paysSeleted= new Pays();
    serviceRootar = new ServiceRootar();
     initAjouter();
+    fenetreAlert = new FenetreAlert();
 
 
     }
@@ -110,7 +114,10 @@ public class GestionAMSController {
             pays.setIndicatifTel(indicatifTel.getText());
             pays.setContinent(continent.getValue());
             pays.setMonnaie((monnaie.getValue()));
-            serviceRootar.insertPays(pays);
+            if (serviceRootar.insertPays(pays)){
+                fenetreAlert.fenetreInformation("Ajouter pays", "Le pays " + pays.getNomPaysFr() + " a été ajouté.");
+            }
+
             dialogStage.close();
 
         }
@@ -135,8 +142,8 @@ public class GestionAMSController {
             pays.setIndicatifTel(indicatifTel.getText());
             pays.setContinent(continent.getValue());
             pays.setMonnaie(monnaie.getValue());
-            if(serviceRootar.updatePays(pays))
-                System.out.println("update done");
+            if(serviceRootar.updatePays(pays));
+            fenetreAlert.fenetreInformation("Modification ", "Le pays " + paysSeleted.getNomPaysFr() + " a été modifié.");
             dialogStage.close();
         }
     }

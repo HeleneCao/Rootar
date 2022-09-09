@@ -159,7 +159,7 @@ public class RootarController {
     @FXML
     public void supprimer(){
        if( serviceRootar.deletePays(paysSelected)) {
-           fenetreAlert.fenetreInformation("Suppression du pays", "Pays supprimé");
+           fenetreAlert.fenetreInformation("Suppression du pays", "le pays "+paysSelected.getNomPaysFr()+" est supprimé");
        }
 
     }
