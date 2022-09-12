@@ -66,7 +66,7 @@ public class MenuApp extends Application {
         }
 
     }
-    public void showEdit() {
+   /* public void showEdit() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -82,7 +82,7 @@ public class MenuApp extends Application {
             GestionAMSController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             /*if (articleSelected!=null)
-                controller.afficherArticle(articleSelected,supprimer);*/
+                controller.afficherArticle(articleSelected,supprimer);
             controller.setTitle("");
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
@@ -91,8 +91,8 @@ public class MenuApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    public void showEdit(Pays paysSelected) {
+    }*/
+    public void showEdit(Pays paysSelected,String titre) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -100,7 +100,7 @@ public class MenuApp extends Application {
             AnchorPane anchorPane=(AnchorPane) loader.load();
 
             dialogStage = new Stage();
-            dialogStage.setTitle("");
+            dialogStage.setTitle(titre);
 
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
@@ -108,9 +108,9 @@ public class MenuApp extends Application {
             GestionAMSController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             if (paysSelected!=null)
-                System.out.println("fuck");
+
                 controller.afficherArticle(paysSelected);
-            controller.setTitle("");
+            controller.setTitle(titre);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
 

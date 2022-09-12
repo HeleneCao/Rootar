@@ -49,6 +49,7 @@ public class GestionAMSController {
     private Pays paysSeleted;
 
 
+
     @FXML
     private Label titres;
     @FXML
@@ -59,6 +60,7 @@ public class GestionAMSController {
 
 
     }
+
     @FXML
     public void abandonner() {
         confirmed = false;
@@ -93,7 +95,7 @@ public class GestionAMSController {
         dialogStage.close();
     }
     @FXML
-    public void ajouter() {
+    public void ajouterPays() {
         Pays pays = new Pays();
         if (pays != null) {
 
@@ -146,27 +148,32 @@ public class GestionAMSController {
     }
     @FXML
     public void confirmer() {
-       /* System.out.println(choixBouton);
-        if (articleSelected==null){
-            ajouter();
+        Pays pays = new Pays();
+        pays.setIdPays(Integer.valueOf(idPays.getText()));
+        pays.setCodePays(codePays.getText());
+        pays.setNomPaysFr(nomPaysFr.getText());
+        pays.setNomPaysAng(nomPaysAng.getText());
+        pays.setNationalite(nationalite.getText());
+        pays.setCapitale(capitale.getText());
+        pays.setNbreHabitant(Integer.valueOf(nombreHabitant.getText()));
+        pays.setSuperficie(Integer.valueOf(superficie.getText()));
+        pays.setDevise(devise.getText());
+        pays.setFeteNationale(feteNationale.getText());
+        pays.setIndicatifTel(indicatifTel.getText());
+        pays.setContinent(continent.getValue());
+        pays.setMonnaie((monnaie.getValue()));
 
+        if (dialogStage.getTitle().equals("Modifier pays")) {
+            serviceRootar.updatePays(pays);
         }
-        if (!choixBouton && articleSelected !=null ){
-            modifierArticle();
-            showAlertWithoutHeaderText("modification article","Article modifié!!!");
-            System.out.println("modifier");
+        if (dialogStage.getTitle().equals("Ajouter pays")) {
+            serviceRootar.insertPays(pays);
         }
-        if (choixBouton && articleSelected !=null){
-            System.out.println("supprimer");
-            showAlertWithoutHeaderText("Suppression article","Article supprimé!!!");
-            supprimerArticle();
-            dialogStage.close();
-        }*/
-
-
         confirmed = true;
 
+        dialogStage.close();
     }
+
     private void showAlertWithoutHeaderText(String titre, String text) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);

@@ -1,10 +1,7 @@
 package com.rootar;
 
 import com.rootar.MenuApp;
-import com.rootar.metier.Continent;
-import com.rootar.metier.Pays;
-import com.rootar.metier.RepresentationEtrangere;
-import com.rootar.metier.Themes;
+import com.rootar.metier.*;
 import com.rootar.outils.FenetreAlert;
 import com.rootar.service.RootarSearch;
 import com.rootar.service.ServiceRootar;
@@ -79,7 +76,7 @@ public class RootarController {
         colNomContinent.setCellValueFactory(cellData -> cellData.getValue().nomContinentProperty());
         colLibelleMonnaie.setCellValueFactory(cellData -> cellData.getValue().libelleMonnaieProperty());
         colNationalite.setCellValueFactory(cellData -> cellData.getValue().nationaliteProperty());
-
+        tableRootar.refresh();
         /*continentSearch.setItems(FXCollections.observableArrayList(serviceRootar.getContinentFiltre()));
         continentSearch.getItems().add(0,new Continent(0, "Choisir un continent"));
         continentSearch.valueProperty().addListener(observable -> filterContinent());
@@ -109,7 +106,8 @@ public class RootarController {
             monnaie.setText(paysSelected.getMonnaie().getLibelleMonnaie());
             //langue.setText(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues());
            // langue.setText(serviceRootar.getLanguesFilter("an"));
-            langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
+           
+             langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
             listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
             listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
         }
@@ -148,12 +146,13 @@ public class RootarController {
     }
     @FXML
     public void ajouter(){
-        menuApp.showEdit();
+        paysSelected=null;
+        menuApp.showEdit(paysSelected,"Ajouter pays");
 
     }
     @FXML
     public void modifier(){
-        menuApp.showEdit(paysSelected);
+        menuApp.showEdit(paysSelected, "Modifier pays");
     }
 
     @FXML
@@ -162,5 +161,11 @@ public class RootarController {
            fenetreAlert.fenetreInformation("Suppression du pays", "Pays supprimé");
        }
 
+    }
+    @FXML
+    public void reset(){
+        tableRootar.setItems(FXCollections.observableArrayList(serviceRootar.getFilteredPays()));
+        tableRootar.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherDetails(newValue));
+        tableRootar.refresh();
     }
 }
