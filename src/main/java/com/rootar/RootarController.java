@@ -106,7 +106,7 @@ public class RootarController {
             monnaie.setText(paysSelected.getMonnaie().getLibelleMonnaie());
             //langue.setText(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues());
            // langue.setText(serviceRootar.getLanguesFilter("an"));
-           
+
              langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
             listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
             listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
