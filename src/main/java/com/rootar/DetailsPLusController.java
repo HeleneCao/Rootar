@@ -3,13 +3,10 @@ package com.rootar;
 import com.rootar.metier.*;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class DetailsPLusController {
 
@@ -19,6 +16,7 @@ public class DetailsPLusController {
     private Stage dialogStage;
     public Ville villeSelected;
     public Pays paysSelected;
+    public Evenements eventSelected;
 
     @FXML
     private ListView <Region> region;
@@ -49,8 +47,6 @@ public class DetailsPLusController {
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
 
-
-
     }
     public void afficherRegion(Pays paysSelected){
 
@@ -60,9 +56,6 @@ public class DetailsPLusController {
         region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherDonneesClimat(newValue));
         region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherThemesByRegion(newValue));
         afficherObjet(paysSelected);
-
-
-
 
     }
     public void afficherVilles(Region regionSelected){
@@ -74,10 +67,10 @@ public class DetailsPLusController {
     }
     public  void setVilleSelected( Ville ville){
         villeSelected=ville;
-
-
-
     }
+    public Ville getVilleSelected() {return villeSelected;
+    }
+
     public void afficherEvent(Ville villeSelected){
         System.out.println(paysSelected.getIdPays());
         event.setItems(FXCollections.observableArrayList(serviceRootar.getEventFilterByVille(villeSelected)));
@@ -86,8 +79,6 @@ public class DetailsPLusController {
     }
 
     public void detailsEvent(Evenements event){
-
-
         System.out.println(event.getDateDebutEvenements());
         fieldArea.append(event.getDateDebutEvenements()+"\n");
         fieldArea.append(event.getDateFinEvenements()+"\n");
@@ -95,9 +86,7 @@ public class DetailsPLusController {
         detailsEvent.setText(fieldArea.toString());
     }
     public void afficherTypeClimat(Region region){
-
         detailsTypeC.setText(serviceRootar.getTypeClimatFilterByRegion(region).getLibelleTypeClimat());
-
     }
     public void afficherDonneesClimat(Region region){
 
@@ -114,16 +103,12 @@ public class DetailsPLusController {
     }
 
     public void afficherObjet(Pays paysSelected){
-
         listeObjets.setItems(FXCollections.observableArrayList(serviceRootar.getObjetFilterByPays(paysSelected)));
         listeObjets.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherCategories(newValue));
     }
 
     public void afficherCategories(Objet objet){
-
         detailsCategories.setText(serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
-
-
     }
     public void afficherThemesByRegion(Region region){
         listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByRegion(region)));
@@ -135,12 +120,9 @@ public class DetailsPLusController {
     }
     public  void afficherDetailsRepEtr(RepresentationEtrangere representationEtrangere){
         StringBuilder fieldArea = new StringBuilder("");
-
         fieldArea.append(representationEtrangere.getLibelleRepEtrangere()+"\n");
         fieldArea.append(representationEtrangere.getAdresse()+"\n");
         fieldArea.append(representationEtrangere.getTelephone()+"\n");
-
-
         detailsRepEtr.setText(fieldArea.toString());
 
     }
@@ -157,15 +139,10 @@ public class DetailsPLusController {
     @FXML
     public void ajouterVille(){
 
-
         menuApp.showEditVille(getPaysSelected(),villeSelected,"Ajouter ville");
-
-
     }
     @FXML
     public void modifierVille(){
-
-
         menuApp.showEditVille(getPaysSelected(),villeSelected,"Modifier ville");
 
 
@@ -177,5 +154,21 @@ public class DetailsPLusController {
 
     public Pays getPaysSelected() {
         return paysSelected;
+    }
+
+
+    @FXML
+    public void ajouterEvent(){
+    menuApp.showEditEvent(getVilleSelected(), eventSelected, "Ajouter evenement");
+    }
+
+    @FXML
+    public void modifierEvent(){
+    menuApp.showEditEvent(getVilleSelected(), eventSelected, "Modifier evenement");
+    }
+
+    @FXML
+    public void supprimerEvent(){
+
     }
 }

@@ -97,4 +97,12 @@ public class ServiceRootar {
     }
     public boolean deleteVille(Ville ville) { return DAOFactory.getVilleDAO().delete(ville);}
 
+    public boolean insertEvent(Evenements evenements) {return DAOFactory.getEvenementsDAO().insert(evenements);
+    }
+    public boolean updateEvent(Evenements evenements) {
+        return DAOFactory.getEvenementsDAO().update(evenements);
+    }
+    public boolean deleteEvent(Evenements evenements) { return DAOFactory.getEvenementsDAO().delete(evenements);}
+
+
 }
