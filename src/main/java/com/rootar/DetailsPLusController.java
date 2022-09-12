@@ -17,6 +17,8 @@ public class DetailsPLusController {
     private ServiceRootar serviceRootar;
     private StringBuilder fieldArea;
     private Stage dialogStage;
+    public Ville villeSelected;
+    public Pays paysSelected;
 
     @FXML
     private ListView <Region> region;
@@ -41,10 +43,13 @@ public class DetailsPLusController {
 
     @FXML
     private TextArea detailsCategories;
+
     @FXML
     private void initialize(){
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
+
+
 
     }
     public void afficherRegion(Pays paysSelected){
@@ -58,15 +63,23 @@ public class DetailsPLusController {
 
 
 
+
     }
     public void afficherVilles(Region regionSelected){
 
        ville.setItems(FXCollections.observableArrayList(serviceRootar.getVilleFilterByRegion(regionSelected)));
        ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherEvent(newValue));
-        ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherRepEtrByVille(newValue));
+       ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherRepEtrByVille(newValue));
+        ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) ->setVilleSelected(newValue));
+    }
+    public  void setVilleSelected( Ville ville){
+        villeSelected=ville;
+
+
+
     }
     public void afficherEvent(Ville villeSelected){
-
+        System.out.println(paysSelected.getIdPays());
         event.setItems(FXCollections.observableArrayList(serviceRootar.getEventFilterByVille(villeSelected)));
         event.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> detailsEvent(newValue));
 
@@ -107,7 +120,7 @@ public class DetailsPLusController {
     }
 
     public void afficherCategories(Objet objet){
-        System.out.println("kaka" +serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
+
         detailsCategories.setText(serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
 
 
@@ -140,5 +153,29 @@ public class DetailsPLusController {
         this.dialogStage = dialogStage;
 
 
+    }
+    @FXML
+    public void ajouterVille(){
+
+
+        menuApp.showEditVille(getPaysSelected(),villeSelected,"Ajouter ville");
+
+
+    }
+    @FXML
+    public void modifierVille(){
+
+
+        menuApp.showEditVille(getPaysSelected(),villeSelected,"Modifier ville");
+
+
+    }
+    public void setPaysSelected(Pays paysSelected) {
+        this.paysSelected = paysSelected;
+
+    }
+
+    public Pays getPaysSelected() {
+        return paysSelected;
     }
 }

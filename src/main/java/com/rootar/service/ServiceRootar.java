@@ -10,6 +10,7 @@ public class ServiceRootar {
     private ArrayList<Pays> paysFiltre;
     private ArrayList<Continent> continentFiltre;
 
+
     public ServiceRootar() {
         paysFiltre = DAOFactory.getPaysDAO().getAll();
         continentFiltre = DAOFactory.getContinentDAO().getAll();
@@ -88,5 +89,12 @@ public class ServiceRootar {
     public boolean deletePays(Pays pays) {
         return DAOFactory.getPaysDAO().delete(pays);
     }
+    public boolean insertVille(Ville ville) {
+        return DAOFactory.getVilleDAO().insert(ville);
+    }
+    public boolean updateVille(Ville ville) {
+        return DAOFactory.getVilleDAO().update(ville);
+    }
+    public boolean deleteVille(Ville ville) { return DAOFactory.getVilleDAO().delete(ville);}
 
 }

@@ -143,6 +143,7 @@ public class RootarController {
     }
     public void afficherRegion(){
         menuApp.showDetailsPlus(paysSelected);
+        //System.out.println(paysSelected.getIdPays()+ "afficher region");
     }
     @FXML
     public void ajouter(){

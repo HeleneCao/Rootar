@@ -3,10 +3,7 @@ package com.rootar.dao;
 import com.rootar.metier.Region;
 import com.rootar.metier.Ville;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class VilleDAO extends DAO <Ville, Ville>{
@@ -56,17 +53,63 @@ public class VilleDAO extends DAO <Ville, Ville>{
     }
 
     @Override
-    public boolean insert(Ville objet) {
-        return false;
+    public boolean insert(Ville ville) {
+        String SQL = "INSERT INTO ville(nom_ville,id_region) "+" VALUES (?,?)";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(ville !=null) {
+                pStmt.setString(1,ville.getNomVille());
+                pStmt.setInt(2,ville.getRegion().getIdRegion());
+                pStmt.execute();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public boolean update(Ville object) {
-        return false;
+    public boolean update(Ville ville) {
+        String SQL = "update ville set nom_ville=?, id_region=?  where id_ville = ?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(ville !=null) {
+
+                pStmt.setString(1,ville.getNomVille());
+                pStmt.setInt(2,ville.getIdRegion());
+                pStmt.setInt(3,ville.getIdVille());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public boolean delete(Ville object) {
-        return false;
+    public boolean delete(Ville ville) {
+        String delete = "DELETE FROM VILLE WHERE ID_PAYS = ?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(delete))
+        {
+            if(ville !=null) {
+
+
+
+                pStmt.setInt(1,ville.getIdVille());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

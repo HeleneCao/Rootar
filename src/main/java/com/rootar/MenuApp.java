@@ -1,6 +1,7 @@
 package com.rootar;
 
 import com.rootar.metier.Pays;
+import com.rootar.metier.Ville;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class MenuApp extends Application {
         return primaryStage;
     }
 
-    public void showRootar(){
+    public void showRootar() {
         try {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
@@ -41,7 +42,8 @@ public class MenuApp extends Application {
         }
 
     }
-    public void showDetailsPlus( Pays paysSelected){
+
+    public void showDetailsPlus(Pays paysSelected) {
         try {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
@@ -55,7 +57,8 @@ public class MenuApp extends Application {
             dialogStage.initOwner(primaryStage);
             DetailsPLusController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            if (paysSelected!=null){
+            controller.setPaysSelected(paysSelected);
+            if (paysSelected != null) {
                 controller.afficherRegion(paysSelected);
             }
             controller.setMenuApp(this);
@@ -66,38 +69,13 @@ public class MenuApp extends Application {
         }
 
     }
-   /* public void showEdit() {
+
+    public void showEdit(Pays paysSelected, String titre) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MenuApp.class.getResource("GestionAMS.fxml"));
-            AnchorPane anchorPane=(AnchorPane) loader.load();
-
-            dialogStage = new Stage();
-            dialogStage.setTitle("");
-
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(anchorPane);
-            GestionAMSController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            /*if (articleSelected!=null)
-                controller.afficherArticle(articleSelected,supprimer);
-            controller.setTitle("");
-            dialogStage.setScene(scene);
-            dialogStage.showAndWait();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-    public void showEdit(Pays paysSelected,String titre) {
-        try {
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("GestionAMS.fxml"));
-            AnchorPane anchorPane=(AnchorPane) loader.load();
+            AnchorPane anchorPane = (AnchorPane) loader.load();
 
             dialogStage = new Stage();
             dialogStage.setTitle(titre);
@@ -107,9 +85,9 @@ public class MenuApp extends Application {
             Scene scene = new Scene(anchorPane);
             GestionAMSController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            if (paysSelected!=null)
+            if (paysSelected != null)
 
-                controller.afficherArticle(paysSelected);
+                controller.afficherPays(paysSelected);
             controller.setTitle(titre);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
@@ -119,6 +97,37 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
     }
+
+    public void showEditVille(Pays paysSelected,Ville ville, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMSVille.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSVilleController controller = loader.getController();
+
+            controller.setDialogStage(dialogStage);
+            controller.setPaysSelected(paysSelected);
+            controller.setTitle(titre);
+            if (paysSelected != null)
+
+                controller.afficherVille(paysSelected,ville);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;

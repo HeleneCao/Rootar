@@ -51,7 +51,7 @@
                 <Label maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="248.0" text="Nationalite" GridPane.rowIndex="4" />
                 <TextField fx:id="nationalite" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#confirmer" prefHeight="25.0" prefWidth="261.0" text="Confirmer" GridPane.rowIndex="14" />
-                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#annuler" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="14" />
             <Label layoutX="10.0" layoutY="331.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Fête nationale" GridPane.rowIndex="9" />
             <Label layoutX="10.0" layoutY="313.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Indicatif Téléphonique" GridPane.rowIndex="10" />
             <Label layoutX="10.0" layoutY="346.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Continent" GridPane.rowIndex="11" />

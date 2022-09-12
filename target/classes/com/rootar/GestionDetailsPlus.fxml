@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -7,9 +8,9 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rootar.DetailsPLusController">
    <children>
-      <ListView fx:id="region" layoutX="22.0" layoutY="42.0" prefHeight="154.0" prefWidth="139.0" />
+      <ListView fx:id="region" layoutX="22.0" layoutY="42.0" prefHeight="154.0" prefWidth="119.0" />
       <Label layoutX="28.0" layoutY="17.0" prefHeight="17.0" prefWidth="59.0" text="Régions" />
-      <ListView fx:id="ville" layoutX="197.0" layoutY="42.0" prefHeight="154.0" prefWidth="94.0" />
+      <ListView fx:id="ville" layoutX="171.0" layoutY="42.0" prefHeight="154.0" prefWidth="119.0" />
       <Label layoutX="207.0" layoutY="17.0" text="Villes " />
       <Label layoutX="477.0" layoutY="17.0" text="Evenements" />
       <ListView fx:id="event" layoutX="477.0" layoutY="42.0" prefHeight="154.0" prefWidth="149.0" />
@@ -18,16 +19,19 @@
       <ListView fx:id="listeThemes" layoutX="324.0" layoutY="42.0" prefHeight="154.0" prefWidth="127.0" />
       <Label layoutX="324.0" layoutY="17.0" text="Theme" />
       <TextArea fx:id="detailsTypeC" layoutX="22.0" layoutY="465.0" prefHeight="178.0" prefWidth="214.0" />
-      <TextArea fx:id="detailsEvent" layoutX="662.0" layoutY="42.0" prefHeight="154.0" prefWidth="214.0" />
+      <TextArea fx:id="detailsEvent" layoutX="654.0" layoutY="42.0" prefHeight="154.0" prefWidth="149.0" />
       <Label layoutX="243.0" layoutY="442.0" prefHeight="17.0" prefWidth="127.0" text="Donnees climatiques" />
       <Label layoutX="22.0" layoutY="442.0" prefHeight="17.0" prefWidth="166.0" text="Type climat" />
       <Label layoutX="665.0" layoutY="17.0" prefHeight="17.0" prefWidth="139.0" text="Description évènement" />
-      <TextArea fx:id="detailsCategories" layoutX="22.0" layoutY="245.0" prefHeight="160.0" prefWidth="174.0" />
-      <ListView fx:id="listeObjets" layoutX="217.0" layoutY="245.0" prefHeight="160.0" prefWidth="149.0" />
-      <Label layoutX="230.0" layoutY="224.0" text="Liste objets" />
-      <ListView fx:id="listeRepEtr" layoutX="392.0" layoutY="245.0" prefHeight="160.0" prefWidth="200.0" />
+      <TextArea fx:id="detailsCategories" layoutX="22.0" layoutY="245.0" prefHeight="160.0" prefWidth="119.0" />
+      <ListView fx:id="listeObjets" layoutX="173.0" layoutY="282.0" prefHeight="160.0" prefWidth="140.0" />
+      <Label layoutX="193.0" layoutY="237.0" text="Liste objets" />
+      <ListView fx:id="listeRepEtr" layoutX="392.0" layoutY="245.0" prefHeight="160.0" prefWidth="149.0" />
       <Label layoutX="387.0" layoutY="224.0" text="Représentation étrangères" />
-      <TextArea fx:id="detailsRepEtr" layoutX="635.0" layoutY="245.0" prefHeight="160.0" prefWidth="200.0" />
+      <TextArea fx:id="detailsRepEtr" layoutX="621.0" layoutY="245.0" prefHeight="160.0" prefWidth="214.0" />
       <Label layoutX="619.0" layoutY="225.0" prefHeight="17.0" prefWidth="230.0" text="Informations représentations étrangères" />
+      <Button layoutX="167.0" layoutY="208.0" mnemonicParsing="false" onAction="#ajouterVille" text="a" />
+      <Button layoutX="204.0" layoutY="208.0" mnemonicParsing="false" onAction="#modifierVille" text="m" />
+      <Button layoutX="253.0" layoutY="208.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="9.0" text="s" />
    </children>
 </AnchorPane>
