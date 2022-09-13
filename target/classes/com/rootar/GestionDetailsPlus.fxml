@@ -32,6 +32,6 @@
       <Label layoutX="619.0" layoutY="225.0" prefHeight="17.0" prefWidth="230.0" text="Informations représentations étrangères" />
       <Button layoutX="167.0" layoutY="208.0" mnemonicParsing="false" onAction="#ajouterVille" text="a" />
       <Button layoutX="204.0" layoutY="208.0" mnemonicParsing="false" onAction="#modifierVille" text="m" />
-      <Button layoutX="253.0" layoutY="208.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="9.0" text="s" />
+      <Button layoutX="253.0" layoutY="208.0" mnemonicParsing="false" onAction="#supprimerVille" prefHeight="25.0" prefWidth="9.0" text="s" />
    </children>
 </AnchorPane>

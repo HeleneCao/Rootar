@@ -115,7 +115,7 @@ public class MenuApp extends Application {
             controller.setDialogStage(dialogStage);
             controller.setPaysSelected(paysSelected);
             controller.setTitle(titre);
-            if (paysSelected != null)
+            if (ville != null)
 
                 controller.afficherVille(paysSelected,ville);
             dialogStage.setScene(scene);

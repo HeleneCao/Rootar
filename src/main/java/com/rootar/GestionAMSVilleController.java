@@ -102,4 +102,5 @@ public class GestionAMSVilleController {
         comboRegion.getSelectionModel().select(ville.getRegion());
 
     }
+
 }

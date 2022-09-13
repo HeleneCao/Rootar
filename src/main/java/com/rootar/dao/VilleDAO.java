@@ -93,7 +93,7 @@ public class VilleDAO extends DAO <Ville, Ville>{
 
     @Override
     public boolean delete(Ville ville) {
-        String delete = "DELETE FROM VILLE WHERE ID_PAYS = ?";
+        String delete = "DELETE FROM VILLE WHERE ID_VILLE = ?";
         try (PreparedStatement pStmt = this.connexion.prepareStatement(delete))
         {
             if(ville !=null) {

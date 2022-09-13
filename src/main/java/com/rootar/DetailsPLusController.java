@@ -1,6 +1,7 @@
 package com.rootar;
 
 import com.rootar.metier.*;
+import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -19,6 +20,7 @@ public class DetailsPLusController {
     private Stage dialogStage;
     public Ville villeSelected;
     public Pays paysSelected;
+    private FenetreAlert fenetreAlert;
 
     @FXML
     private ListView <Region> region;
@@ -48,6 +50,7 @@ public class DetailsPLusController {
     private void initialize(){
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
+        fenetreAlert=new FenetreAlert();
 
 
 
@@ -157,7 +160,7 @@ public class DetailsPLusController {
     @FXML
     public void ajouterVille(){
 
-
+        villeSelected=null;
         menuApp.showEditVille(getPaysSelected(),villeSelected,"Ajouter ville");
 
 
@@ -174,7 +177,13 @@ public class DetailsPLusController {
         this.paysSelected = paysSelected;
 
     }
+    @FXML
+    public void supprimerVille(){
+        if( serviceRootar.deleteVille(villeSelected)) {
+            fenetreAlert.fenetreInformation("Suppression du ville", "la ville "+villeSelected.getNomVille()+" est supprimée");
+        }
 
+    }
     public Pays getPaysSelected() {
         return paysSelected;
     }
