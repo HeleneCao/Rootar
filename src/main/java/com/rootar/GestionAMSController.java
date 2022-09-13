@@ -63,8 +63,6 @@ public class GestionAMSController {
         fenetreAlert = new FenetreAlert();
         initAjouter();
 
-
-
     }
 
     private void initAjouter() {
@@ -82,7 +80,6 @@ public class GestionAMSController {
     }
 
     public void setTitle(String titre) {
-
         titres.setText(titre);
     }
 

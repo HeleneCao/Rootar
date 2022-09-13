@@ -1,5 +1,6 @@
 package com.rootar;
 
+import com.rootar.metier.Evenements;
 import com.rootar.metier.Pays;
 import com.rootar.metier.Ville;
 import javafx.application.Application;
@@ -126,6 +127,35 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public void showEditEvent(Ville ville, Evenements eventSelected, String titre) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMSEvent.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSEvenementController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setVilleSelected(ville);
+            if (eventSelected != null)
+
+                controller.afficherEvent(eventSelected);
+            controller.setTitle(titre);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
