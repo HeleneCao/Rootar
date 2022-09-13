@@ -131,7 +131,7 @@ public class MenuApp extends Application {
 
     }
 
-    public void showEditEvent(Evenements eventSelected, String titre) {
+    public void showEditEvent(Ville villeSelected ,Evenements eventSelected, String titre) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -146,9 +146,9 @@ public class MenuApp extends Application {
             Scene scene = new Scene(anchorPane);
             GestionAMSEvenementController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setVilleSelected(eventSelected.getVille());
+            controller.setVilleSelected(villeSelected);
             if (titre.equals("Ajouter evenement")){
-                controller.setVilleSelected(eventSelected.getVille());
+                controller.setVilleSelected(villeSelected);
             }
             else
                 controller.afficherEvent(eventSelected);
