@@ -32,7 +32,7 @@
       <Label layoutX="494.0" layoutY="254.0" prefHeight="17.0" prefWidth="230.0" text="Informations représentations étrangères" />
       <Button layoutX="188.0" layoutY="208.0" mnemonicParsing="false" onAction="#ajouterVille" text="A" />
       <Button layoutX="217.0" layoutY="208.0" mnemonicParsing="false" onAction="#modifierVille" text="M" />
-      <Button layoutX="248.0" layoutY="208.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="9.0" text="S" />
+      <Button layoutX="248.0" layoutY="208.0" mnemonicParsing="false" onAction="#supprimerVille" prefHeight="25.0" prefWidth="9.0" text="S" />
       <Button layoutX="503.0" layoutY="200.0" mnemonicParsing="false" onAction="#ajouterEvent" text="A" />
       <Button layoutX="538.0" layoutY="200.0" mnemonicParsing="false" onAction="#modifierEvent" text="M" />
       <Button layoutX="575.0" layoutY="200.0" mnemonicParsing="false" onAction="#supprimerEvent" text="S" />

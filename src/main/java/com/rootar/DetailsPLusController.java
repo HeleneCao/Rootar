@@ -166,7 +166,13 @@ public class DetailsPLusController {
     @FXML
     public void modifierVille() {
         menuApp.showEditVille(getPaysSelected(), villeSelected, "Modifier ville");
+    }
 
+    @FXML
+    public void supprimerVille(){
+         if( serviceRootar.deleteVille(villeSelected)) {
+        fenetreAlert.fenetreInformation("Suppression de la ville", "la ville "+villeSelected.getNomVille()+" est supprimée");
+         }
     }
 
     public void setPaysSelected(Pays paysSelected) {

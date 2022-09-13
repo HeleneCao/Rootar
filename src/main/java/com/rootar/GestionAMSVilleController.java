@@ -100,6 +100,7 @@ public class GestionAMSVilleController {
         idVille.setText(String.valueOf(ville.getIdVille()));
         nomVille.setText(ville.getNomVille());
         comboRegion.getSelectionModel().select(ville.getRegion());
-
     }
+
+
 }
