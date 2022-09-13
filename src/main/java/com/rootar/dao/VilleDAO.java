@@ -25,8 +25,8 @@ public class VilleDAO extends DAO <Ville, Ville>{
 
 
             while (rs.next()) {
-                //System.out.println(rs.getString(2) + "vill");
-                liste.add(new Ville(rs.getInt(1),rs.getString(2)));
+
+                liste.add(new Ville(rs.getInt(1),rs.getString(2),new Region(region.getIdRegion(), region.getNomRegion())));
             }
             rs.close();
 
@@ -78,7 +78,7 @@ public class VilleDAO extends DAO <Ville, Ville>{
             if(ville !=null) {
 
                 pStmt.setString(1,ville.getNomVille());
-                pStmt.setInt(2,ville.getIdRegion());
+                pStmt.setInt(2,ville.getRegion().getIdRegion());
                 pStmt.setInt(3,ville.getIdVille());
                 pStmt.executeUpdate();
                 pStmt.close();
@@ -94,8 +94,10 @@ public class VilleDAO extends DAO <Ville, Ville>{
     @Override
     public boolean delete(Ville ville) {
         String delete = "DELETE FROM VILLE WHERE ID_VILLE = ?";
+
         try (PreparedStatement pStmt = this.connexion.prepareStatement(delete)) {
             if(ville !=null) {
+
                 pStmt.setInt(1,ville.getIdVille());
                 pStmt.executeUpdate();
                 pStmt.close();

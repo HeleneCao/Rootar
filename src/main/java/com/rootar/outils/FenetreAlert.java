@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 
 public class FenetreAlert {
     public FenetreAlert() {
+
     }
     public void fenetreInformation(String titre,String message){
 

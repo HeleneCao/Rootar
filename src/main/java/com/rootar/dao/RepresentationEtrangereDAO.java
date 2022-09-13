@@ -50,17 +50,17 @@ public class RepresentationEtrangereDAO extends DAO <RepresentationEtrangere, Re
 
 
             // Determine the column set column
+            if(ville != null) {
+                pstmt.setInt(1, ville.getIdVille());
+                rs = pstmt.executeQuery();
 
-            pstmt.setInt(1,ville.getIdVille());
-            rs = pstmt.executeQuery();
 
+                while (rs.next()) {
 
-            while (rs.next()) {
-
-                liste.add(new RepresentationEtrangere(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+                    liste.add(new RepresentationEtrangere(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                }
+                rs.close();
             }
-            rs.close();
-
         }
         // Handle any errors that may have occurred.
         catch (Exception e) {

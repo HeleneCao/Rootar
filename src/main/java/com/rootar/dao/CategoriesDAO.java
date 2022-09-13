@@ -2,8 +2,6 @@ package com.rootar.dao;
 
 import com.rootar.metier.Categories;
 import com.rootar.metier.Objet;
-import com.rootar.metier.Priorite;
-import com.rootar.metier.Sante;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +27,7 @@ public class CategoriesDAO extends DAO <Categories, Categories>{
 
 
             while (rs.next()) {
-                System.out.println(" id : "+rs.getString(2));
+
 
                 categories = new Categories(rs.getInt(1),rs.getString(2));
             }

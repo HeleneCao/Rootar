@@ -28,7 +28,7 @@ public class DonneesClimatDAO extends DAO <DonneesClimat,DonneesClimat>{
 
 
             while (rs.next()) {
-                //System.out.println(rs.getInt(1) + " hh "+rs.getint2));
+
                 liste.add(new DonneesClimat(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getFloat(4),rs.getFloat(5),rs.getFloat(6),rs.getInt(7)));
             }
             rs.close();

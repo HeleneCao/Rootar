@@ -1,8 +1,6 @@
 package com.rootar.dao;
 
 import com.rootar.metier.Continent;
-import com.rootar.metier.Priorite;
-import com.rootar.metier.Sante;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

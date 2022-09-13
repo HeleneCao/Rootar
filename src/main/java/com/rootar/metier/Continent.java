@@ -13,7 +13,7 @@ public class Continent {
     public Continent(int idContinent, String nomContinentFr) {
         this.idContinent = idContinent;
         this.nomContinentFr = nomContinentFr;
-        this.nomContinentAng = nomContinentAng;
+
     }
 
     public int getIdContinent() {

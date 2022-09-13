@@ -1,9 +1,8 @@
 package com.rootar;
 
-import com.rootar.MenuApp;
+
 import com.rootar.metier.*;
 import com.rootar.outils.FenetreAlert;
-import com.rootar.service.RootarSearch;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -11,15 +10,15 @@ import javafx.scene.control.*;
 
 public class RootarController {
     @FXML
-    private ComboBox paysSearch;
+    private ComboBox <Pays> paysSearch;
     @FXML
-    private ComboBox continentSearch;
+    private ComboBox <Continent>continentSearch;
     @FXML
-    private ComboBox regionSearch;
+    private ComboBox <Region>regionSearch;
     @FXML
-    private ComboBox villeSearch;
+    private ComboBox <Ville>villeSearch;
     @FXML
-    private ComboBox themesSearch;
+    private ComboBox <Themes>themesSearch;
     @FXML
     private Label codePays;
     @FXML
@@ -77,22 +76,16 @@ public class RootarController {
         colLibelleMonnaie.setCellValueFactory(cellData -> cellData.getValue().libelleMonnaieProperty());
         colNationalite.setCellValueFactory(cellData -> cellData.getValue().nationaliteProperty());
         tableRootar.refresh();
-        /*continentSearch.setItems(FXCollections.observableArrayList(serviceRootar.getContinentFiltre()));
-        continentSearch.getItems().add(0,new Continent(0, "Choisir un continent"));
-        continentSearch.valueProperty().addListener(observable -> filterContinent());
 
-        paysSearch.setItems(FXCollections.observableArrayList(serviceRootar.getPaysFiltre()));
-        paysSearch.getItems().add(0,new Pays(0,"choisir pays"));
-        paysSearch.valueProperty().addListener(observable -> filtrePays());*/
 
     }
     private void afficherDetails(Pays pays){
 
         paysSelected=pays;
-        System.out.println(pays);
+
 
         if(paysSelected != null) {
-            System.out.println("afficher details?");
+
             codePays.setText(pays.getCodePays());
             nomPaysFr.setText(paysSelected.getNomPaysFr());
             nomPaysAng.setText(paysSelected.getNomPaysAng());
@@ -104,8 +97,7 @@ public class RootarController {
             feteNat.setText(paysSelected.getFeteNationale());
             indTel.setText(paysSelected.getIndicatifTel());
             monnaie.setText(paysSelected.getMonnaie().getLibelleMonnaie());
-            //langue.setText(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues());
-           // langue.setText(serviceRootar.getLanguesFilter("an"));
+
 
              langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
             listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
@@ -115,35 +107,13 @@ public class RootarController {
 
     }
 
-    private void filtrePays() {
-        RootarSearch rootarSearch = new RootarSearch();
-
-        /*if (paysSearch.getSelectionModel().getSelectedItem() != null)
-            rootarSearch.setPays(paysSearch.getSelectionModel().getSelectedItem().);
-        if (continentSearch.getSelectionModel().getSelectedItem() != null)
-            rootarSearch.setContinent(continentSearch.getSelectionModel().getSelectedItem());
-*/
-    }
-
-    private void filterContinent() {
-       /* if (continentSearch.getSelectionModel().getSelectedItem() != null
-                && (continentSearch.getSelectionModel().getSelectedItem()).getIdContinent() != 0) {
-            paysSearch.setItems(FXCollections.observableArrayList(
-                    (continentSearch.getSelectionModel().getSelectedItem()).getPays()));
-
-        } else {
-            paysSearch.setItems(FXCollections.observableArrayList(serviceRootar.getPaysFiltre()));
-        }
-        paysSearch.getItems().add(0,new Pays(0, "Choisir un pays", new Continent()));
-        paysSearch.getSelectionModel().select(0);*/
-    }
 
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
     public void afficherRegion(){
         menuApp.showDetailsPlus(paysSelected);
-        //System.out.println(paysSelected.getIdPays()+ "afficher region");
+
     }
     @FXML
     public void ajouter(){

@@ -24,16 +24,13 @@ public class GestionAMSVilleController {
     private Stage dialogStage;
     private boolean confirmed;
     private Pays paysSelected;
-
     private ServiceRootar serviceRootar;
-    private Ville villeSelected;
-
 
     private FenetreAlert fenetreAlert;
 
     @FXML
     private void initialize() {
-        villeSelected= new Ville();
+
         serviceRootar = new ServiceRootar();
         fenetreAlert = new FenetreAlert();
         idVille.setDisable(true);
@@ -43,18 +40,8 @@ public class GestionAMSVilleController {
 
     private void initRegion(){
         comboRegion.setItems(FXCollections.observableArrayList(serviceRootar.getRegionFilterByPays(getPaysSelected())));
-    }
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-        confirmed = false;
-    }
+        comboRegion.getItems().add(0,new Region(0,"Aucune"));
 
-    public void setTitle(String titre) {
-        titres.setText(titre);
-    }
-
-    public boolean isConfirmed() {
-        return confirmed;
     }
 
     @FXML
@@ -66,41 +53,59 @@ public class GestionAMSVilleController {
     @FXML
     public void confirmer() {
         Ville ville= new Ville();
+        ville.setIdVille(Integer.valueOf(idVille.getText()));
         ville.setNomVille(nomVille.getText());
         ville.setRegion(comboRegion.getValue());
-        System.out.println(comboRegion.getValue().getIdRegion() + "id region confirmer");
+
         if (dialogStage.getTitle().equals("Modifier ville")) {
-            if (serviceRootar.updateVille(ville)) ;
-            fenetreAlert.fenetreInformation("Modification ", "La ville " + ville.getNomVille() + " a été modifié.");
+           insertionVille(true,ville);
         }
-        if (dialogStage.getTitle().equals("Ajouter ville")) {
+        else
             if (serviceRootar.insertVille(ville)) {
                 fenetreAlert.fenetreInformation("Ajouter pays", "La ville " + ville.getNomVille() + " a été ajouté.");
             }
-        }
-        confirmed = true;
+
+
 
         dialogStage.close();
+    }
+
+    public void afficherVille(Ville ville) {
+
+        idVille.setText(String.valueOf(ville.getIdVille()));
+        nomVille.setText(ville.getNomVille());
+        comboRegion.getSelectionModel().select(ville.getRegion());
+        comboRegion.setDisable(true);
+    }
+    public void afficherAjouterVille(Region region){
+
+        comboRegion.getSelectionModel().select(region);
+        comboRegion.setDisable(true);
     }
 
     public void setPaysSelected(Pays paysSelected) {
         this.paysSelected = paysSelected;
         initRegion();
-
-
-
     }
 
     public Pays getPaysSelected() {
         return paysSelected;
     }
 
-    public void afficherVille(Pays paysSelected, Ville ville) {
-
-        idVille.setText(String.valueOf(ville.getIdVille()));
-        nomVille.setText(ville.getNomVille());
-        comboRegion.getSelectionModel().select(ville.getRegion());
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+        confirmed = false;
+    }
+    private void insertionVille(boolean insert, Ville ville){
+        if (serviceRootar.updateVille(ville) && insert)
+            fenetreAlert.fenetreInformation("Modification ", "La ville " + ville.getNomVille() + " a été modifié.");
+    }
+    public void setTitle(String titre) {
+        titres.setText(titre);
     }
 
+    public boolean isConfirmed() {
+        return confirmed;
+    }
 
 }
