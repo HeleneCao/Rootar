@@ -146,20 +146,18 @@ public class DetailsPLusController {
 
     @FXML
     public void ajouterVille() {
-
         menuApp.showEditVille(getPaysSelected(), villeSelected, regionSelected,"Ajouter ville");
     }
 
     @FXML
     public void modifierVille() {
-
         menuApp.showEditVille(getPaysSelected(),villeSelected ,null, "Modifier ville");
     }
 
     @FXML
     public void supprimerVille(){
          if( serviceRootar.deleteVille(villeSelected)) {
-        fenetreAlert.fenetreInformation("Suppression de la ville", "la ville "+villeSelected.getNomVille()+" est supprimée");
+            fenetreAlert.fenetreInformation("Suppression de la ville", "la ville "+villeSelected.getNomVille()+" est supprimée");
          }
     }
 
@@ -173,12 +171,12 @@ public class DetailsPLusController {
     @FXML
     public void ajouterEvent() {
 
-        menuApp.showEditEvent(eventSelected, "Ajouter evenement");
+        menuApp.showEditEvent(villeSelected,null, "Ajouter evenement");
     }
 
     @FXML
     public void modifierEvent() {
-        menuApp.showEditEvent( eventSelected, "Modifier evenement");
+        menuApp.showEditEvent( null ,eventSelected, "Modifier evenement");
     }
 
     @FXML
