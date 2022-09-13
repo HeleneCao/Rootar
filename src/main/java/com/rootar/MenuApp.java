@@ -144,6 +144,7 @@ public class MenuApp extends Application {
             Scene scene = new Scene(anchorPane);
             GestionAMSEvenementController controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            controller.setVilleSelected(ville);
             if (eventSelected != null)
 
                 controller.afficherEvent(eventSelected);

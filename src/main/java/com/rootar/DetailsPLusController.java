@@ -1,6 +1,7 @@
 package com.rootar;
 
 import com.rootar.metier.*;
+import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,12 +19,15 @@ public class DetailsPLusController {
     public Pays paysSelected;
     public Evenements eventSelected;
 
+    private FenetreAlert fenetreAlert;
+
+
     @FXML
-    private ListView <Region> region;
+    private ListView<Region> region;
     @FXML
-    private ListView <Ville> ville;
+    private ListView<Ville> ville;
     @FXML
-    private ListView <Evenements> event;
+    private ListView<Evenements> event;
     @FXML
     private TextArea detailsEvent;
     @FXML
@@ -35,7 +39,7 @@ public class DetailsPLusController {
     @FXML
     private ListView listeThemes;
     @FXML
-    private ListView <Objet> listeObjets;
+    private ListView<Objet> listeObjets;
     @FXML
     private ListView<RepresentationEtrangere> listeRepEtr;
 
@@ -43,86 +47,102 @@ public class DetailsPLusController {
     private TextArea detailsCategories;
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
-
+        fenetreAlert = new FenetreAlert();
     }
-    public void afficherRegion(Pays paysSelected){
+
+    public void afficherRegion(Pays paysSelected) {
 
         region.setItems(FXCollections.observableArrayList(serviceRootar.getRegionFilterByPays(paysSelected)));
-        region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherVilles( newValue));
-        region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherTypeClimat(newValue));
-        region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherDonneesClimat(newValue));
-        region.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherThemesByRegion(newValue));
+        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherVilles(newValue));
+        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherTypeClimat(newValue));
+        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDonneesClimat(newValue));
+        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherThemesByRegion(newValue));
         afficherObjet(paysSelected);
 
     }
-    public void afficherVilles(Region regionSelected){
 
-       ville.setItems(FXCollections.observableArrayList(serviceRootar.getVilleFilterByRegion(regionSelected)));
-       ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherEvent(newValue));
-       ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherRepEtrByVille(newValue));
-        ville.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) ->setVilleSelected(newValue));
-    }
-    public  void setVilleSelected( Ville ville){
-        villeSelected=ville;
-    }
-    public Ville getVilleSelected() {return villeSelected;
+    public void afficherVilles(Region regionSelected) {
+
+        ville.setItems(FXCollections.observableArrayList(serviceRootar.getVilleFilterByRegion(regionSelected)));
+        ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherEvent(newValue));
+        ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherRepEtrByVille(newValue));
+        ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setVilleSelected(newValue));
+
     }
 
-    public void afficherEvent(Ville villeSelected){
-        System.out.println(paysSelected.getIdPays());
+    public void setVilleSelected(Ville ville) {
+        villeSelected = ville;
+    }
+
+    public Ville getVilleSelected() {
+        return villeSelected;
+    }
+
+    public void setEventSelected(Evenements eventSelected) {
+        this.eventSelected = eventSelected;
+    }
+
+    public void afficherEvent(Ville villeSelected) {
+
         event.setItems(FXCollections.observableArrayList(serviceRootar.getEventFilterByVille(villeSelected)));
-        event.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> detailsEvent(newValue));
+        event.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detailsEvent(newValue));
 
     }
 
-    public void detailsEvent(Evenements event){
-        System.out.println(event.getDateDebutEvenements());
-        fieldArea.append(event.getDateDebutEvenements()+"\n");
-        fieldArea.append(event.getDateFinEvenements()+"\n");
-        fieldArea.append(event.getDescriptionEvenements()+"\n");
+    public void detailsEvent(Evenements event) {
+        setEventSelected(event);
+
+        fieldArea.append(event.getDateDebutEvenements() + "\n");
+        fieldArea.append(event.getDateFinEvenements() + "\n");
+        fieldArea.append(event.getDescriptionEvenements() + "\n");
         detailsEvent.setText(fieldArea.toString());
     }
-    public void afficherTypeClimat(Region region){
+
+    public void afficherTypeClimat(Region region) {
         detailsTypeC.setText(serviceRootar.getTypeClimatFilterByRegion(region).getLibelleTypeClimat());
     }
-    public void afficherDonneesClimat(Region region){
 
-       StringBuilder fieldArea = new StringBuilder("");
-        for(int i = 0 ;i<serviceRootar.getDonneesClimatByRegion(region).size();i++) {
+    public void afficherDonneesClimat(Region region) {
+
+        StringBuilder fieldArea = new StringBuilder("");
+        for (int i = 0; i < serviceRootar.getDonneesClimatByRegion(region).size(); i++) {
             //fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getMois()+ "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getLibelleMois().toString()+ "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMin()+ "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMax()+ "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMoy()+ "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTauxHumidite()+ "\n");
+            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getLibelleMois().toString() + "\n");
+            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMin() + "\n");
+            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMax() + "\n");
+            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMoy() + "\n");
+            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTauxHumidite() + "\n");
         }
         detailsDC.setText(fieldArea.toString());
     }
 
-    public void afficherObjet(Pays paysSelected){
+    public void afficherObjet(Pays paysSelected) {
         listeObjets.setItems(FXCollections.observableArrayList(serviceRootar.getObjetFilterByPays(paysSelected)));
-        listeObjets.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherCategories(newValue));
+        listeObjets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherCategories(newValue));
     }
 
-    public void afficherCategories(Objet objet){
+    public void afficherCategories(Objet objet) {
         detailsCategories.setText(serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
     }
-    public void afficherThemesByRegion(Region region){
+
+    public void afficherThemesByRegion(Region region) {
         listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByRegion(region)));
 
     }
-    public void afficherRepEtrByVille(Ville ville){
+
+    public void afficherRepEtrByVille(Ville ville) {
         listeRepEtr.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByVille(ville)));
-        listeRepEtr.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) -> afficherDetailsRepEtr(newValue));
+        listeRepEtr.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDetailsRepEtr(newValue));
     }
-    public  void afficherDetailsRepEtr(RepresentationEtrangere representationEtrangere){
+
+    public void afficherDetailsRepEtr(RepresentationEtrangere representationEtrangere) {
         StringBuilder fieldArea = new StringBuilder("");
-        fieldArea.append(representationEtrangere.getLibelleRepEtrangere()+"\n");
-        fieldArea.append(representationEtrangere.getAdresse()+"\n");
-        fieldArea.append(representationEtrangere.getTelephone()+"\n");
+        fieldArea.append(representationEtrangere.getLibelleRepEtrangere() + "\n");
+        fieldArea.append(representationEtrangere.getAdresse() + "\n");
+        fieldArea.append(representationEtrangere.getTelephone() + "\n");
         detailsRepEtr.setText(fieldArea.toString());
 
     }
@@ -131,25 +151,26 @@ public class DetailsPLusController {
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
 
-
     }
+
     @FXML
-    public void ajouterVille(){
+    public void ajouterVille() {
 
-        menuApp.showEditVille(getPaysSelected(),villeSelected,"Ajouter ville");
+        menuApp.showEditVille(getPaysSelected(), villeSelected, "Ajouter ville");
     }
+
     @FXML
-    public void modifierVille(){
-        menuApp.showEditVille(getPaysSelected(),villeSelected,"Modifier ville");
-
+    public void modifierVille() {
+        menuApp.showEditVille(getPaysSelected(), villeSelected, "Modifier ville");
 
     }
+
     public void setPaysSelected(Pays paysSelected) {
         this.paysSelected = paysSelected;
-
     }
 
     public Pays getPaysSelected() {
@@ -158,17 +179,21 @@ public class DetailsPLusController {
 
 
     @FXML
-    public void ajouterEvent(){
-    menuApp.showEditEvent(getVilleSelected(), eventSelected, "Ajouter evenement");
+    public void ajouterEvent() {
+        eventSelected = null;
+        menuApp.showEditEvent(getVilleSelected(), eventSelected, "Ajouter evenement");
     }
 
     @FXML
-    public void modifierEvent(){
-    menuApp.showEditEvent(getVilleSelected(), eventSelected, "Modifier evenement");
+    public void modifierEvent() {
+        eventSelected.setVille(getVilleSelected());
+        menuApp.showEditEvent(getVilleSelected(), eventSelected, "Modifier evenement");
     }
 
     @FXML
-    public void supprimerEvent(){
-
+    public void supprimerEvent() {
+        if( serviceRootar.deleteEvent(eventSelected)) {
+            fenetreAlert.fenetreInformation("Suppression de l'évènement", "l'évènement "+eventSelected.getLibelleEvenements()+" est supprimé");
+        }
     }
 }

@@ -71,14 +71,14 @@ public class GestionAMSEvenementController {
     @FXML
     public void confirmer() {
         Evenements evenements = new Evenements();
-        evenements.setIdEvenements(Integer.valueOf(this.idEvent.getText()));
-        evenements.setLibelleEvenements(this.libelleEvent.getText());
-        evenements.setDateDebutEvenements(this.dateDebutEvent.getText());
-        evenements.setDateFinEvenements(this.dateFinEvent.getText());
-        evenements.setDescriptionEvenements(this.descriptionEvent.getText());
-        evenements.setVille((Ville)this.comboVille.getValue());
+
+        evenements.setLibelleEvenements(libelleEvent.getText());
+        evenements.setDateDebutEvenements(dateDebutEvent.getText());
+        evenements.setDateFinEvenements(dateFinEvent.getText());
+        evenements.setDescriptionEvenements(descriptionEvent.getText());
+        evenements.setVille(this.comboVille.getValue());
         if (this.dialogStage.getTitle().equals("Modifier evenement")) {
-            evenements.setIdEvenements(Integer.valueOf(this.idEvent.getText()));
+            evenements.setIdEvenements(Integer.valueOf(idEvent.getText()));
             this.serviceRootar.updateEvent(evenements);
         }
 
@@ -91,12 +91,15 @@ public class GestionAMSEvenementController {
     }
 
     public void afficherEvent(Evenements eventSelected) {
-        this.eventSelected = eventSelected;
-        this.idEvent.setText(String.valueOf(eventSelected.getIdEvenements()));
-        this.libelleEvent.setText(eventSelected.getLibelleEvenements());
-        this.dateDebutEvent.setText(eventSelected.getDateDebutEvenements());
-        this.dateFinEvent.setText(eventSelected.getDateFinEvenements());
-        this.descriptionEvent.setText(eventSelected.getDescriptionEvenements());
+        setEventSelected(eventSelected);
+
+       idEvent.setText(String.valueOf(eventSelected.getIdEvenements()));
+        libelleEvent.setText(eventSelected.getLibelleEvenements());
+       dateDebutEvent.setText(eventSelected.getDateDebutEvenements());
+        dateFinEvent.setText(eventSelected.getDateFinEvenements());
+        descriptionEvent.setText(eventSelected.getDescriptionEvenements());
+        this.comboVille.getSelectionModel().select(villeSelected);
+        this.comboVille.setDisable(true);
     }
 
     public void setVilleSelected(Ville villeSelected) {

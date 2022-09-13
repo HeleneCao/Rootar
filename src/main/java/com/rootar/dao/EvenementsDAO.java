@@ -80,11 +80,12 @@ public class EvenementsDAO extends DAO <Evenements, Evenements>{
 
     @Override
     public boolean update(Evenements evenements) {
-        String SQL = "update EVENEMENTS set ID_EVENEMENTS = ?, LIBELLE_EVENEMENTS = ?, DATE_DEBUT_EVENEMENTS = ?, DATE_FIN_EVENEMENTS = ?, ID_VILLES = ?  where ID_EVENEMENT = ?";
+        String SQL = "update EVENEMENTS set  LIBELLE_EVENEMENTS = ?, DATE_DEBUT_EVENEMENTS = ?, DATE_FIN_EVENEMENTS = ?, DESCRIPTION_EVENEMENT = ? , ID_VILLE = ?  where ID_EVENEMENTS = ?";
         try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
         {
             if(evenements !=null) {
-                pStmt.setInt(1, evenements.getIdEvenements());
+
+                pStmt.setString(1, evenements.getLibelleEvenements());
                 pStmt.setString(2, evenements.getDateDebutEvenements());
                 pStmt.setString(3, evenements.getDateFinEvenements());
                 pStmt.setString(4, evenements.getDescriptionEvenements());
