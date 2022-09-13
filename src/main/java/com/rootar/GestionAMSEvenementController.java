@@ -41,6 +41,7 @@ public class GestionAMSEvenementController {
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
         this.confirmed = false;
@@ -53,7 +54,9 @@ public class GestionAMSEvenementController {
     public boolean isConfirmed() {
         return this.confirmed;
     }
-
+    public void setEventSelected(Evenements eventSelected) {
+        this.eventSelected = eventSelected;
+    }
     @FXML
     private void initialize() {
         this.eventSelected = new Evenements();
@@ -92,10 +95,9 @@ public class GestionAMSEvenementController {
 
     public void afficherEvent(Evenements eventSelected) {
         setEventSelected(eventSelected);
-
-       idEvent.setText(String.valueOf(eventSelected.getIdEvenements()));
+        idEvent.setText(String.valueOf(eventSelected.getIdEvenements()));
         libelleEvent.setText(eventSelected.getLibelleEvenements());
-       dateDebutEvent.setText(eventSelected.getDateDebutEvenements());
+        dateDebutEvent.setText(eventSelected.getDateDebutEvenements());
         dateFinEvent.setText(eventSelected.getDateFinEvenements());
         descriptionEvent.setText(eventSelected.getDescriptionEvenements());
         this.comboVille.getSelectionModel().select(villeSelected);
@@ -108,7 +110,5 @@ public class GestionAMSEvenementController {
         this.comboVille.setDisable(true);
     }
 
-    public void setEventSelected(Evenements eventSelected) {
-        this.eventSelected = eventSelected;
-    }
+
 }

@@ -15,11 +15,6 @@ public class Evenements {
     private Ville ville;
 
     public Evenements() {
-        this.idEvenements = idEvenements;
-        this.libelleEvenements = libelleEvenements;
-        this.dateDebutEvenements = dateDebutEvenements;
-        this.dateFinEvenements = dateFinEvenements;
-        this.descriptionEvenements = descriptionEvenements;
         ville = new Ville();
     }
 
@@ -28,12 +23,13 @@ public class Evenements {
         this.libelleEvenements = libelleEvenements;
     }
 
-    public Evenements(int idEvenements, String libelleEvenements, String dateDebutEvenements, String dateFinEvenements, String descriptionEvenements) {
+    public Evenements(int idEvenements, String libelleEvenements, String dateDebutEvenements, String dateFinEvenements, String descriptionEvenements,Ville ville) {
         this.idEvenements = idEvenements;
         this.libelleEvenements = libelleEvenements;
         this.dateDebutEvenements = dateDebutEvenements;
         this.dateFinEvenements = dateFinEvenements;
         this.descriptionEvenements = descriptionEvenements;
+        this.ville=ville;
     }
 
     public int getIdEvenements() {

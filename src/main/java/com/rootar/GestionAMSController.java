@@ -1,9 +1,6 @@
 package com.rootar;
 
-import com.rootar.metier.Continent;
-import com.rootar.metier.Monnaie;
-import com.rootar.metier.Pays;
-import com.rootar.metier.Visas;
+import com.rootar.metier.*;
 import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
@@ -46,7 +43,7 @@ public class GestionAMSController {
     private Stage dialogStage;
     private boolean confirmed;
 
-    private boolean choixBouton;
+
     private ServiceRootar serviceRootar;
     private Pays paysSeleted;
 

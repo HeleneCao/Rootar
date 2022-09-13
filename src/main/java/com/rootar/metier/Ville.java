@@ -3,7 +3,7 @@ package com.rootar.metier;
 public class Ville {
     private int idVille;
     private String nomVille;
-    private int idRegion;
+
     private Region region;
 
     public Ville(int idVille, String nomVille) {
@@ -15,10 +15,10 @@ public class Ville {
     public Ville() {
     }
 
-    public Ville(int idVille, String nomVille, int idRegion) {
+    public Ville(int idVille, String nomVille, Region region) {
         this.idVille = idVille;
         this.nomVille = nomVille;
-        this.idRegion = idRegion;
+        this.region=region;
     }
 
     public Region getRegion() {
@@ -45,13 +45,6 @@ public class Ville {
         this.nomVille = nomVille;
     }
 
-    public int getIdRegion() {
-        return idRegion;
-    }
-
-    public void setIdRegion(int idRegion) {
-        this.idRegion = idRegion;
-    }
 
     @Override
     public String toString() {

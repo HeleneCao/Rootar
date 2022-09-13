@@ -9,15 +9,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+
 public class DetailsPLusController {
 
     private MenuApp menuApp;
     private ServiceRootar serviceRootar;
     private StringBuilder fieldArea;
-    private Stage dialogStage;
-    public Ville villeSelected;
-    public Pays paysSelected;
-    public Evenements eventSelected;
+
+    private Ville villeSelected;
+    private Pays paysSelected;
+    private Evenements eventSelected;
 
     private FenetreAlert fenetreAlert;
 
@@ -37,14 +38,15 @@ public class DetailsPLusController {
     @FXML
     private TextArea detailsRepEtr;
     @FXML
-    private ListView listeThemes;
+    private ListView <Themes>listeThemes;
     @FXML
     private ListView<Objet> listeObjets;
     @FXML
     private ListView<RepresentationEtrangere> listeRepEtr;
-
+    private Region regionSelected;
     @FXML
     private TextArea detailsCategories;
+    private Stage dialogStage;
 
     @FXML
     private void initialize() {
@@ -70,35 +72,16 @@ public class DetailsPLusController {
         ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherEvent(newValue));
         ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherRepEtrByVille(newValue));
         ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setVilleSelected(newValue));
-
+        this.regionSelected=regionSelected;
     }
 
-    public void setVilleSelected(Ville ville) {
-        villeSelected = ville;
-    }
-
-    public Ville getVilleSelected() {
-        return villeSelected;
-    }
-
-    public void setEventSelected(Evenements eventSelected) {
-        this.eventSelected = eventSelected;
-    }
 
     public void afficherEvent(Ville villeSelected) {
 
         event.setItems(FXCollections.observableArrayList(serviceRootar.getEventFilterByVille(villeSelected)));
         event.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detailsEvent(newValue));
+        event.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setEventSelected(newValue));
 
-    }
-
-    public void detailsEvent(Evenements event) {
-        setEventSelected(event);
-
-        fieldArea.append(event.getDateDebutEvenements() + "\n");
-        fieldArea.append(event.getDateFinEvenements() + "\n");
-        fieldArea.append(event.getDescriptionEvenements() + "\n");
-        detailsEvent.setText(fieldArea.toString());
     }
 
     public void afficherTypeClimat(Region region) {
@@ -107,16 +90,16 @@ public class DetailsPLusController {
 
     public void afficherDonneesClimat(Region region) {
 
-        StringBuilder fieldArea = new StringBuilder("");
+        StringBuilder fieldDC = new StringBuilder("");
         for (int i = 0; i < serviceRootar.getDonneesClimatByRegion(region).size(); i++) {
-            //fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getMois()+ "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getLibelleMois().toString() + "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMin() + "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMax() + "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMoy() + "\n");
-            fieldArea.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTauxHumidite() + "\n");
+
+            fieldDC.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getLibelleMois() + "\n");
+            fieldDC.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMin() + "\n");
+            fieldDC.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMax() + "\n");
+            fieldDC.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTemperatureMoy() + "\n");
+            fieldDC.append(serviceRootar.getDonneesClimatByRegion(region).get(i).getTauxHumidite() + "\n");
         }
-        detailsDC.setText(fieldArea.toString());
+        detailsDC.setText(fieldDC.toString());
     }
 
     public void afficherObjet(Pays paysSelected) {
@@ -139,33 +122,38 @@ public class DetailsPLusController {
     }
 
     public void afficherDetailsRepEtr(RepresentationEtrangere representationEtrangere) {
-        StringBuilder fieldArea = new StringBuilder("");
-        fieldArea.append(representationEtrangere.getLibelleRepEtrangere() + "\n");
-        fieldArea.append(representationEtrangere.getAdresse() + "\n");
-        fieldArea.append(representationEtrangere.getTelephone() + "\n");
-        detailsRepEtr.setText(fieldArea.toString());
+        StringBuilder fieldRE = new StringBuilder("");
+        fieldRE.append(representationEtrangere.getLibelleRepEtrangere() + "\n");
+        fieldRE.append(representationEtrangere.getAdresse() + "\n");
+        fieldRE.append(representationEtrangere.getTelephone() + "\n");
+        detailsRepEtr.setText(fieldRE.toString());
 
     }
 
+    public void detailsEvent(Evenements event) {
 
-    public void setMenuApp(MenuApp menuApp) {
-        this.menuApp = menuApp;
+
+        fieldArea.append(event.getDateDebutEvenements() + "\n");
+        fieldArea.append(event.getDateFinEvenements() + "\n");
+        fieldArea.append(event.getDescriptionEvenements() + "\n");
+        detailsEvent.setText(fieldArea.toString());
     }
 
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-
-    }
+/* =================================================================================================
+                                        AJOUTER VILLE
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
 
     @FXML
     public void ajouterVille() {
 
-        menuApp.showEditVille(getPaysSelected(), villeSelected, "Ajouter ville");
+        menuApp.showEditVille(getPaysSelected(), villeSelected, regionSelected,"Ajouter ville");
     }
 
     @FXML
     public void modifierVille() {
-        menuApp.showEditVille(getPaysSelected(), villeSelected, "Modifier ville");
+
+        menuApp.showEditVille(getPaysSelected(),villeSelected ,null, "Modifier ville");
     }
 
     @FXML
@@ -175,25 +163,22 @@ public class DetailsPLusController {
          }
     }
 
-    public void setPaysSelected(Pays paysSelected) {
-        this.paysSelected = paysSelected;
-    }
 
-    public Pays getPaysSelected() {
-        return paysSelected;
-    }
+/* =================================================================================================
+                                        AJOUTER EVENEMENTS
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
 
 
     @FXML
     public void ajouterEvent() {
-        eventSelected = null;
-        menuApp.showEditEvent(getVilleSelected(), eventSelected, "Ajouter evenement");
+
+        menuApp.showEditEvent(eventSelected, "Ajouter evenement");
     }
 
     @FXML
     public void modifierEvent() {
-        eventSelected.setVille(getVilleSelected());
-        menuApp.showEditEvent(getVilleSelected(), eventSelected, "Modifier evenement");
+        menuApp.showEditEvent( eventSelected, "Modifier evenement");
     }
 
     @FXML
@@ -201,5 +186,31 @@ public class DetailsPLusController {
         if( serviceRootar.deleteEvent(eventSelected)) {
             fenetreAlert.fenetreInformation("Suppression de l'évènement", "l'évènement "+eventSelected.getLibelleEvenements()+" est supprimé");
         }
+    }
+    // GETTERS ET SETTERS
+    public void setPaysSelected(Pays paysSelected) {
+        this.paysSelected = paysSelected;
+    }
+
+    public Pays getPaysSelected() {
+        return paysSelected;
+    }
+    public void setMenuApp(MenuApp menuApp) {
+        this.menuApp = menuApp;
+    }
+
+
+    public void setVilleSelected(Ville ville) {
+        villeSelected = ville;
+    }
+
+    public void setEventSelected(Evenements eventSelected) {
+
+     this.eventSelected = eventSelected;
+
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage=dialogStage;
     }
 }

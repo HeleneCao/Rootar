@@ -2,6 +2,7 @@ package com.rootar;
 
 import com.rootar.metier.Evenements;
 import com.rootar.metier.Pays;
+import com.rootar.metier.Region;
 import com.rootar.metier.Ville;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -99,7 +100,7 @@ public class MenuApp extends Application {
         }
     }
 
-    public void showEditVille(Pays paysSelected,Ville ville, String titre) {
+    public void showEditVille(Pays paysSelected, Ville ville, Region regionSelected, String titre) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MenuApp.class.getResource("GestionAMSVille.fxml"));
@@ -116,9 +117,10 @@ public class MenuApp extends Application {
             controller.setDialogStage(dialogStage);
             controller.setPaysSelected(paysSelected);
             controller.setTitle(titre);
-            if (ville != null)
-
-                controller.afficherVille(paysSelected,ville);
+            if (titre.equals("Modifier ville"))
+                controller.afficherVille(ville);
+            else
+                controller.afficherAjouterVille(regionSelected);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
 
@@ -129,7 +131,7 @@ public class MenuApp extends Application {
 
     }
 
-    public void showEditEvent(Ville ville, Evenements eventSelected, String titre) {
+    public void showEditEvent(Evenements eventSelected, String titre) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -144,9 +146,11 @@ public class MenuApp extends Application {
             Scene scene = new Scene(anchorPane);
             GestionAMSEvenementController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setVilleSelected(ville);
-            if (eventSelected != null)
-
+            controller.setVilleSelected(eventSelected.getVille());
+            if (titre.equals("Ajouter evenement")){
+                controller.setVilleSelected(eventSelected.getVille());
+            }
+            else
                 controller.afficherEvent(eventSelected);
             controller.setTitle(titre);
             dialogStage.setScene(scene);
