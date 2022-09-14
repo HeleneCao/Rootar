@@ -52,22 +52,32 @@ public class CategoriesDAO extends DAO <Categories, Categories>{
     }
 
     @Override
-    public ArrayList<Categories> getLike(Categories objet) {
+    public ArrayList<Categories> getLike(Categories categories) {
         return null;
     }
 
     @Override
-    public boolean insert(Categories objet) {
+    public boolean insert(Categories categories) {
+        String SQL = "INSERT INTO CATEGORIES (LIBELLE_CATEGORIES)" + " VALUES (?)";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL)) {
+            if (categories!= null) {
+                pStmt.setString(1,categories.getLibelleCategories());
+                pStmt.execute();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(Categories categories) {
         return false;
     }
 
     @Override
-    public boolean update(Categories object) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Categories object) {
+    public boolean delete(Categories categories) {
         return false;
     }
 }

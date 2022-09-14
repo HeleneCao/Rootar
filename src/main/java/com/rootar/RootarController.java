@@ -6,6 +6,7 @@ import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 
 public class RootarController {
@@ -59,6 +60,10 @@ public class RootarController {
     private ListView <Themes> listeThemes;
     @FXML
     private ListView <RepresentationEtrangere> listeRepEtrangeres;
+    @FXML
+    private ListView<Langues> listeLangues;
+    @FXML
+    private ChoiceBox<Langues> choiceBoxLang;
     private ServiceRootar serviceRootar;
     private Pays paysSelected;
     private FenetreAlert fenetreAlert;
@@ -76,6 +81,7 @@ public class RootarController {
         colLibelleMonnaie.setCellValueFactory(cellData -> cellData.getValue().libelleMonnaieProperty());
         colNationalite.setCellValueFactory(cellData -> cellData.getValue().nationaliteProperty());
         tableRootar.refresh();
+        listeLangues.setOrientation(Orientation.HORIZONTAL);
 
 
     }
@@ -97,9 +103,9 @@ public class RootarController {
             feteNat.setText(paysSelected.getFeteNationale());
             indTel.setText(paysSelected.getIndicatifTel());
             monnaie.setText(paysSelected.getMonnaie().getLibelleMonnaie());
+            listeLangues.setItems(FXCollections.observableArrayList(serviceRootar.getLanguesByPays(paysSelected)));
 
-
-             langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
+             //langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
             listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
             listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
         }
@@ -128,7 +134,13 @@ public class RootarController {
 
     @FXML
     public void supprimer(){
+        Parler parler= new Parler();
+
+        parler.setIdPays(paysSelected.getIdPays());
+        System.out.println(parler.getIdPays());
+        serviceRootar.deleteParler(parler);
        if( serviceRootar.deletePays(paysSelected)) {
+
            fenetreAlert.fenetreInformation("Suppression du pays", "le pays "+paysSelected.getNomPaysFr()+" est supprimé");
        }
 

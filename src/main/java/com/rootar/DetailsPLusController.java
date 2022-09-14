@@ -5,6 +5,7 @@ import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -15,13 +16,12 @@ public class DetailsPLusController {
     private MenuApp menuApp;
     private ServiceRootar serviceRootar;
     private StringBuilder fieldArea;
-
+    private Categories categoriesSelected;
     private Ville villeSelected;
     private Pays paysSelected;
     private Evenements eventSelected;
 
     private FenetreAlert fenetreAlert;
-
 
     @FXML
     private ListView<Region> region;
@@ -45,7 +45,7 @@ public class DetailsPLusController {
     private ListView<RepresentationEtrangere> listeRepEtr;
     private Region regionSelected;
     @FXML
-    private TextArea detailsCategories;
+    private ListView<Categories> listCategories;
     private Stage dialogStage;
 
     @FXML
@@ -108,7 +108,8 @@ public class DetailsPLusController {
     }
 
     public void afficherCategories(Objet objet) {
-        detailsCategories.setText(serviceRootar.getCategoriesFilterbyObject(objet).getLibelleCategories());
+       listCategories.setItems(FXCollections.observableArrayList(serviceRootar.getCategoriesFilterbyObject(objet)));
+       listCategories.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setCategoriesSelected(newValue));
     }
 
     public void afficherThemesByRegion(Region region) {
@@ -185,6 +186,19 @@ public class DetailsPLusController {
             fenetreAlert.fenetreInformation("Suppression de l'évènement", "l'évènement "+eventSelected.getLibelleEvenements()+" est supprimé");
         }
     }
+    /* =================================================================================================
+                                        AJOUTER CATEGORIES
+   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
+    @FXML
+    public void ajouterCat() {
+        menuApp.showEditCat(null, "Ajouter Catégorie");
+    }
+    @FXML
+    public void modifierCat(){
+        menuApp.showEditCat(categoriesSelected, "Modifier Catégorie");
+    }
+
     // GETTERS ET SETTERS
     public void setPaysSelected(Pays paysSelected) {
         this.paysSelected = paysSelected;
@@ -207,6 +221,12 @@ public class DetailsPLusController {
      this.eventSelected = eventSelected;
 
     }
+
+    public void setCategoriesSelected(Categories categoriesSelected) {
+        this.categoriesSelected = categoriesSelected;
+    }
+
+
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage=dialogStage;

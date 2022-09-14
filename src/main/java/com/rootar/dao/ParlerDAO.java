@@ -5,6 +5,7 @@ import com.rootar.metier.Parler;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class ParlerDAO extends DAO <Parler,Parler>{
     }
 
     public Parler getAllByID(int id) {
-        Parler liste = new Parler(1,"");
+        Parler liste = new Parler();
         try (Statement stmt = connexion.createStatement()){
 
 
@@ -37,7 +38,7 @@ public class ParlerDAO extends DAO <Parler,Parler>{
 
             while (rs.next()) {
 
-               liste= new Parler(rs.getInt(1),rs.getString(2));
+               liste= new Parler(rs.getInt(1),rs.getInt(2));
             }
             rs.close();
 
@@ -58,7 +59,18 @@ public class ParlerDAO extends DAO <Parler,Parler>{
 
     @Override
     public boolean insert(Parler parler) {
-        return false;
+        String SQL = "INSERT INTO parler ( id_pays, id_langues)" + " VALUES (?,?)";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL)) {
+            if (parler!= null) {
+                pStmt.setInt(1,parler.getIdPays());
+                pStmt.setInt(2,parler.getIdLangues());
+                pStmt.execute();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -68,6 +80,18 @@ public class ParlerDAO extends DAO <Parler,Parler>{
 
     @Override
     public boolean delete(Parler parler) {
-        return false;
+        String delete = "DELETE FROM Parler WHERE ID_PAYS= ?";
+
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(delete)) {
+            if (parler!= null) {
+                pStmt.setInt(1, parler.getIdPays());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

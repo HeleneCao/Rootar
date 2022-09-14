@@ -67,7 +67,12 @@ public class ServiceRootar {
     public ArrayList<RepresentationEtrangere> getRepEtrangeresByVille(Ville ville){
         return DAOFactory.getRepresentationEtrangereDAO().getRepEtrangeresByVille(ville);
     }
-
+    public ArrayList<Langues> getLanguesByPays(Pays pays){
+       return DAOFactory.getLanguesDAO().getLanguesByPays(pays);
+    }
+    public ArrayList<Langues> getAll(){
+        return DAOFactory.getLanguesDAO().getAll();
+    }
     public ArrayList<Continent> getContinentFiltre()
     {
         return continentFiltre;
@@ -103,6 +108,15 @@ public class ServiceRootar {
         return DAOFactory.getEvenementsDAO().update(evenements);
     }
     public boolean deleteEvent(Evenements evenements) { return DAOFactory.getEvenementsDAO().delete(evenements);}
+    public boolean insertParler(Parler parler){
+        return DAOFactory.getParlerDAO().insert(parler);
+    }
+    public boolean deleteParler(Parler parler){
+        return DAOFactory.getParlerDAO().delete(parler);
+    }
+    public boolean insertCategories(Categories categories){
+        return DAOFactory.getCategoriesDAO().insert(categories);
+    }
 
 
 }

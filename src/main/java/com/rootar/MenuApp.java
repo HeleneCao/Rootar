@@ -1,9 +1,6 @@
 package com.rootar;
 
-import com.rootar.metier.Evenements;
-import com.rootar.metier.Pays;
-import com.rootar.metier.Region;
-import com.rootar.metier.Ville;
+import com.rootar.metier.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -131,7 +128,7 @@ public class MenuApp extends Application {
 
     }
 
-    public void showEditEvent(Ville villeSelected ,Evenements eventSelected, String titre) {
+    public void showEditEvent(Ville villeSelected, Evenements eventSelected, String titre) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -147,10 +144,9 @@ public class MenuApp extends Application {
             GestionAMSEvenementController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setVilleSelected(villeSelected);
-            if (titre.equals("Ajouter evenement")){
+            if (titre.equals("Ajouter evenement")) {
                 controller.setVilleSelected(villeSelected);
-            }
-            else
+            } else
                 controller.afficherEvent(eventSelected);
             controller.setTitle(titre);
             dialogStage.setScene(scene);
@@ -168,6 +164,39 @@ public class MenuApp extends Application {
         this.primaryStage.setTitle("Rootar");
         showRootar();
 
+
+    }
+
+    public void showEditCat(Categories categoriesSelected, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMSCat.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSCatController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            if (titre.equals("Ajouter catégorie")) {
+                controller.setCatSelected(null);
+            }
+            if (titre.equals("Modifier Catégorie")) {
+                controller.afficherCat(categoriesSelected);
+            }
+
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

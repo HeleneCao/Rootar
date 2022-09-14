@@ -6,8 +6,11 @@ import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class GestionAMSController {
     @FXML
@@ -38,7 +41,12 @@ public class GestionAMSController {
     private ComboBox<Monnaie> monnaie;
     @FXML
     private TextField visas;
-
+    @FXML
+    private ListView<Langues> listeViewLangues;
+    @FXML
+    private ComboBox<Langues> choiceBoxLang;
+    @FXML
+    private Button buttonAddLang;
 
     private Stage dialogStage;
     private boolean confirmed;
@@ -49,7 +57,7 @@ public class GestionAMSController {
 
     private FenetreAlert fenetreAlert;
 
-
+    ArrayList<Langues> listeLangues;
     @FXML
     private Label titres;
 
@@ -58,6 +66,9 @@ public class GestionAMSController {
         paysSeleted = new Pays();
         serviceRootar = new ServiceRootar();
         fenetreAlert = new FenetreAlert();
+        choiceBoxLang.setItems(FXCollections.observableArrayList(serviceRootar.getAll()));
+        listeLangues= new ArrayList<>();
+
         initAjouter();
 
     }
@@ -76,6 +87,16 @@ public class GestionAMSController {
 
     }
 
+    @FXML
+    public void buttonAjoutLangues(){
+
+        listeLangues.add(choiceBoxLang.getValue());
+        listeViewLangues.setItems(FXCollections.observableArrayList(listeLangues));
+        listeViewLangues.refresh();
+    }
+
+
+
     public void setTitle(String titre) {
         titres.setText(titre);
     }
@@ -86,6 +107,7 @@ public class GestionAMSController {
 
     @FXML
     public void annuler() {
+
         confirmed = false;
         dialogStage.close();
     }
@@ -112,7 +134,9 @@ public class GestionAMSController {
             fenetreAlert.fenetreInformation("Modification ", "Le pays " + paysSeleted.getNomPaysFr() + " a été modifié.");
         }
         if (dialogStage.getTitle().equals("Ajouter pays")) {
+
             if (serviceRootar.insertPays(pays)) {
+                addInParler();
                 fenetreAlert.fenetreInformation("Ajouter pays", "Le pays " + pays.getNomPaysFr() + " a été ajouté.");
             }
         }
@@ -120,7 +144,15 @@ public class GestionAMSController {
 
         dialogStage.close();
     }
+    public void addInParler(){
+        Parler parler = new Parler();
+        for(int i=0;i<listeLangues.size();i++){
+            parler.setIdPays(Integer.valueOf(idPays.getText()));
+            parler.setIdLangues(listeLangues.get(i).getIdLangues());
+            serviceRootar.insertParler(parler);
+        }
 
+    }
     public void afficherPays(Pays paysSelected) {
         this.paysSeleted = paysSelected;
         idPays.setText(String.valueOf(paysSelected.getIdPays()));
