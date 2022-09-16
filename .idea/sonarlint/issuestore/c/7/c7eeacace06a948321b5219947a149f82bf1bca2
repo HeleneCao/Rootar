@@ -1,0 +1,16 @@
+
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¸ìÔåùÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€±àø
+l
+java:S1450"QRemove the "rs" field and declare it as a local variable in the relevant methods.(‰Úèüÿÿÿÿ
+A
+java:S11685"+Return an empty collection instead of null.(¥¹ï
+A
+java:S1168:"+Return an empty collection instead of null.(¥¹ï
+S
+java:S1128"8Remove this unused import 'com.rootar.metier.Continent'.(–çÉ¥ıÿÿÿÿ
+L
+java:S1128"6Remove this unused import 'com.rootar.metier.Monnaie'.(š¢šĞ
+E
+java:S1128"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø

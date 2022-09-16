@@ -1,0 +1,13 @@
+
+—
+java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Áï‚½
+v
+java:S1450"[Remove the "fenetreAlert" field and declare it as a local variable in the relevant methods.(ÜÁ˜˜úÿÿÿÿ
+q
+java:S1450"VRemove the "menuApp" field and declare it as a local variable in the relevant methods.(‰úî‰ûÿÿÿÿ
+F
+java:S1068"+Remove this unused "menuApp" private field.(‰úî‰ûÿÿÿÿ
+K
+java:S1068"0Remove this unused "fenetreAlert" private field.(ÜÁ˜˜úÿÿÿÿ
+L
+java:S1068"1Remove this unused "eventSelected" private field.(±Û¤äûÿÿÿÿ

@@ -184,4 +184,9 @@ public class Pays {
     public void setIndicatifTel(String indicatifTel) {
         this.indicatifTel = indicatifTel;
     }
+
+    @Override
+    public String toString() {
+        return nomPaysFr;
+    }
 }

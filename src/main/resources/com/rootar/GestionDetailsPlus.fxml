@@ -25,8 +25,8 @@
       <Label layoutX="665.0" layoutY="17.0" prefHeight="17.0" prefWidth="139.0" text="Description évènement" />
       <ListView fx:id="listeObjets" layoutX="166.0" layoutY="282.0" prefHeight="160.0" prefWidth="140.0" />
       <Label layoutX="170.0" layoutY="254.0" text="Liste objets" />
-      <ListView fx:id="listeRepEtr" layoutX="324.0" layoutY="282.0" prefHeight="160.0" prefWidth="149.0" />
-      <Label layoutX="329.0" layoutY="254.0" text="Représentation étrangères" />
+      <ListView fx:id="listeRepEtr" layoutX="325.0" layoutY="254.0" prefHeight="160.0" prefWidth="149.0" />
+      <Label layoutX="329.0" layoutY="225.0" text="Représentation étrangères" />
       <TextArea fx:id="detailsRepEtr" layoutX="491.0" layoutY="282.0" prefHeight="160.0" prefWidth="402.0" />
       <Label layoutX="494.0" layoutY="254.0" prefHeight="17.0" prefWidth="230.0" text="Informations représentations étrangères" />
       <Button layoutX="188.0" layoutY="208.0" mnemonicParsing="false" onAction="#ajouterVille" text="A" />
@@ -43,5 +43,11 @@
       <Button layoutX="16.0" layoutY="584.0" mnemonicParsing="false" onAction="#ajouterSante" text="A" />
       <Button layoutX="63.0" layoutY="584.0" mnemonicParsing="false" onAction="#modifierSante" text="M" />
       <Button layoutX="119.0" layoutY="584.0" mnemonicParsing="false" onAction="#supprimerSante" prefHeight="25.0" prefWidth="9.0" text="S" />
+      <Button layoutX="325.0" layoutY="418.0" mnemonicParsing="false" onAction="#ajouterRepEtrangere" prefHeight="25.0" prefWidth="36.0" text="A" />
+      <Button layoutX="377.0" layoutY="418.0" mnemonicParsing="false" onAction="#modifierRepEtrangere" prefHeight="25.0" prefWidth="36.0" text="M" />
+      <Button layoutX="425.0" layoutY="418.0" mnemonicParsing="false" onAction="#supprimerRepEtrangere" prefHeight="25.0" prefWidth="36.0" text="S" />
+      <Button layoutX="176.0" layoutY="447.0" mnemonicParsing="false" onAction="#ajouterObjet" text="A" />
+      <Button layoutX="212.0" layoutY="447.0" mnemonicParsing="false" onAction="#modifierObjet" text="M" />
+      <Button layoutX="256.0" layoutY="447.0" mnemonicParsing="false" onAction="#supprimerObjet" text="S" />
    </children>
 </AnchorPane>

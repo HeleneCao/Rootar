@@ -5,7 +5,6 @@ import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
@@ -22,8 +21,11 @@ public class DetailsPLusController {
     private Pays paysSelected;
     private Evenements eventSelected;
 
-    private FenetreAlert fenetreAlert;
+    private Objet objetSelected;
 
+    private FenetreAlert fenetreAlert;
+    private Region regionSelected;
+    private RepresentationEtrangere repEtrSelected;
     @FXML
     private ListView<Region> region;
     @FXML
@@ -46,7 +48,6 @@ public class DetailsPLusController {
     private ListView<RepresentationEtrangere> listeRepEtr;
     @FXML
     private ListView<Sante> listeSante;
-    private Region regionSelected;
     @FXML
     private ListView<Categories> listCategories;
 
@@ -115,10 +116,11 @@ public class DetailsPLusController {
     public void afficherObjet(Pays paysSelected) {
         listeObjets.setItems(FXCollections.observableArrayList(serviceRootar.getObjetFilterByPays(paysSelected)));
         listeObjets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherCategories(newValue));
+        listeObjets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setObjetSelected(newValue));
     }
 
     public void afficherCategories(Objet objet) {
-       listCategories.setItems(FXCollections.observableArrayList(serviceRootar.getCategoriesFilterbyObject(objet)));
+       listCategories.setItems(FXCollections.observableArrayList(serviceRootar.getCategoriesFilterbyObjet(objet)));
        listCategories.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setCategoriesSelected(newValue));
     }
 
@@ -130,6 +132,7 @@ public class DetailsPLusController {
     public void afficherRepEtrByVille(Ville ville) {
         listeRepEtr.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByVille(ville)));
         listeRepEtr.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDetailsRepEtr(newValue));
+        listeRepEtr.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setRepEtrSelected(newValue));
     }
 
     public void afficherDetailsRepEtr(RepresentationEtrangere representationEtrangere) {
@@ -166,36 +169,61 @@ public class DetailsPLusController {
     }
 
     @FXML
-    public void supprimerVille(){
-         if( serviceRootar.deleteVille(villeSelected)) {
-            fenetreAlert.fenetreInformation("Suppression de la ville", "la ville "+villeSelected.getNomVille()+" est supprimée");
-         }
+    public void supprimerVille() {
+        if (serviceRootar.deleteVille(villeSelected)) {
+            fenetreAlert.fenetreInformation("Suppression de la ville", "la ville " + villeSelected.getNomVille() + " est supprimée");
+        }
     }
 
 
 /* =================================================================================================
-                                        AJOUTER EVENEMENTS
+                                        AJOUTER EVENEMENT
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  */
 
 
     @FXML
     public void ajouterEvent() {
-
-        menuApp.showEditEvent(villeSelected,null, "Ajouter evenement");
+        menuApp.showEditEvent(villeSelected, null, "Ajouter evenement");
     }
 
     @FXML
     public void modifierEvent() {
-        menuApp.showEditEvent( null ,eventSelected, "Modifier evenement");
+        menuApp.showEditEvent(null, eventSelected, "Modifier evenement");
     }
 
     @FXML
     public void supprimerEvent() {
-        if( serviceRootar.deleteEvent(eventSelected)) {
-            fenetreAlert.fenetreInformation("Suppression de l'évènement", "l'évènement "+eventSelected.getLibelleEvenements()+" est supprimé");
+        if (serviceRootar.deleteEvent(eventSelected)) {
+            fenetreAlert.fenetreInformation("Suppression de l'évènement", "l'évènement " + eventSelected.getLibelleEvenements() + " est supprimé");
         }
     }
+
+    /* =================================================================================================
+                                        AJOUTER REPRESENTATION ETRANGERE
+      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+
+    @FXML
+    public void ajouterRepEtrangere() {
+
+        menuApp.showEditRepEtrangere(paysSelected, villeSelected, null, "Ajouter representation etrangere");
+    }
+
+    @FXML
+    public void modifierRepEtrangere() {
+
+        menuApp.showEditRepEtrangere(paysSelected, villeSelected, repEtrSelected, "Modifier représentation étrangère");
+    }
+
+    @FXML
+    public void supprimerRepEtrangere() {
+        if (serviceRootar.deleteRepEtrangere(repEtrSelected)) {
+            fenetreAlert.fenetreInformation("Suppression de la representation etrangere", "la representation etrangere " + repEtrSelected.getLibelleRepEtrangere() + " est supprimée");
+        }
+    }
+
+
     /* =================================================================================================
                                         AJOUTER CATEGORIES
    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -238,8 +266,35 @@ public class DetailsPLusController {
             fenetreAlert.fenetreInformation("Suppression de l'élément sante'", " "+santeSelected.getLibelleSante()+" est supprimé");
         }
     }
-    // GETTERS ET SETTERS
-    public void setPaysSelected(Pays paysSelected) {
+     /* =================================================================================================
+                                        AJOUTER OBJET
+      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+
+    @FXML
+    public void ajouterObjet() {
+        menuApp.showEditObjet(paysSelected, categoriesSelected, null, "Ajouter l'objet");
+    }
+    @FXML
+    public void modifierObjet() {
+        menuApp.showEditObjet(paysSelected, categoriesSelected, objetSelected, "Modifier l'objet");
+    }
+    @FXML
+    public void supprimerObjet() {
+        if (serviceRootar.deleteEmporter(new Emporter(objetSelected.getIdObjet(), paysSelected.getIdPays()))) {
+
+            serviceRootar.deleteObjet(objetSelected);
+            fenetreAlert.fenetreInformation("Suppression de l'objet", "l'objet " + objetSelected.getLibelleObjet() + " est supprimé");
+        }
+    }
+
+
+      /* =================================================================================================
+                                   GETTERS ET SETTERS
+      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+
+    public void setPaysSelected(Pays paysSelected){
         this.paysSelected = paysSelected;
 
     }
@@ -247,19 +302,23 @@ public class DetailsPLusController {
     public Pays getPaysSelected() {
         return paysSelected;
     }
+
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
-
 
     public void setVilleSelected(Ville ville) {
         villeSelected = ville;
     }
 
-    public void setEventSelected(Evenements eventSelected) {
+    public void setEventSelected(Evenements eventSelected) {this.eventSelected = eventSelected;}
 
-     this.eventSelected = eventSelected;
+    public RepresentationEtrangere getRepEtrSelected() {
+        return repEtrSelected;
+    }
 
+    public void setRepEtrSelected(RepresentationEtrangere repEtrSelected) {
+        this.repEtrSelected = repEtrSelected;
     }
 
     public void setCategoriesSelected(Categories categoriesSelected) {
@@ -272,5 +331,9 @@ public class DetailsPLusController {
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage=dialogStage;
+    }
+
+    public void setObjetSelected(Objet objetSelected) {
+        this.objetSelected = objetSelected;
     }
 }

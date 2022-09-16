@@ -89,7 +89,6 @@ public class GestionAMSController {
 
     @FXML
     public void buttonAjoutLangues(){
-
         listeLangues.add(choiceBoxLang.getValue());
         listeViewLangues.setItems(FXCollections.observableArrayList(listeLangues));
         listeViewLangues.refresh();
@@ -107,7 +106,6 @@ public class GestionAMSController {
 
     @FXML
     public void annuler() {
-
         confirmed = false;
         dialogStage.close();
     }
@@ -151,10 +149,9 @@ public class GestionAMSController {
             parler.setIdLangues(listeLangues.get(i).getIdLangues());
             serviceRootar.insertParler(parler);
         }
-
     }
     public void afficherPays(Pays paysSelected) {
-        this.paysSeleted = paysSelected;
+        paysSeleted = paysSelected;
         idPays.setText(String.valueOf(paysSelected.getIdPays()));
         codePays.setText(paysSelected.getCodePays());
         nomPaysFr.setText(paysSelected.getNomPaysFr());
@@ -168,8 +165,5 @@ public class GestionAMSController {
         indicatifTel.setText(paysSelected.getIndicatifTel());
         continent.getSelectionModel().select(paysSelected.getContinent());
         monnaie.getSelectionModel().select(paysSelected.getMonnaie());
-
-
     }
-
 }

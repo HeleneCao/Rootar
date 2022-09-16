@@ -1,6 +1,7 @@
 package com.rootar.metier;
 
-public class Sante {
+public class
+Sante {
     private int idSante;
     private String libelleSante;
     private Boolean validite;

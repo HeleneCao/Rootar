@@ -1,0 +1,21 @@
+
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(·Å˜ñıÿÿÿÿ
+†
+java:S1319-"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ãü«î
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åç¾
+f	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁûêË
+m	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê÷• 8°ÒøÜ³0
+r	java:S117n"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÚæåüÿÿÿÿ8°ÒøÜ³0
+f
+java:S3776-"PRefactor this method to reduce its Cognitive Complexity from 4 to the 3 allowed.(ãü«î
+A
+java:S1168N"+Return an empty collection instead of null.(¥¹ï
+A
+java:S1168S"+Return an empty collection instead of null.(¥¹ï
+
+java:S4087z"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ıÆ“¾8ËÒøÜ³0
+€
+java:S4087Œ"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ıÆ“¾8ÍÒøÜ³0
+K
+java:S1128"5Remove this unused import 'com.rootar.metier.Region'.(‡“«ß

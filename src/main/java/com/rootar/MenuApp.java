@@ -40,7 +40,6 @@ public class MenuApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void showDetailsPlus(Pays paysSelected) {
@@ -62,12 +61,10 @@ public class MenuApp extends Application {
                 controller.afficherRegion(paysSelected);
             }
             controller.setMenuApp(this);
-
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void showEdit(Pays paysSelected, String titre) {
@@ -86,13 +83,10 @@ public class MenuApp extends Application {
             GestionAMSController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             if (paysSelected != null)
-
                 controller.afficherPays(paysSelected);
             controller.setTitle(titre);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,11 +116,9 @@ public class MenuApp extends Application {
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void showEditEvent(Ville villeSelected, Evenements eventSelected, String titre) {
@@ -159,13 +151,40 @@ public class MenuApp extends Application {
         }
     }
 
+    public void showEditRepEtrangere(Pays paysSelected, Ville villeSelected , RepresentationEtrangere repEtrSelected, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMSRepEtrangere.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSRepEtrangereController controller = loader.getController();
+
+            controller.setDialogStage(dialogStage);
+            controller.setPaysSelected(paysSelected);
+            controller.setVilleSelected(villeSelected);
+            controller.setTitle(titre);
+            if (titre.equals("Modifier représentation étrangère")){
+                controller.afficherRepEtranger(repEtrSelected);
+            }
+            else
+                controller.afficherAjouterRepEtrangere(paysSelected, villeSelected);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Rootar");
         showRootar();
-
-
     }
 
     public void showEditCat(Categories categoriesSelected, String titre) {
@@ -190,15 +209,43 @@ public class MenuApp extends Application {
                 controller.afficherCat(categoriesSelected);
             }
 
-
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+
+    public void showEditObjet(Pays paysSelected, Categories categoriesSelected, Objet objetSelected, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMSObjet.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(anchorPane);
+            GestionAMSObjetController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPaysSelected(paysSelected);
+            controller.setCategoriesSelected(categoriesSelected);
+            controller.setTitle(titre);
+            if (titre.equals("Modifier l'objet")){
+
+                controller.afficherObjet(objetSelected);
+            }
+            else
+                controller.afficherAjouterObjet(paysSelected, categoriesSelected);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void showEditSante(Sante santeSelected, String titre) {
         try {
@@ -260,4 +307,7 @@ public class MenuApp extends Application {
         }
 
     }
+
+
+
 }

@@ -25,30 +25,40 @@ public class GestionAMSVilleController {
     private boolean confirmed;
     private Pays paysSelected;
     private ServiceRootar serviceRootar;
-
     private FenetreAlert fenetreAlert;
+
+    public void setTitle(String titre) {
+        titres.setText(titre);
+    }
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+    public Pays getPaysSelected() {
+        return paysSelected;
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+        confirmed = false;}
+
+    public void setPaysSelected(Pays paysSelected) {
+        this.paysSelected = paysSelected;
+        initRegion();}
 
     @FXML
     private void initialize() {
-
         serviceRootar = new ServiceRootar();
         fenetreAlert = new FenetreAlert();
-        idVille.setDisable(true);
-
-
-    }
+        idVille.setDisable(true);}
 
     private void initRegion(){
         comboRegion.setItems(FXCollections.observableArrayList(serviceRootar.getRegionFilterByPays(getPaysSelected())));
-        comboRegion.getItems().add(0,new Region(0,"Aucune"));
-
-    }
+        comboRegion.getItems().add(0,new Region(0,"Aucune"));}
 
     @FXML
     public void annuler() {
         confirmed = false;
-        dialogStage.close();
-    }
+        dialogStage.close();}
 
     @FXML
     public void confirmer() {
@@ -64,48 +74,23 @@ public class GestionAMSVilleController {
             if (serviceRootar.insertVille(ville)) {
                 fenetreAlert.fenetreInformation("Ajouter pays", "La ville " + ville.getNomVille() + " a été ajouté.");
             }
-
-
-
         dialogStage.close();
     }
 
     public void afficherVille(Ville ville) {
-
         idVille.setText(String.valueOf(ville.getIdVille()));
         nomVille.setText(ville.getNomVille());
         comboRegion.getSelectionModel().select(ville.getRegion());
         comboRegion.setDisable(true);
     }
-    public void afficherAjouterVille(Region region){
 
+    public void afficherAjouterVille(Region region){
         comboRegion.getSelectionModel().select(region);
         comboRegion.setDisable(true);
     }
 
-    public void setPaysSelected(Pays paysSelected) {
-        this.paysSelected = paysSelected;
-        initRegion();
-    }
-
-    public Pays getPaysSelected() {
-        return paysSelected;
-    }
-
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-        confirmed = false;
-    }
     private void insertionVille(boolean insert, Ville ville){
         if (serviceRootar.updateVille(ville) && insert)
             fenetreAlert.fenetreInformation("Modification ", "La ville " + ville.getNomVille() + " a été modifié.");
     }
-    public void setTitle(String titre) {
-        titres.setText(titre);
-    }
-
-    public boolean isConfirmed() {
-        return confirmed;
-    }
-
 }

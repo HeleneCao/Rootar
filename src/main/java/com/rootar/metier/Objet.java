@@ -16,6 +16,12 @@ public class Objet {
         categories=new Categories();
     }
 
+    public Objet(int idObjet, String libelleObjet, Categories categories) {
+        this.idObjet = idObjet;
+        this.libelleObjet = libelleObjet;
+        this.categories = categories;
+    }
+
     public int getIdObjet() {
         return idObjet;
     }

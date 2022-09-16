@@ -18,20 +18,20 @@ public class ServiceRootar {
     public Sante getByIDSante(int id){
         return DAOFactory.getSanteDAO().getByID(id);
     }
-    public ArrayList<Pays> getFilteredPays()
-    {
+
+    public ArrayList<Pays> getAllPays(){ return DAOFactory.getPaysDAO().getAll();}
+
+    public ArrayList<Categories> getAllCategories(){ return DAOFactory.getCategoriesDAO().getAll();}
+    public ArrayList<Pays> getFilteredPays() {
         return DAOFactory.getPaysDAO().getAll();
-
     }
-    public Parler getFilteredParler(int id)
-    {
+    public Parler getFilteredParler(int id) {
         return DAOFactory.getParlerDAO().getAllByID(id);
-
     }
     public Langues getLanguesFilter(String id){
-
         return DAOFactory.getLanguesDAO().getAllByID(id);
     }
+
     public ArrayList<Region> getRegionFilterByPays(Pays pays){
         return DAOFactory.getRegionDAO().getRegionByPays(pays);
     }
@@ -53,24 +53,25 @@ public class ServiceRootar {
     public ArrayList<DonneesClimat> getDonneesClimatByRegion(Region region){
         return DAOFactory.getDonneesClimatDAO().getDonneesClimatByRegion(region);
     }
-
-    public Categories getCategoriesFilterbyObject(Objet objet){
+    public Categories getCategoriesFilterbyObjet(Objet objet){
         return DAOFactory.getCategoriesDAO().getCategoriesByObjet(objet);
     }
+    public Objet lastIdObjet(){
+        return DAOFactory.getObjetDAO().lastId();
+    }
+  public Categories getCategorieById(int id){ return DAOFactory.getCategoriesDAO().getByID(id);}
+    public ArrayList<Pays> getPaysbyObjet(Objet objet){ return DAOFactory.getPaysDAO().getPaysByObjet(objet);}
     public ArrayList<Pays> getPaysFiltre()
     {
         return paysFiltre;
     }
-    public ArrayList<Pays> getAllPays(){return DAOFactory.getPaysDAO().getAll();}
+
     public ArrayList<Themes> getThemesByPays(Pays pays){
         return DAOFactory.getThemesDAO().getThemesByPays(pays);
     }
-    public ArrayList<Themes> getThemesByRegion(Region region){
-        return DAOFactory.getThemesDAO().getThemesByRegion(region);
-    }
+    public ArrayList<Themes> getThemesByRegion(Region region){ return DAOFactory.getThemesDAO().getThemesByRegion(region);}
     public ArrayList<RepresentationEtrangere> getRepEtrangeresByPays(Pays pays){
-        return DAOFactory.getRepresentationEtrangereDAO().getRepEtrangeresByPays(pays);
-    }
+        return DAOFactory.getRepresentationEtrangereDAO().getRepEtrangeresByPays(pays);}
     public ArrayList<RepresentationEtrangere> getRepEtrangeresByVille(Ville ville){
         return DAOFactory.getRepresentationEtrangereDAO().getRepEtrangeresByVille(ville);
     }
@@ -88,7 +89,6 @@ public class ServiceRootar {
     {
         return DAOFactory.getMonnaieDAO().getAll();
     }
-
     public ArrayList<Objet> getObjetFilterByPays(Pays pays){
         return  DAOFactory.getObjetDAO().getObjetByPays(pays);
     }
@@ -111,9 +111,7 @@ public class ServiceRootar {
         return DAOFactory.getVilleDAO().update(ville);
     }
     public boolean deleteVille(Ville ville) { return DAOFactory.getVilleDAO().delete(ville);}
-
-    public boolean insertEvent(Evenements evenements) {return DAOFactory.getEvenementsDAO().insert(evenements);
-    }
+    public boolean insertEvent(Evenements evenements) { return DAOFactory.getEvenementsDAO().insert(evenements);}
     public boolean updateEvent(Evenements evenements) {
         return DAOFactory.getEvenementsDAO().update(evenements);
     }
@@ -133,6 +131,17 @@ public class ServiceRootar {
     public boolean deleteCategories(Categories categories){
         return DAOFactory.getCategoriesDAO().delete(categories);
     }
+    public boolean insertRepEtrangere(RepresentationEtrangere representationEtrangere) {
+        return DAOFactory.getRepresentationEtrangereDAO().insert(representationEtrangere);}
+    public boolean updateRepEtrangere(RepresentationEtrangere representationEtrangere) {
+        return DAOFactory.getRepresentationEtrangereDAO().update(representationEtrangere);}
+    public boolean deleteRepEtrangere(RepresentationEtrangere representationEtrangere) {
+        return DAOFactory.getRepresentationEtrangereDAO().delete(representationEtrangere);}
+    public boolean insertEmporter(Emporter emporter){ return DAOFactory.getEmpoterDAO().insert(emporter); }
+    public boolean deleteEmporter(Emporter emporter){ return DAOFactory.getEmpoterDAO().delete(emporter);}
+    public boolean insertObjet(Objet objet){ return DAOFactory.getObjetDAO().insert(objet);}
+    public boolean updateObjet(Objet objet){ return DAOFactory.getObjetDAO().update(objet);}
+    public boolean deleteObjet(Objet objet){ return DAOFactory.getObjetDAO().delete(objet);}
 
     public boolean insertSante(Sante sante){
         return DAOFactory.getSanteDAO().insert(sante);

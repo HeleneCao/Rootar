@@ -29,6 +29,15 @@ public class RepresentationEtrangere {
         this.adresse = adresse;
     }
 
+    public RepresentationEtrangere(int idRepEtrangere, String libelleRepEtrangere, String telephone, String adresse, Pays pays, Ville ville) {
+        this.idRepEtrangere = idRepEtrangere;
+        this.libelleRepEtrangere = libelleRepEtrangere;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.pays = pays;
+        this.ville = ville;
+    }
+
     public int getIdRepEtrangere() {
         return idRepEtrangere;
     }
@@ -59,6 +68,22 @@ public class RepresentationEtrangere {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 
     @Override

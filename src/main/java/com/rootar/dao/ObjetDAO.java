@@ -1,5 +1,6 @@
 package com.rootar.dao;
 
+import com.rootar.metier.Categories;
 import com.rootar.metier.Objet;
 import com.rootar.metier.Pays;
 import com.rootar.metier.Sante;
@@ -14,6 +15,35 @@ public class ObjetDAO extends DAO <Objet, Objet>{
     protected ObjetDAO(Connection connexion) {
         super(connexion);
     }
+
+    public Objet lastId(){
+        String SQL = "select max(id_objet) from objet";
+        Objet objet = new Objet();
+        try (PreparedStatement pstmt = connexion.prepareStatement(SQL)){
+
+
+            // Determine the column set column
+
+            rs = pstmt.executeQuery();
+
+
+            while (rs.next()) {
+
+              int id=rs.getInt(1);
+                System.out.println(id);
+                objet.setIdObjet(id);
+            }
+            rs.close();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return objet;
+    }
+
+
     public ArrayList<Objet> getObjetByPays(Pays pays) {
 
         ArrayList<Objet> liste = new ArrayList<>();
@@ -28,8 +58,9 @@ public class ObjetDAO extends DAO <Objet, Objet>{
 
 
             while (rs.next()) {
-
-                liste.add(new Objet(rs.getInt(1),rs.getString(2)));
+                Categories categories= new Categories();
+                categories.setIdCategories(rs.getInt(3));
+                liste.add(new Objet(rs.getInt(1),rs.getString(2),categories));
             }
             rs.close();
 
@@ -58,16 +89,60 @@ public class ObjetDAO extends DAO <Objet, Objet>{
 
     @Override
     public boolean insert(Objet objet) {
-        return false;
+        String SQL = "INSERT INTO OBJET (LIBELLE_OBJET, ID_CATEGORIES) "+" VALUES (?,?)";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(objet !=null) {
+                pStmt.setString(1,objet.getLibelleObjet());
+                pStmt.setInt(2,objet.getCategories().getIdCategories());
+                pStmt.execute();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public boolean update(Objet object) {
-        return false;
+    public boolean update(Objet objet) {
+       String SQL = "UPDATE OBJET SET LIBELLE_OBJET=? , ID_CATEGORIES=? WHERE ID_OBJET=?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(objet !=null) {
+
+                pStmt.setString(1,objet.getLibelleObjet());
+                pStmt.setInt(2,objet.getCategories().getIdCategories());
+                pStmt.setInt(3,objet.getIdObjet());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
+
     @Override
-    public boolean delete(Objet object) {
-        return false;
+    public boolean delete(Objet objet) {
+        String delete = "DELETE FROM OBJET WHERE ID_OBJET = ?";
+
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(delete)) {
+            if(objet !=null) {
+
+                pStmt.setInt(1,objet.getIdObjet());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

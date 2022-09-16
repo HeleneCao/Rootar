@@ -1,0 +1,8 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µºÌÿÿÿÿÿ
+l
+java:S1450"QRemove the "rs" field and declare it as a local variable in the relevant methods.(‰Úèüÿÿÿÿ
+A
+java:S11683"+Return an empty collection instead of null.(¥¹ï
+S
+java:S1128"8Remove this unused import 'com.rootar.metier.Continent'.(–çÉ¥ıÿÿÿÿ

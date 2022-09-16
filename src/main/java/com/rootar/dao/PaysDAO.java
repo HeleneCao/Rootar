@@ -2,6 +2,7 @@ package com.rootar.dao;
 
 import com.rootar.metier.Continent;
 import com.rootar.metier.Monnaie;
+import com.rootar.metier.Objet;
 import com.rootar.metier.Pays;
 
 import java.sql.*;
@@ -29,6 +30,32 @@ public class PaysDAO extends DAO <Pays, Pays>{
             while (rs.next()) {
 
                 liste.add(new Pays(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),new Continent(rs.getInt(12),rs.getString(13)),new Monnaie(rs.getInt(14),rs.getString(15))));
+            }
+            rs.close();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return liste;
+    }
+
+    public ArrayList<Pays> getPaysByObjet(Objet objet){
+        ArrayList<Pays> liste = new ArrayList<>();
+        String SQL= " select id_pays, nom_pays_fr from pays as p where p.id_pays in (select id_pays from emporter where id_objet=? )";
+        try (PreparedStatement pstmt = connexion.prepareStatement(SQL)){
+
+
+            // Determine the column set column
+
+            pstmt.setInt(1,objet.getIdObjet());
+            rs = pstmt.executeQuery();
+
+
+            while (rs.next()) {
+
+                liste.add(new Pays(rs.getInt(1),rs.getString(2)));
             }
             rs.close();
 
@@ -127,4 +154,6 @@ public class PaysDAO extends DAO <Pays, Pays>{
             return false;
         }
     }
+
+
 }

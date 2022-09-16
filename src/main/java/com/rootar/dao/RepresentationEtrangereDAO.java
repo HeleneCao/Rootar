@@ -84,17 +84,65 @@ public class RepresentationEtrangereDAO extends DAO <RepresentationEtrangere, Re
     }
 
     @Override
-    public boolean insert(RepresentationEtrangere objet) {
-        return false;
+    public boolean insert(RepresentationEtrangere representationEtrangere) {
+        String SQL = "INSERT INTO REPRESENTATION_ETRANGERE (LIBELLE_REPRESENTATION, TELEPHONE, ADRESSE, ID_PAYS, ID_VILLE)" + " VALUES (?,?,?,?,?)";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL)) {
+            if (representationEtrangere != null) {
+
+                pStmt.setString(1, representationEtrangere.getLibelleRepEtrangere());
+                pStmt.setString(2, representationEtrangere.getTelephone());
+                pStmt.setString(3, representationEtrangere.getAdresse());
+                pStmt.setInt(4, representationEtrangere.getPays().getIdPays());
+                pStmt.setInt(5, representationEtrangere.getVille().getIdVille());
+
+                pStmt.execute();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
-    public boolean update(RepresentationEtrangere object) {
-        return false;
+    public boolean update(RepresentationEtrangere representationEtrangere) {
+        String SQL = "update REPRESENTATION_ETRANGERE set  LIBELLE_REPRESENTATION = ?, TELEPHONE = ?, ADRESSE = ?, ID_PAYS = ? , ID_VILLE = ?  where ID_REPRESENTATION = ?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL)) {
+            if (representationEtrangere != null) {
+
+                pStmt.setString(1, representationEtrangere.getLibelleRepEtrangere());
+                pStmt.setString(2, representationEtrangere.getTelephone());
+                pStmt.setString(3, representationEtrangere.getAdresse());
+                pStmt.setInt(4, representationEtrangere.getPays().getIdPays());
+                pStmt.setInt(5, representationEtrangere.getVille().getIdVille());
+                pStmt.setInt(6, representationEtrangere.getIdRepEtrangere());
+
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
-    public boolean delete(RepresentationEtrangere object) {
-        return false;
+    public boolean delete(RepresentationEtrangere representationEtrangere) {
+        String delete = "DELETE FROM REPRESENTATION_ETRANGERE WHERE ID_REPRESENTATION= ?";
+
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(delete)) {
+            if (representationEtrangere != null) {
+                pStmt.setInt(1, representationEtrangere.getIdRepEtrangere());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
