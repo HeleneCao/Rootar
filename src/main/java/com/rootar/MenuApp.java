@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -27,8 +28,8 @@ public class MenuApp extends Application {
         try {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("GestionRootar.fxml"));
-            AnchorPane menuLayout = (AnchorPane) loader.load();
+            loader.setLocation(MenuApp.class.getResource("ROUTARV2.fxml"));
+            VBox menuLayout = (VBox) loader.load();
 
             Scene scene = new Scene(menuLayout);
             primaryStage.setScene(scene);

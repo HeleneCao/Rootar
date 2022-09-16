@@ -66,8 +66,6 @@ l
 <src/main/java/com/rootar/dao/RepresentationEtrangereDAO.java,3\0\3031f20bc990bf0a56456ae96c0d28bd90b0bfce
 \
 ,src/main/java/com/rootar/dao/MonnaieDAO.java,1\2\12ecc419168e40ee248cf8506eeec7459ccb2711
-^
-.src/main/java/com/rootar/RootarController.java,d\b\dba6897b19849778ba9647194f192b9db87d1df1
 k
 ;src/main/java/com/rootar/GestionAMSEvenementController.java,c\d\cd495f79f703ba93f18e76901d41dde34f975f7f
 _

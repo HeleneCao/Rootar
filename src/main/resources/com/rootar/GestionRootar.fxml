@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rootar.RootarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane layoutX="6.0" prefHeight="861.0" prefWidth="1015.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -28,7 +28,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="tableRootar" prefHeight="596.0" prefWidth="595.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                <TableView fx:id="tableRootar" prefHeight="648.0" prefWidth="469.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                     <columns>
                         <TableColumn fx:id="colCodePays" maxWidth="1.7976931348623157E308" prefWidth="113.0" text="Code pays" />
                         <TableColumn fx:id="colNomPays" maxWidth="1.7976931348623157E308" prefWidth="103.0" text="Nom pays" />
