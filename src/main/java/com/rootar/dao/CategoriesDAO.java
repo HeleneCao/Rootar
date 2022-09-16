@@ -73,11 +73,41 @@ public class CategoriesDAO extends DAO <Categories, Categories>{
 
     @Override
     public boolean update(Categories categories) {
-        return false;
+        String SQL = "update CATEGORIES set LIBELLE_CATEGORIES=? where ID_CATEGORIES = ?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
+        {
+            if(categories != null) {
+
+                pStmt.setString(1,categories.getLibelleCategories());
+                pStmt.setInt(2,categories.getIdCategories());
+
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Categories categories) {
-        return false;
+        String delete = "DELETE FROM CATEGORIES WHERE ID_CATEGORIES= ?";
+
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(delete)) {
+            if(categories !=null) {
+
+                pStmt.setInt(1,categories.getIdCategories());
+                pStmt.executeUpdate();
+                pStmt.close();
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

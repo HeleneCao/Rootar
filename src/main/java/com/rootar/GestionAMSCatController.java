@@ -30,10 +30,16 @@ public class GestionAMSCatController {
     public void confirmer(){
         Categories categories = new Categories();
         categories.setLibelleCategories(libelleCat.getText());
+
         if(dialogStage.getTitle().equals("Ajouter catégorie")){
             serviceRootar.insertCategories(categories);
+            dialogStage.close();
         }
-
+        if(dialogStage.getTitle().equals("Modifier catégorie")){
+            categories.setIdCategories(Integer.valueOf(idCat.getText()));
+            serviceRootar.updateCategories(categories);
+            dialogStage.close();
+        }
     }
     @FXML
     public void annuler() {

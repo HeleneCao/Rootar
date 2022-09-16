@@ -2,6 +2,7 @@ package com.rootar;
 
 import com.rootar.metier.*;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -185,9 +186,69 @@ public class MenuApp extends Application {
             if (titre.equals("Ajouter catégorie")) {
                 controller.setCatSelected(null);
             }
-            if (titre.equals("Modifier Catégorie")) {
+            if (titre.equals("Modifier catégorie")) {
                 controller.afficherCat(categoriesSelected);
             }
+
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void showEditSante(Sante santeSelected, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionAMSSante.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            GestionAMSanteController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            if (titre.equals("Ajouter santé")) {
+                controller.setSanteSelected(santeSelected);
+            }
+            if (titre.equals("Modifier santé")) {
+                controller.setSanteSelected(santeSelected);
+                controller.afficherCat();
+
+            }
+
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void showEditMap(String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("test.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(anchorPane);
+            TestController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
 
 
             dialogStage.setScene(scene);

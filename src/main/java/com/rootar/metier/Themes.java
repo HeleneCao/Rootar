@@ -6,8 +6,10 @@ public class Themes {
     private String libelleThemes;
 
     public Themes(int idThemes, String libelleThemes) {
+
         this.idThemes = idThemes;
         this.libelleThemes = libelleThemes;
+
     }
 
     public int getIdThemes() {

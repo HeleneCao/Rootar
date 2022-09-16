@@ -78,4 +78,7 @@ public class DAOFactory {
     public static ParlerDAO getParlerDAO(){
         return new ParlerDAO(connexion);
     }
+    public static ExigerDAO getExigerDAO(){
+        return new ExigerDAO(connexion);
+    }
 }

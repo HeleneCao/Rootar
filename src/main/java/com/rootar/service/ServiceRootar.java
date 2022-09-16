@@ -15,6 +15,9 @@ public class ServiceRootar {
         paysFiltre = DAOFactory.getPaysDAO().getAll();
         continentFiltre = DAOFactory.getContinentDAO().getAll();
     }
+    public Sante getByIDSante(int id){
+        return DAOFactory.getSanteDAO().getByID(id);
+    }
     public ArrayList<Pays> getFilteredPays()
     {
         return DAOFactory.getPaysDAO().getAll();
@@ -38,11 +41,14 @@ public class ServiceRootar {
     public ArrayList<Evenements> getEventFilterByVille(Ville ville){
         return DAOFactory.getEvenementsDAO().getEventByVille(ville);
     }
+    public ArrayList<Priorite> getAllPriorite(){
+        return DAOFactory.getPrioriteDAO().getAll();
+    }
     public TypeClimat getTypeClimatFilterByRegion(Region region){
         return DAOFactory.getTypeClimatDAO().getTypeClimatByRegion(region);
     }
-    public Priorite getPrioriteFilterBySante(Sante sante){
-        return DAOFactory.getPrioriteDAO().getPrioriteBySante(sante);
+    public Priorite getPrioriteBySante(int id){
+        return DAOFactory.getPrioriteDAO().getPrioriteBySante(id);
     }
     public ArrayList<DonneesClimat> getDonneesClimatByRegion(Region region){
         return DAOFactory.getDonneesClimatDAO().getDonneesClimatByRegion(region);
@@ -55,6 +61,7 @@ public class ServiceRootar {
     {
         return paysFiltre;
     }
+    public ArrayList<Pays> getAllPays(){return DAOFactory.getPaysDAO().getAll();}
     public ArrayList<Themes> getThemesByPays(Pays pays){
         return DAOFactory.getThemesDAO().getThemesByPays(pays);
     }
@@ -84,6 +91,9 @@ public class ServiceRootar {
 
     public ArrayList<Objet> getObjetFilterByPays(Pays pays){
         return  DAOFactory.getObjetDAO().getObjetByPays(pays);
+    }
+    public ArrayList<Sante> getSantebyPays(Pays pays){
+        return DAOFactory.getSanteDAO().getSanteByPays(pays);
     }
     public boolean insertPays(Pays pays) {
         return DAOFactory.getPaysDAO().insert(pays);
@@ -117,6 +127,24 @@ public class ServiceRootar {
     public boolean insertCategories(Categories categories){
         return DAOFactory.getCategoriesDAO().insert(categories);
     }
+    public boolean updateCategories(Categories categories){
+        return DAOFactory.getCategoriesDAO().update(categories);
+    }
+    public boolean deleteCategories(Categories categories){
+        return DAOFactory.getCategoriesDAO().delete(categories);
+    }
 
+    public boolean insertSante(Sante sante){
+        return DAOFactory.getSanteDAO().insert(sante);
+    }
+    public boolean updateSante(Sante sante){
+        return DAOFactory.getSanteDAO().update(sante);
+    }
+    public boolean deleteSante(Sante sante){
+        return DAOFactory.getSanteDAO().delete(sante);
+    }
+    public boolean deleteExiger(Exiger exiger){
+        return DAOFactory.getExigerDAO().delete(exiger);
+    }
 
 }

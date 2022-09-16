@@ -15,7 +15,7 @@
       <Label layoutX="477.0" layoutY="17.0" text="Evenements" />
       <ListView fx:id="event" layoutX="477.0" layoutY="42.0" prefHeight="154.0" prefWidth="149.0" />
       <TextArea fx:id="detailsDC" layoutX="647.0" layoutY="472.0" prefHeight="178.0" prefWidth="214.0" />
-      <Label fx:id="detailsObjets" layoutX="22.0" layoutY="254.0" text="Catégories" />
+      <Label fx:id="detailsObjets" layoutX="24.0" layoutY="204.0" text="Catégories" />
       <ListView fx:id="listeThemes" layoutX="324.0" layoutY="42.0" prefHeight="154.0" prefWidth="127.0" />
       <Label layoutX="324.0" layoutY="17.0" text="Theme" />
       <TextArea fx:id="detailsTypeC" layoutX="387.0" layoutY="472.0" prefHeight="178.0" prefWidth="214.0" />
@@ -35,9 +35,13 @@
       <Button layoutX="503.0" layoutY="200.0" mnemonicParsing="false" onAction="#ajouterEvent" text="A" />
       <Button layoutX="538.0" layoutY="200.0" mnemonicParsing="false" onAction="#modifierEvent" text="M" />
       <Button layoutX="575.0" layoutY="200.0" mnemonicParsing="false" onAction="#supprimerEvent" text="S" />
-      <Button layoutX="28.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajouterCat" text="A" />
-      <Button layoutX="66.0" layoutY="456.0" mnemonicParsing="false" onAction="#modifierCat" text="M" />
-      <Button layoutX="109.0" layoutY="456.0" mnemonicParsing="false" onAction="#supprimerVille" prefHeight="25.0" prefWidth="9.0" text="S" />
-      <ListView fx:id="listCategories" layoutX="16.0" layoutY="287.0" prefHeight="144.0" prefWidth="127.0" />
+      <Button layoutX="16.0" layoutY="377.0" mnemonicParsing="false" onAction="#ajouterCat" text="A" />
+      <Button layoutX="50.0" layoutY="377.0" mnemonicParsing="false" onAction="#modifierCat" text="M" />
+      <Button layoutX="90.0" layoutY="377.0" mnemonicParsing="false" onAction="#supprimerVille" prefHeight="25.0" prefWidth="9.0" text="S" />
+      <ListView fx:id="listCategories" layoutX="3.0" layoutY="233.0" prefHeight="144.0" prefWidth="127.0" />
+      <ListView fx:id="listeSante" layoutX="7.0" layoutY="430.0" prefHeight="154.0" prefWidth="139.0" />
+      <Button layoutX="16.0" layoutY="584.0" mnemonicParsing="false" onAction="#ajouterSante" text="A" />
+      <Button layoutX="63.0" layoutY="584.0" mnemonicParsing="false" onAction="#modifierSante" text="M" />
+      <Button layoutX="119.0" layoutY="584.0" mnemonicParsing="false" onAction="#supprimerSante" prefHeight="25.0" prefWidth="9.0" text="S" />
    </children>
 </AnchorPane>

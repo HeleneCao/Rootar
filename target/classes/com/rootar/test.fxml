@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.WorldMapView?>
+
+
+<AnchorPane prefHeight="744.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rootar.Test">
+   <children>
+      <WorldMapView layoutY="-7.0" prefHeight="759.0" prefWidth="992.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0" />
+   </children>
+</AnchorPane>

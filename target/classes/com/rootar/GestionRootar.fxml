@@ -23,8 +23,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="475.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="375.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="583.0" minHeight="10.0" prefHeight="583.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="375.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="650.0" minHeight="10.0" prefHeight="650.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
@@ -78,14 +78,16 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button maxWidth="1.7976931348623157E308" onAction="#reset" prefHeight="41.0" prefWidth="141.0" styleClass="font-button" text="Reset" GridPane.rowIndex="4" />
+                                <Button maxWidth="1.7976931348623157E308" onAction="#reset" prefHeight="41.0" prefWidth="141.0" styleClass="font-button" text="Reset" GridPane.rowIndex="5" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="3" />
                             </children>
                         </GridPane>
                     </children>
                 </GridPane>
-                <Label fx:id="titres" alignment="CENTER" contentDisplay="CENTER" prefHeight="185.0" prefWidth="439.0" text="DETAILS" textFill="#169e2a" GridPane.columnIndex="2">
+                <Label fx:id="titres" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="439.0" text="DETAILS" textFill="#169e2a" GridPane.columnIndex="2">
                     <font>
                         <Font size="36.0" />
                     </font></Label>
@@ -139,6 +141,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <Label prefHeight="42.0" prefWidth="225.0" text="Code pays" />
@@ -173,6 +176,8 @@
                   <Label layoutX="10.0" layoutY="515.0" prefHeight="51.0" prefWidth="222.0" text="Représentation étrangères" GridPane.rowIndex="15" />
                   <Label layoutX="10.0" layoutY="180.0" prefHeight="51.0" prefWidth="222.0" text="Langues" GridPane.rowIndex="5" />
                   <ListView fx:id="listeLangues" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label layoutX="10.0" layoutY="520.0" prefHeight="75.0" prefWidth="222.0" text="Santé" GridPane.rowIndex="16" />
+                  <ListView fx:id="listeSante" layoutX="232.0" layoutY="520.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="16" />
                     </children>
                 </GridPane>
             </children>

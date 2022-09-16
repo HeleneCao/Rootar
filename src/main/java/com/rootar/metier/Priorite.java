@@ -28,4 +28,9 @@ public class Priorite {
     public void setLibellePriorite(String libellePriorite) {
         this.libellePriorite = libellePriorite;
     }
+
+    @Override
+    public String toString() {
+        return libellePriorite;
+    }
 }

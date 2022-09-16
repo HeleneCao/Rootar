@@ -16,7 +16,15 @@ public class Sante {
     public Sante(int idSante, String libelleSante, Boolean validite) {
         this.idSante = idSante;
         this.libelleSante = libelleSante;
-        this.validite = validite;
+
+        priorite =new Priorite();
+    }
+
+    public Sante(int idSante, String libelleSante, Priorite priorite) {
+        this.idSante = idSante;
+        this.libelleSante = libelleSante;
+
+        this.priorite = priorite;
     }
 
     public Sante() {
@@ -36,5 +44,26 @@ public class Sante {
 
     public void setLibelleSante(String libelleSante) {
         this.libelleSante = libelleSante;
+    }
+
+    public Boolean getValidite() {
+        return validite;
+    }
+
+    public void setValidite(Boolean validite) {
+        this.validite = validite;
+    }
+
+    public Priorite getPriorite() {
+        return priorite;
+    }
+
+    public void setPriorite(Priorite priorite) {
+        this.priorite = priorite;
+    }
+
+    @Override
+    public String toString() {
+        return libelleSante;
     }
 }

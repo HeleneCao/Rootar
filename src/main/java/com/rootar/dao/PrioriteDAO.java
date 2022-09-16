@@ -1,11 +1,13 @@
 package com.rootar.dao;
 
+import com.rootar.metier.Langues;
 import com.rootar.metier.Priorite;
 import com.rootar.metier.Sante;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class PrioriteDAO extends DAO <Priorite, Priorite> {
@@ -13,7 +15,7 @@ public class PrioriteDAO extends DAO <Priorite, Priorite> {
     protected PrioriteDAO(Connection connexion) {
         super(connexion);
     }
-    public Priorite getPrioriteBySante(Sante sante) {
+    public Priorite getPrioriteBySante(int id) {
 
         Priorite priorite= new Priorite();
         String SQL= " select * from priorite where id_priorite=(select id_priorite from sante where id_sante= ?)";
@@ -22,13 +24,13 @@ public class PrioriteDAO extends DAO <Priorite, Priorite> {
 
             // Determine the column set column
 
-            pstmt.setInt(1,sante.getIdSante());
+            pstmt.setInt(1,id);
             rs = pstmt.executeQuery();
 
 
             while (rs.next()) {
 
-                sante = new Sante(rs.getInt(1),rs.getString(2));
+                priorite = new Priorite(rs.getInt(1),rs.getString(2));
             }
             rs.close();
 
@@ -46,7 +48,28 @@ public class PrioriteDAO extends DAO <Priorite, Priorite> {
 
     @Override
     public ArrayList<Priorite> getAll() {
-        return null;
+        ArrayList<Priorite> liste = new ArrayList<>();
+        try (Statement stmt = connexion.createStatement()){
+
+
+            // Determine the column set column
+
+            String strCmd = "SELECT ID_PRIORITE,LIBELLE_PRIORITE from PRIORITE ";
+            rs = stmt.executeQuery(strCmd);
+
+
+            while (rs.next()) {
+
+                liste.add(new Priorite(rs.getInt(1),rs.getString(2)));
+            }
+            rs.close();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return liste;
     }
 
     @Override

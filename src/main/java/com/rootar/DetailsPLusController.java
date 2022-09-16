@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TreeView;
 import javafx.stage.Stage;
 
 
@@ -43,16 +44,21 @@ public class DetailsPLusController {
     private ListView<Objet> listeObjets;
     @FXML
     private ListView<RepresentationEtrangere> listeRepEtr;
+    @FXML
+    private ListView<Sante> listeSante;
     private Region regionSelected;
     @FXML
     private ListView<Categories> listCategories;
+
     private Stage dialogStage;
+    private Sante santeSelected;
 
     @FXML
     private void initialize() {
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
         fenetreAlert = new FenetreAlert();
+
     }
 
     public void afficherRegion(Pays paysSelected) {
@@ -62,6 +68,10 @@ public class DetailsPLusController {
         region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherTypeClimat(newValue));
         region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDonneesClimat(newValue));
         region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherThemesByRegion(newValue));
+
+        listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(this.paysSelected)));
+        listeSante.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->setSanteSelected(newValue));
+        //System.out.println(santeSelected.getLibelleSante());
         afficherObjet(paysSelected);
 
     }
@@ -192,16 +202,46 @@ public class DetailsPLusController {
  */
     @FXML
     public void ajouterCat() {
-        menuApp.showEditCat(null, "Ajouter Catégorie");
+        menuApp.showEditCat(null, "Ajouter catégorie");
     }
     @FXML
     public void modifierCat(){
-        menuApp.showEditCat(categoriesSelected, "Modifier Catégorie");
+        menuApp.showEditCat(categoriesSelected, "Modifier catégorie");
     }
+    @FXML
+    public void supprimerCat(){
+        if(serviceRootar.deleteCategories(categoriesSelected)){
+            fenetreAlert.fenetreInformation("Suppression de la catégorie","iuh");
+        }
 
+
+    }
+    /* =================================================================================================
+                                           AJOUTER SANTE
+      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+    @FXML
+    public void ajouterSante() {
+        menuApp.showEditSante(santeSelected, "Ajouter santé");
+
+    }
+    @FXML
+    public void modifierSante(){
+        menuApp.showEditSante(santeSelected, "Modifier santé");
+    }
+    @FXML
+    public void supprimerSante(){
+
+
+        if(serviceRootar.deleteExiger(new Exiger(paysSelected,santeSelected))) {
+            serviceRootar.deleteSante(santeSelected);
+            fenetreAlert.fenetreInformation("Suppression de l'élément sante'", " "+santeSelected.getLibelleSante()+" est supprimé");
+        }
+    }
     // GETTERS ET SETTERS
     public void setPaysSelected(Pays paysSelected) {
         this.paysSelected = paysSelected;
+
     }
 
     public Pays getPaysSelected() {
@@ -226,7 +266,9 @@ public class DetailsPLusController {
         this.categoriesSelected = categoriesSelected;
     }
 
-
+    public void setSanteSelected(Sante santeSelected) {
+        this.santeSelected = santeSelected;
+    }
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage=dialogStage;

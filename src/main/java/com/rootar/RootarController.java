@@ -64,6 +64,8 @@ public class RootarController {
     private ListView<Langues> listeLangues;
     @FXML
     private ChoiceBox<Langues> choiceBoxLang;
+    @FXML
+    private ListView<Sante> listeSante;
     private ServiceRootar serviceRootar;
     private Pays paysSelected;
     private FenetreAlert fenetreAlert;
@@ -82,6 +84,7 @@ public class RootarController {
         colNationalite.setCellValueFactory(cellData -> cellData.getValue().nationaliteProperty());
         tableRootar.refresh();
         listeLangues.setOrientation(Orientation.HORIZONTAL);
+        listeSante.setOrientation(Orientation.HORIZONTAL);
 
 
     }
@@ -108,6 +111,8 @@ public class RootarController {
              //langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
             listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
             listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
+            listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(pays)));
+
         }
 
 
