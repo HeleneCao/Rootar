@@ -6,8 +6,6 @@ _
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 4
 mvnw,5\d\5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d
 8
@@ -57,10 +55,6 @@ Z
 l
 <src/main/java/com/rootar/metier/RepresentationEtrangere.java,0\f\0ffb3f9d4dff4402e51224e19bccb942168b6597
 Z
-*src/main/java/com/rootar/dao/SanteDAO.java,9\8\98368b910735f6c4dd3617ff1e6f55e05356cc78
-Z
-*src/main/java/com/rootar/metier/Sante.java,4\4\44a4c8762564f1987998259fcd2294a12de9e66d
-Z
 *src/main/java/com/rootar/dao/VilleDAO.java,8\8\881c5a876ba65bb771f21f9b38ed13f7ef2a07e4
 l
 <src/main/java/com/rootar/dao/RepresentationEtrangereDAO.java,3\0\3031f20bc990bf0a56456ae96c0d28bd90b0bfce
@@ -70,9 +64,15 @@ k
 ;src/main/java/com/rootar/GestionAMSEvenementController.java,c\d\cd495f79f703ba93f18e76901d41dde34f975f7f
 _
 /src/main/java/com/rootar/metier/Categories.java,0\7\078b3f83e10ea8f5c5d10545a2f4898b06c991a2
-\
-,src/main/java/com/rootar/metier/Langues.java,2\0\20a58e98b8248edbe536cdef13458ed9ffb75935
 g
 7src/main/java/com/rootar/GestionAMSVilleController.java,f\2\f2826370f819ba7b5edb33d85fc0c069c2663982
 e
 5src/main/java/com/rootar/GestionAMSCatController.java,0\a\0ae970bdbf06409a93b7dabc8c45373ea9ed6617
+b
+2src/main/java/com/rootar/GestionAMSController.java,8\2\825a6e7d808aabfa8e635866d8297ec99023a08c
+_
+/src/main/java/com/rootar/dao/EvenementsDAO.java,3\e\3e40e5a303fbd3b87cf20a844a3dc92246f99ff8
+]
+-src/main/java/com/rootar/metier/Emporter.java,c\9\c92a3202efcecbc721eac32e7e36e6fa6edf19d3
+n
+>src/main/java/com/rootar/GestionAMSRepEtrangereController.java,1\e\1ef050dbc034322ac9759e22e029e7474681dd33

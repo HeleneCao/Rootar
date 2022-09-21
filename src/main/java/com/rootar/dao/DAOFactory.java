@@ -65,4 +65,5 @@ public class DAOFactory {
         return new ExigerDAO(connexion);
     }
     public static EmporterDAO getEmpoterDAO() { return new EmporterDAO(connexion);}
+    public static  AeroportDAO getAeroportDAO() { return  new AeroportDAO(connexion);}
 }

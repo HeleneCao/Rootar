@@ -12,29 +12,29 @@
 
 <AnchorPane prefHeight="602.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rootar.GestionAMSVilleController">
     <children>
-        <GridPane layoutX="84.0" layoutY="120.0" prefHeight="434.0" prefWidth="495.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="120.0">
+        <GridPane layoutX="99.0" layoutY="174.0" prefHeight="255.0" prefWidth="473.0" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="174.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="102.0" minHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Nom objet" GridPane.rowIndex="1">
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Nom ville" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font></Label>
-                <ComboBox fx:id="comboRegion" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="247.0" promptText="Catégories" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ComboBox fx:id="comboRegion" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="247.0" promptText="Région" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="nomVille" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="248.0" text="Id objet :">
+                <Label maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="248.0" text="Id ville :">
                <font>
                   <Font size="24.0" />
                </font></Label>
-                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Confirmer" GridPane.rowIndex="3">
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="0.0" prefWidth="231.0" text="Confirmer" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font></Button>
@@ -42,14 +42,14 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-                <Label layoutX="10.0" layoutY="346.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Id catégorie" GridPane.rowIndex="2">
+                <Label layoutX="10.0" layoutY="346.0" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="225.0" text="Région" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font></Label>
                 <TextField fx:id="idVille" layoutX="258.0" layoutY="301.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
             </children>
         </GridPane>
-        <Label fx:id="titres" alignment="CENTER" layoutX="73.0" layoutY="56.0" prefHeight="53.0" prefWidth="524.0" text="Objet" AnchorPane.leftAnchor="73.0" AnchorPane.rightAnchor="65.0">
+        <Label fx:id="titres" alignment="CENTER" layoutX="69.0" layoutY="93.0" prefHeight="53.0" prefWidth="524.0" text="Ville" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0">
             <font>
                 <Font size="36.0" />
             </font>

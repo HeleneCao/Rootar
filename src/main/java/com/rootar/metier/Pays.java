@@ -21,31 +21,8 @@ public class Pays {
     private Monnaie monnaie;
     private Visas visas;
 
+
     public Pays() {
-    }
-
-    public Continent getContinent() {
-        return continent;
-    }
-
-    public void setContinent(Continent continent) {
-        this.continent = continent;
-    }
-
-    public Monnaie getMonnaie() {
-        return monnaie;
-    }
-
-    public void setMonnaie(Monnaie monnaie) {
-        this.monnaie = monnaie;
-    }
-
-    public Visas getVisas() {
-        return visas;
-    }
-
-    public void setVisas(Visas visas) {
-        this.visas = visas;
     }
 
     public Pays(int idPays, String nomPaysFr) {
@@ -77,6 +54,31 @@ public class Pays {
         this.nomPaysFr = nomPaysFr;
         this.continent = continent;
     }
+
+    public Continent getContinent() {
+        return continent;
+    }
+
+    public void setContinent(Continent continent) {
+        this.continent = continent;
+    }
+
+    public Monnaie getMonnaie() {
+        return monnaie;
+    }
+
+    public void setMonnaie(Monnaie monnaie) {
+        this.monnaie = monnaie;
+    }
+
+    public Visas getVisas() {
+        return visas;
+    }
+
+    public void setVisas(Visas visas) {
+        this.visas = visas;
+    }
+
     public StringProperty codePaysProperty()
     {
         return new SimpleStringProperty(codePays);

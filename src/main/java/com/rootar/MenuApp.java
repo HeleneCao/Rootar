@@ -28,8 +28,8 @@ public class MenuApp extends Application {
         try {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("ROUTARV2.fxml"));
-            VBox menuLayout = (VBox) loader.load();
+            loader.setLocation(MenuApp.class.getResource("test2.fxml"));
+            AnchorPane menuLayout = (AnchorPane) loader.load();
 
             Scene scene = new Scene(menuLayout);
             primaryStage.setScene(scene);
@@ -47,7 +47,7 @@ public class MenuApp extends Application {
         try {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("GestionDetailsPlus.fxml"));
+            loader.setLocation(MenuApp.class.getResource("test3.fxml"));
             AnchorPane menuLayout = (AnchorPane) loader.load();
 
             Scene scene = new Scene(menuLayout);
@@ -282,10 +282,10 @@ public class MenuApp extends Application {
         }
 
     }
-    public void showEditMap(String titre) {
+    /*public void showEditMap(String titre) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("test.fxml"));
+            loader.setLocation(MenuApp.class.getResource("test1.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             dialogStage = new Stage();
@@ -307,7 +307,7 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
 

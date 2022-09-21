@@ -9,10 +9,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 public class RootarController {
     @FXML
-    private AnchorPane anchoDetails;
+    private GridPane gridpaneDetails;
     @FXML
     private ComboBox <Pays> paysSearch;
     @FXML
@@ -86,8 +87,8 @@ public class RootarController {
     private MenuApp menuApp;
     @FXML
     private void initialize() {
-        listeRepEtrangeres.setVisible(false);
-        anchoDetails.setVisible(false);
+        //listeRepEtrangeres.setVisible(false);
+        gridpaneDetails.setVisible(false);
         fenetreAlert=new FenetreAlert();
         serviceRootar=new ServiceRootar();
         paysSelected= new Pays();
@@ -98,12 +99,12 @@ public class RootarController {
         colNomContinent.setCellValueFactory(cellData -> cellData.getValue().nomContinentProperty());
 
         tableRootar.refresh();
-        listeLangues.setOrientation(Orientation.HORIZONTAL);
-        listeSante.setOrientation(Orientation.HORIZONTAL);
+        //listeLangues.setOrientation(Orientation.HORIZONTAL);
+       // listeSante.setOrientation(Orientation.HORIZONTAL);
 
 
     }
-    public void afficherRegion(Pays paysSelected) {
+    /*public void afficherRegion(Pays paysSelected) {
 
         listeRegion.setItems(FXCollections.observableArrayList(serviceRootar.getRegionFilterByPays(paysSelected)));
         listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherVilles(newValue));
@@ -181,12 +182,13 @@ public class RootarController {
         fieldRE.append(representationEtrangere.getTelephone() + "\n");
         detailsRepEtr.setText(fieldRE.toString());
 
-    }
+    }*/
+
     private void afficherDetails(Pays pays){
 
         paysSelected=pays;
 
-        anchoDetails.setVisible(true);
+        gridpaneDetails.setVisible(true);
         if(paysSelected != null) {
 
             codePays.setText(pays.getCodePays());
@@ -201,11 +203,11 @@ public class RootarController {
             indTel.setText(paysSelected.getIndicatifTel());
             monnaie.setText(paysSelected.getMonnaie().getLibelleMonnaie());
             listeLangues.setItems(FXCollections.observableArrayList(serviceRootar.getLanguesByPays(paysSelected)));
-            afficherRegion(paysSelected);
+            //afficherRegion(paysSelected);
              //langue.setText(serviceRootar.getLanguesFilter(serviceRootar.getFilteredParler(paysSelected.getIdPays()).getIdLangues()).getLibelleLangues());
             listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByPays(paysSelected)));
-            listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
-            listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(pays)));
+            //listeRepEtrangeres.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByPays(paysSelected)));
+           // listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(pays)));
 
         }
 
@@ -221,18 +223,18 @@ public class RootarController {
 
     }
     @FXML
-    public void ajouter(){
+    public void ajouterPays(){
         paysSelected=null;
         menuApp.showEdit(paysSelected,"Ajouter pays");
 
     }
     @FXML
-    public void modifier(){
+    public void modifierPays(){
         menuApp.showEdit(paysSelected, "Modifier pays");
     }
 
     @FXML
-    public void supprimer(){
+    public void supprimerPays(){
         Parler parler= new Parler();
 
         parler.setIdPays(paysSelected.getIdPays());

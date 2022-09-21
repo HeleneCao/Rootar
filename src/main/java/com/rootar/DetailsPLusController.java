@@ -27,11 +27,11 @@ public class DetailsPLusController {
     private Region regionSelected;
     private RepresentationEtrangere repEtrSelected;
     @FXML
-    private ListView<Region> region;
+    private ListView<Region> listeRegion;
     @FXML
-    private ListView<Ville> ville;
+    private ListView<Ville> listeVille;
     @FXML
-    private ListView<Evenements> event;
+    private ListView<Evenements> listeEvent;
     @FXML
     private TextArea detailsEvent;
     @FXML
@@ -41,15 +41,16 @@ public class DetailsPLusController {
     @FXML
     private TextArea detailsRepEtr;
     @FXML
-    private ListView <Themes>listeThemes;
-    @FXML
     private ListView<Objet> listeObjets;
     @FXML
     private ListView<RepresentationEtrangere> listeRepEtr;
     @FXML
     private ListView<Sante> listeSante;
     @FXML
-    private ListView<Categories> listCategories;
+    private ListView<Categories> listeCategories;
+
+    @FXML
+    private ListView<Aeroports> listeAeroport;
 
     private Stage dialogStage;
     private Sante santeSelected;
@@ -64,34 +65,32 @@ public class DetailsPLusController {
 
     public void afficherRegion(Pays paysSelected) {
 
-        region.setItems(FXCollections.observableArrayList(serviceRootar.getRegionFilterByPays(paysSelected)));
-        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherVilles(newValue));
-        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherTypeClimat(newValue));
-        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDonneesClimat(newValue));
-        region.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherThemesByRegion(newValue));
+        listeRegion.setItems(FXCollections.observableArrayList(serviceRootar.getRegionFilterByPays(paysSelected)));
+        listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherVilles(newValue));
+        listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherTypeClimat(newValue));
+        listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDonneesClimat(newValue));
 
-        listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(this.paysSelected)));
+        listeAeroport.setItems(FXCollections.observableArrayList(serviceRootar.getAeroportByPays(paysSelected)));
+        listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(paysSelected)));
         listeSante.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->setSanteSelected(newValue));
-        //System.out.println(santeSelected.getLibelleSante());
         afficherObjet(paysSelected);
-
     }
 
     public void afficherVilles(Region regionSelected) {
 
-        ville.setItems(FXCollections.observableArrayList(serviceRootar.getVilleFilterByRegion(regionSelected)));
-        ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherEvent(newValue));
-        ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherRepEtrByVille(newValue));
-        ville.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setVilleSelected(newValue));
+        listeVille.setItems(FXCollections.observableArrayList(serviceRootar.getVilleFilterByRegion(regionSelected)));
+        listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherEvent(newValue));
+        listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherRepEtrByVille(newValue));
+        listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setVilleSelected(newValue));
         this.regionSelected=regionSelected;
     }
 
 
     public void afficherEvent(Ville villeSelected) {
 
-        event.setItems(FXCollections.observableArrayList(serviceRootar.getEventFilterByVille(villeSelected)));
-        event.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detailsEvent(newValue));
-        event.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setEventSelected(newValue));
+        listeEvent.setItems(FXCollections.observableArrayList(serviceRootar.getEventFilterByVille(villeSelected)));
+        listeEvent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detailsEvent(newValue));
+        listeEvent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setEventSelected(newValue));
 
     }
 
@@ -120,14 +119,10 @@ public class DetailsPLusController {
     }
 
     public void afficherCategories(Objet objet) {
-       listCategories.setItems(FXCollections.observableArrayList(serviceRootar.getCategoriesFilterbyObjet(objet)));
-       listCategories.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setCategoriesSelected(newValue));
+        listeCategories.setItems(FXCollections.observableArrayList(serviceRootar.getCategoriesFilterbyObjet(objet)));
+        listeCategories.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setCategoriesSelected(newValue));
     }
 
-    public void afficherThemesByRegion(Region region) {
-        listeThemes.setItems(FXCollections.observableArrayList(serviceRootar.getThemesByRegion(region)));
-
-    }
 
     public void afficherRepEtrByVille(Ville ville) {
         listeRepEtr.setItems(FXCollections.observableArrayList(serviceRootar.getRepEtrangeresByVille(ville)));
@@ -171,7 +166,7 @@ public class DetailsPLusController {
     @FXML
     public void supprimerVille() {
         if (serviceRootar.deleteVille(villeSelected)) {
-            fenetreAlert.fenetreInformation("Suppression de la ville", "la ville " + villeSelected.getNomVille() + " est supprimée");
+            fenetreAlert.fenetreInformation("Suppression de la ville", "La ville " + villeSelected.getNomVille() + " est supprimée.");
         }
     }
 
@@ -184,18 +179,18 @@ public class DetailsPLusController {
 
     @FXML
     public void ajouterEvent() {
-        menuApp.showEditEvent(villeSelected, null, "Ajouter evenement");
+        menuApp.showEditEvent(villeSelected, null, "Ajouter événement");
     }
 
     @FXML
     public void modifierEvent() {
-        menuApp.showEditEvent(null, eventSelected, "Modifier evenement");
+        menuApp.showEditEvent(villeSelected, eventSelected, "Modifier événement");
     }
 
     @FXML
     public void supprimerEvent() {
         if (serviceRootar.deleteEvent(eventSelected)) {
-            fenetreAlert.fenetreInformation("Suppression de l'évènement", "l'évènement " + eventSelected.getLibelleEvenements() + " est supprimé");
+            fenetreAlert.fenetreInformation("Suppression de l'événement", "l'événement " + eventSelected.getLibelleEvenements() + " est supprimé.");
         }
     }
 
@@ -207,7 +202,7 @@ public class DetailsPLusController {
     @FXML
     public void ajouterRepEtrangere() {
 
-        menuApp.showEditRepEtrangere(paysSelected, villeSelected, null, "Ajouter representation etrangere");
+        menuApp.showEditRepEtrangere(paysSelected, villeSelected, null, "Ajouter représentation étrangère");
     }
 
     @FXML
@@ -219,7 +214,7 @@ public class DetailsPLusController {
     @FXML
     public void supprimerRepEtrangere() {
         if (serviceRootar.deleteRepEtrangere(repEtrSelected)) {
-            fenetreAlert.fenetreInformation("Suppression de la representation etrangere", "la representation etrangere " + repEtrSelected.getLibelleRepEtrangere() + " est supprimée");
+            fenetreAlert.fenetreInformation("Suppression de la représentation étrangère", "La representation etrangere " + repEtrSelected.getLibelleRepEtrangere() + " est supprimée.");
         }
     }
 
@@ -239,7 +234,7 @@ public class DetailsPLusController {
     @FXML
     public void supprimerCat(){
         if(serviceRootar.deleteCategories(categoriesSelected)){
-            fenetreAlert.fenetreInformation("Suppression de la catégorie","iuh");
+            fenetreAlert.fenetreInformation("Suppression de la catégorie","La catégorie " + categoriesSelected.getLibelleCategories() + " est suprimée.");
         }
 
 
