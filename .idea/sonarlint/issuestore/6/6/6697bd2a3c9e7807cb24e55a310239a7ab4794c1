@@ -1,0 +1,10 @@
+
+k	java:S117$"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Έ―ÿÿÿÿÿ
+A
+java:S1168"+Return an empty collection instead of null.(¥Ήο
+A
+java:S1168"+Return an empty collection instead of null.(¥Ήο
+x
+java:S4087?"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ύΖ“Ύ
+A
+java:S1068"&Remove this unused "rs" private field.(‰Ϊθόÿÿÿÿ

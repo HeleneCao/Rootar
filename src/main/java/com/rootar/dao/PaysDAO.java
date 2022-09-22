@@ -1,9 +1,6 @@
 package com.rootar.dao;
 
-import com.rootar.metier.Continent;
-import com.rootar.metier.Monnaie;
-import com.rootar.metier.Objet;
-import com.rootar.metier.Pays;
+import com.rootar.metier.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,14 +19,14 @@ public class PaysDAO extends DAO <Pays, Pays>{
 
             // Determine the column set column
 
-            String strCmd = "SELECT id_pays, code_pays,nom_pays_fr, nom_pays_ang, nationalite, capitale, nombre_habitant, superficie, devise, fete_nationale, indicatif_telephonique, " +
-                  "id_continent, (select nom_continent_fr from continent where id_continent = P.id_continent),id_monnaie, (select libelle_monnaie from monnaie where id_monnaie = P.id_monnaie) from pays as P";
+            String strCmd = "SELECT id_pays, code_pays,nom_pays_fr, nom_pays_ang, nationalite, nombre_habitant, superficie, devise, fete_nationale, indicatif_telephonique, " +
+                  "id_continent, (select nom_continent_fr from continent where id_continent = P.id_continent),id_monnaie, (select libelle_monnaie from monnaie where id_monnaie = P.id_monnaie) , id_ville, (select nom_ville from ville where id_ville = P.id_ville) from pays as P";
             rs = stmt.executeQuery(strCmd);
 
 
             while (rs.next()) {
 
-                liste.add(new Pays(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),new Continent(rs.getInt(12),rs.getString(13)),new Monnaie(rs.getInt(14),rs.getString(15))));
+                liste.add(new Pays(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),new Continent(rs.getInt(11),rs.getString(12)),new Monnaie(rs.getInt(13),rs.getString(14)), new Ville(rs.getInt(15),rs.getString(16))));
             }
             rs.close();
 
@@ -80,8 +77,8 @@ public class PaysDAO extends DAO <Pays, Pays>{
     @Override
     public boolean insert(Pays pays) {
 
-        String SQL = "INSERT INTO PAYS (ID_PAYS, CODE_PAYS, NOM_PAYS_FR, NOM_PAYS_ANG, NATIONALITE, CAPITALE, NOMBRE_HABITANT, SUPERFICIE, DEVISE, FETE_NATIONALE, " +
-                "INDICATIF_TELEPHONIQUE, ID_CONTINENT, ID_MONNAIE, ID_VISAS)"+" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO PAYS (ID_PAYS, CODE_PAYS, NOM_PAYS_FR, NOM_PAYS_ANG, NATIONALITE, NOMBRE_HABITANT, SUPERFICIE, DEVISE, FETE_NATIONALE, " +
+                "INDICATIF_TELEPHONIQUE, ID_CONTINENT, ID_MONNAIE, ID_VISAS , ID_VILLE)"+" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
         {
             if(pays !=null) {
@@ -90,15 +87,15 @@ public class PaysDAO extends DAO <Pays, Pays>{
                 pStmt.setString(3, pays.getNomPaysFr());
                 pStmt.setString(4,pays.getNomPaysAng());
                 pStmt.setString(5, pays.getNationalite());
-                pStmt.setString(6, pays.getCapitale());
-                pStmt.setInt(7, pays.getNbreHabitant());
-                pStmt.setInt(8, pays.getSuperficie());
-                pStmt.setString(9, pays.getDevise());
-                pStmt.setString(10, pays.getFeteNationale());
-                pStmt.setString(11, pays.getIndicatifTel());
-                pStmt.setInt(12, pays.getContinent().getIdContinent());
-                pStmt.setInt(13, pays.getMonnaie().getIdMonnaie());
-                pStmt.setNull(14, Types.NULL);
+                pStmt.setInt(6, pays.getNbreHabitant());
+                pStmt.setInt(7, pays.getSuperficie());
+                pStmt.setString(8, pays.getDevise());
+                pStmt.setString(9, pays.getFeteNationale());
+                pStmt.setString(10, pays.getIndicatifTel());
+                pStmt.setInt(11, pays.getContinent().getIdContinent());
+                pStmt.setInt(12, pays.getMonnaie().getIdMonnaie());
+                pStmt.setNull(13, Types.NULL);
+                pStmt.setInt(14, pays.getVille().getIdVille());
                 pStmt.execute();
             }
             return true;
@@ -112,7 +109,7 @@ public class PaysDAO extends DAO <Pays, Pays>{
 
     @Override
     public boolean update(Pays pays) {
-        String SQL = "update PAYS set CODE_PAYS = ?,NOM_PAYS_FR=?,NOM_PAYS_ANG = ?,NATIONALITE = ?,CAPITALE = ?,NOMBRE_HABITANT = ?,SUPERFICIE=? ,DEVISE=?,  FETE_NATIONALE=?, INDICATIF_TELEPHONIQUE=?, ID_CONTINENT=?, ID_MONNAIE=?, ID_VISAS=?  where ID_PAYS = ?";
+        String SQL = "update PAYS set CODE_PAYS = ?,NOM_PAYS_FR=?,NOM_PAYS_ANG = ?,NATIONALITE = ?,NOMBRE_HABITANT = ?,SUPERFICIE=? ,DEVISE=?,  FETE_NATIONALE=?, INDICATIF_TELEPHONIQUE=?, ID_CONTINENT=?, ID_MONNAIE=?, ID_VISAS=?, ID_VILLE=? where ID_PAYS = ?";
         try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL))
         {
             if(pays !=null) {
@@ -121,7 +118,6 @@ public class PaysDAO extends DAO <Pays, Pays>{
                 pStmt.setString(2, pays.getNomPaysFr());
                 pStmt.setString(3,pays.getNomPaysAng());
                 pStmt.setString(4, pays.getNationalite());
-                pStmt.setString(5, pays.getCapitale());
                 pStmt.setInt(6, pays.getNbreHabitant());
                 pStmt.setInt(7, pays.getSuperficie());
                 pStmt.setString(8, pays.getDevise());
@@ -130,7 +126,8 @@ public class PaysDAO extends DAO <Pays, Pays>{
                 pStmt.setInt(11, pays.getContinent().getIdContinent());
                 pStmt.setInt(12, pays.getMonnaie().getIdMonnaie());
                 pStmt.setNull(13, Types.NULL);
-                pStmt.setInt(14, pays.getIdPays());
+                pStmt.setInt(14, pays.getVille().getIdVille());
+                pStmt.setInt(15, pays.getIdPays());
                 pStmt.executeUpdate();
                 pStmt.close();
             }

@@ -118,7 +118,6 @@ public class GestionAMSController {
         pays.setNomPaysFr(nomPaysFr.getText());
         pays.setNomPaysAng(nomPaysAng.getText());
         pays.setNationalite(nationalite.getText());
-        pays.setCapitale(capitale.getText());
         pays.setNbreHabitant(Integer.valueOf(nombreHabitant.getText()));
         pays.setSuperficie(Integer.valueOf(superficie.getText()));
         pays.setDevise(devise.getText());
@@ -157,7 +156,6 @@ public class GestionAMSController {
         nomPaysFr.setText(paysSelected.getNomPaysFr());
         nomPaysAng.setText(paysSelected.getNomPaysAng());
         nationalite.setText(paysSelected.getNationalite());
-        capitale.setText(paysSelected.getCapitale());
         nombreHabitant.setText(String.valueOf(paysSelected.getNbreHabitant()));
         superficie.setText(String.valueOf(paysSelected.getSuperficie()));
         devise.setText(paysSelected.getDevise());

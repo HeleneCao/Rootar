@@ -15,15 +15,15 @@ public class AeroportDAO extends DAO <Aeroports, Aeroports>{
         super(connexion);
     }
 
-    public ArrayList<Aeroports> getAeroportByPays(Pays pays) {
+    public ArrayList<Aeroports> getAeroportByVille(Ville ville) {
 
         ArrayList<Aeroports> liste = new ArrayList<>();
-        String SQL= " select * from aeroport as a where a.id_aeroport in (select id_aeroport from posseder where id_pays=? )";
+        String SQL= " select * from aeroport as a where a.id_ville in (select id_ville from ville where id_ville=? )";
         try (PreparedStatement pstmt = connexion.prepareStatement(SQL)){
 
             // Determine the column set column
 
-            pstmt.setInt(1,pays.getIdPays());
+            pstmt.setInt(1, ville.getIdVille());
             rs = pstmt.executeQuery();
             rs.close();
 

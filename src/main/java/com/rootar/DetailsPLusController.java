@@ -70,7 +70,7 @@ public class DetailsPLusController {
         listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherTypeClimat(newValue));
         listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDonneesClimat(newValue));
 
-        listeAeroport.setItems(FXCollections.observableArrayList(serviceRootar.getAeroportByPays(paysSelected)));
+
         listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(paysSelected)));
         listeSante.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->setSanteSelected(newValue));
         afficherObjet(paysSelected);
@@ -82,6 +82,7 @@ public class DetailsPLusController {
         listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherEvent(newValue));
         listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherRepEtrByVille(newValue));
         listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setVilleSelected(newValue));
+        listeAeroport.setItems(FXCollections.observableArrayList(serviceRootar.getAeroportByVille(villeSelected)));
         this.regionSelected=regionSelected;
     }
 
