@@ -11,7 +11,6 @@ public class Pays {
     private String codePays;
     private String nomPaysAng;
     private String nationalite;
-    private String capitale;
     private int superficie;
     private int nbreHabitant;
     private String devise;
@@ -20,6 +19,8 @@ public class Pays {
     private Continent continent;
     private Monnaie monnaie;
     private Visas visas;
+
+    private Ville ville;
 
 
     public Pays() {
@@ -33,13 +34,12 @@ public class Pays {
         visas = new Visas();
     }
 
-    public Pays(int idPays, String codePays,String nomPaysFr,  String nomPaysAng, String nationalite, String capitale,int nbreHabitant,  int superficie, String devise, String feteNationale, String indicatifTel,Continent continent,Monnaie monnaie) {
+    public Pays(int idPays, String codePays,String nomPaysFr,  String nomPaysAng, String nationalite,int nbreHabitant,  int superficie, String devise, String feteNationale, String indicatifTel,Continent continent,Monnaie monnaie, Ville ville) {
         this.idPays = idPays;
         this.nomPaysFr = nomPaysFr;
         this.codePays = codePays;
         this.nomPaysAng = nomPaysAng;
         this.nationalite = nationalite;
-        this.capitale = capitale;
         this.nbreHabitant = nbreHabitant;
         this.superficie = superficie;
         this.devise = devise;
@@ -47,6 +47,7 @@ public class Pays {
         this.indicatifTel = indicatifTel;
         this.continent=continent;
         this.monnaie=monnaie;
+        this.ville=ville;
     }
 
     public Pays(int idPays, String nomPaysFr, Continent continent) {
@@ -139,13 +140,6 @@ public class Pays {
         this.nationalite = nationalite;
     }
 
-    public String getCapitale() {
-        return capitale;
-    }
-
-    public void setCapitale(String capitale) {
-        this.capitale = capitale;
-    }
 
     public int getSuperficie() {
         return superficie;
@@ -185,6 +179,14 @@ public class Pays {
 
     public void setIndicatifTel(String indicatifTel) {
         this.indicatifTel = indicatifTel;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 
     @Override

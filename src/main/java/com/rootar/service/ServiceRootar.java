@@ -96,7 +96,7 @@ public class ServiceRootar {
         return DAOFactory.getSanteDAO().getSanteByPays(pays);
     }
 
-    public ArrayList<Aeroports> getAeroportByPays(Pays pays){ return DAOFactory.getAeroportDAO().getAeroportByPays(pays);}
+    public ArrayList<Aeroports> getAeroportByVille(Ville ville){ return DAOFactory.getAeroportDAO().getAeroportByVille(ville);}
     public boolean insertPays(Pays pays) {
         return DAOFactory.getPaysDAO().insert(pays);
     }

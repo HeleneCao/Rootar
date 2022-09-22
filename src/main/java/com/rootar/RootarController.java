@@ -195,7 +195,6 @@ public class RootarController {
             nomPaysFr.setText(paysSelected.getNomPaysFr());
             nomPaysAng.setText(paysSelected.getNomPaysAng());
             nationalite.setText(paysSelected.getNationalite());
-            capitale.setText(paysSelected.getCapitale());
             nbreHabitant.setText(String.valueOf(paysSelected.getNbreHabitant()));
             superficie.setText(String.valueOf(paysSelected.getSuperficie()));
             devise.setText(paysSelected.getDevise());
