@@ -3,10 +3,12 @@ package com.rootar.dao;
 import com.rootar.metier.Pays;
 import com.rootar.metier.Region;
 import com.rootar.metier.Themes;
+import com.rootar.metier.Ville;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ThemesDAO extends DAO <Themes, Themes> {
@@ -73,11 +75,33 @@ public class ThemesDAO extends DAO <Themes, Themes> {
 
     @Override
     public ArrayList<Themes> getAll() {
-        return null;
+        ArrayList<Themes> liste = new ArrayList<>();
+        try (Statement stmt = connexion.createStatement()){
+
+
+            // Determine the column set column
+
+            String strCmd = "SELECT * FROM THEMES";
+            rs = stmt.executeQuery(strCmd);
+
+
+            while (rs.next()) {
+               liste.add(new Themes(rs.getInt(1),rs.getString(2)));
+
+            }
+            rs.close();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return liste;
     }
 
     @Override
     public ArrayList<Themes> getLike(Themes objet) {
+
         return null;
     }
 

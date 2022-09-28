@@ -1,15 +1,18 @@
 package com.rootar.metier;
 
+import java.util.ArrayList;
+
 public class Ville {
     private int idVille;
     private String nomVille;
-
+    private ArrayList<Pays> pays;
     private Region region;
 
     public Ville(int idVille, String nomVille) {
         this.idVille = idVille;
         this.nomVille = nomVille;
         region= new Region();
+        pays= new ArrayList<>();
     }
 
     public Ville() {
@@ -45,6 +48,9 @@ public class Ville {
         this.nomVille = nomVille;
     }
 
+    public ArrayList<Pays> getPays() {
+        return pays;
+    }
 
     @Override
     public String toString() {

@@ -1,10 +1,13 @@
 package com.rootar.metier;
 
+import java.util.ArrayList;
+
 public class Continent {
 
     private int idContinent;
     private String nomContinentFr;
     private String nomContinentAng;
+    private ArrayList<Pays> pays;
 
     public Continent() {
 
@@ -13,7 +16,7 @@ public class Continent {
     public Continent(int idContinent, String nomContinentFr) {
         this.idContinent = idContinent;
         this.nomContinentFr = nomContinentFr;
-
+        pays=new ArrayList<>();
     }
 
     public int getIdContinent() {
@@ -38,6 +41,10 @@ public class Continent {
 
     public void setGetNomContinentAng(String nomContinentAng) {
         this.nomContinentAng = nomContinentAng;
+    }
+
+    public ArrayList<Pays> getPays() {
+        return pays;
     }
 
     @Override

@@ -60,6 +60,7 @@ public class DetailsPLusController {
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
         fenetreAlert = new FenetreAlert();
+        System.out.println("jh");
 
     }
 

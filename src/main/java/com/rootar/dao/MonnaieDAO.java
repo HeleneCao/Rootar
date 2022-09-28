@@ -1,7 +1,9 @@
 package com.rootar.dao;
 
+import com.rootar.metier.Categories;
 import com.rootar.metier.Continent;
 import com.rootar.metier.Monnaie;
+import com.rootar.metier.Pays;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +47,30 @@ public class MonnaieDAO extends DAO <Monnaie, Monnaie>{
         }
         return liste;
     }
+    public Monnaie getMonnaiebyPays(Pays pays){
+        Monnaie monnaie = new Monnaie ();
+        String SQL = "select id_monnaie,libelle_monnaie from monnaie where id_monnaie= ?";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(SQL)) {
 
+            pStmt.setInt(1, pays.getIdPays());
+
+
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+
+
+                monnaie = new Monnaie(rs.getInt(1), rs.getString(2));
+            }
+            rs.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return monnaie;
+
+    }
     @Override
     public ArrayList<Monnaie> getLike(Monnaie objet) {
         return null;

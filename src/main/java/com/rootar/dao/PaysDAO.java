@@ -1,11 +1,12 @@
 package com.rootar.dao;
 
 import com.rootar.metier.*;
+import com.rootar.service.RootarSearch;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class PaysDAO extends DAO <Pays, Pays>{
+public class PaysDAO extends DAO <Pays, RootarSearch>{
 
     private ResultSet rs;
     protected PaysDAO(Connection connexion) {
@@ -38,6 +39,53 @@ public class PaysDAO extends DAO <Pays, Pays>{
         return liste;
     }
 
+    @Override
+    public ArrayList<Pays> getLike(RootarSearch rootarSearch) {
+        ArrayList<Pays> liste = new ArrayList<>();
+        String procedureStockee = "{call dbo.SP_RECHERCHE_PAYS (?,?,?,?,?)}";
+        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee))
+        {
+
+            cStmt.setString(1,rootarSearch.getLibRecherche());
+            cStmt.setInt(2,rootarSearch.getPays().getIdPays());
+            cStmt.setInt(3,rootarSearch.getContinent().getIdContinent());
+            cStmt.setInt(4,rootarSearch.getVille().getIdVille());
+            cStmt.setInt(5,rootarSearch.getTheme().getIdThemes());
+           // cStmt.setInt(6,rootarSearch.getTypeClimat().getIdTypeClimat());
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+            while(rs.next()) {
+                Pays newPays= new Pays();
+                newPays.setIdPays(rs.getInt(11));
+                newPays.setNomPaysFr(rs.getString(1));
+                newPays.setNomPaysAng(rs.getString(2));
+                newPays.setContinent(new Continent(rs.getInt(3),rs.getString(4)));
+                newPays.setCodePays(rs.getString(15));
+                newPays.setNationalite(rs.getString(16));
+                newPays.setNbreHabitant(rs.getInt(17));
+                newPays.setSuperficie(rs.getInt(18));
+                newPays.setDevise(rs.getString(19));
+                newPays.setIndicatifTel(rs.getString(20));
+                newPays.setFeteNationale(rs.getString(21));
+                newPays.setMonnaie(new Monnaie(rs.getInt(22),rs.getString(23)));
+                liste.add(newPays);
+            }
+
+            rs.close();
+        }
+
+        // Handle any errors that may have occurred.
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return liste;
+    }
+
+
+
     public ArrayList<Pays> getPaysByObjet(Objet objet){
         ArrayList<Pays> liste = new ArrayList<>();
         String SQL= " select id_pays, nom_pays_fr from pays as p where p.id_pays in (select id_pays from emporter where id_objet=? )";
@@ -69,10 +117,6 @@ public class PaysDAO extends DAO <Pays, Pays>{
         return null;
     }
 
-    @Override
-    public ArrayList<Pays> getLike(Pays objet) {
-        return null;
-    }
 
     @Override
     public boolean insert(Pays pays) {

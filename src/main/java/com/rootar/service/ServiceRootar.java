@@ -9,14 +9,40 @@ public class ServiceRootar {
 
     private ArrayList<Pays> paysFiltre;
     private ArrayList<Continent> continentFiltre;
-
+    private ArrayList<Ville> villeFiltre;
+    private ArrayList<Themes> themeFiltre;
+    private ArrayList<TypeClimat> typeClimatFiltre;
 
     public ServiceRootar() {
         paysFiltre = DAOFactory.getPaysDAO().getAll();
         continentFiltre = DAOFactory.getContinentDAO().getAll();
+        villeFiltre = DAOFactory.getVilleDAO().getAll();
+        themeFiltre = DAOFactory.getThemesDAO().getAll();
+        typeClimatFiltre = DAOFactory.getTypeClimatDAO().getAll();
+
+    }
+    public ArrayList<Ville>getLike(RootarSearch rootarSearch){
+       return  DAOFactory.getVilleDAO().getLike(rootarSearch);
+    }
+    public ArrayList<Ville> getVilleFiltre() {
+        return villeFiltre;
+    }
+
+    public ArrayList<Themes> getThemeFiltre() {
+        return themeFiltre;
+    }
+
+    public ArrayList<TypeClimat> getTypeClimatFiltre() {
+        return typeClimatFiltre;
+    }
+    public Monnaie getMonnaieByPays(Pays pays){
+        return DAOFactory.getMonnaieDAO().getMonnaiebyPays(pays);
     }
     public Sante getByIDSante(int id){
         return DAOFactory.getSanteDAO().getByID(id);
+    }
+    public ArrayList<Pays> getFilteredPays(RootarSearch rootarSearch) {
+        return DAOFactory.getPaysDAO().getLike(rootarSearch);
     }
 
     public ArrayList<Pays> getAllPays(){ return DAOFactory.getPaysDAO().getAll();}

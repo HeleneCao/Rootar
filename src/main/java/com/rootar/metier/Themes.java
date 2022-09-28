@@ -12,6 +12,9 @@ public class Themes {
 
     }
 
+    public Themes() {
+    }
+
     public int getIdThemes() {
         return idThemes;
     }
