@@ -1,8 +1,0 @@
-
-f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úöö—
-l
-java:S1450"QRemove the "rs" field and declare it as a local variable in the relevant methods.(‰Úèüÿÿÿÿ
-A
-java:S11681"+Return an empty collection instead of null.(¥¹ï
-A
-java:S11686"+Return an empty collection instead of null.(¥¹ï

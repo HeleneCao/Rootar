@@ -4,6 +4,7 @@ import com.rootar.dao.DAOFactory;
 import com.rootar.metier.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ServiceRootar {
 
@@ -19,7 +20,10 @@ public class ServiceRootar {
         villeFiltre = DAOFactory.getVilleDAO().getAll();
         themeFiltre = DAOFactory.getThemesDAO().getAll();
         typeClimatFiltre = DAOFactory.getTypeClimatDAO().getAll();
+    }
 
+    public ArrayList<Ville> getVilleFilterByRegion(Region region){
+        return DAOFactory.getVilleDAO().getVilleByRegion(region);
     }
     public ArrayList<Ville>getLike(RootarSearch rootarSearch){
        return  DAOFactory.getVilleDAO().getLike(rootarSearch);
@@ -44,7 +48,6 @@ public class ServiceRootar {
     public ArrayList<Pays> getFilteredPays(RootarSearch rootarSearch) {
         return DAOFactory.getPaysDAO().getLike(rootarSearch);
     }
-
     public ArrayList<Pays> getAllPays(){ return DAOFactory.getPaysDAO().getAll();}
 
     public ArrayList<Categories> getAllCategories(){ return DAOFactory.getCategoriesDAO().getAll();}
@@ -61,9 +64,7 @@ public class ServiceRootar {
     public ArrayList<Region> getRegionFilterByPays(Pays pays){
         return DAOFactory.getRegionDAO().getRegionByPays(pays);
     }
-    public ArrayList<Ville> getVilleFilterByRegion(Region region){
-        return DAOFactory.getVilleDAO().getVilleByRegion(region);
-    }
+
     public ArrayList<Evenements> getEventFilterByVille(Ville ville){
         return DAOFactory.getEvenementsDAO().getEventByVille(ville);
     }
@@ -76,6 +77,10 @@ public class ServiceRootar {
     public Priorite getPrioriteBySante(int id){
         return DAOFactory.getPrioriteDAO().getPrioriteBySante(id);
     }
+
+   /* public Priorite getPrioriteFilterBySante(Sante sante) {
+        return DAOFactory.getPrioriteDAO().getPrioriteFilterBySante(sante);
+    }*/
     public ArrayList<DonneesClimat> getDonneesClimatByRegion(Region region){
         return DAOFactory.getDonneesClimatDAO().getDonneesClimatByRegion(region);
     }
@@ -121,7 +126,6 @@ public class ServiceRootar {
     public ArrayList<Sante> getSantebyPays(Pays pays){
         return DAOFactory.getSanteDAO().getSanteByPays(pays);
     }
-
     public ArrayList<Aeroports> getAeroportByVille(Ville ville){ return DAOFactory.getAeroportDAO().getAeroportByVille(ville);}
     public boolean insertPays(Pays pays) {
         return DAOFactory.getPaysDAO().insert(pays);
@@ -183,5 +187,6 @@ public class ServiceRootar {
     public boolean deleteExiger(Exiger exiger){
         return DAOFactory.getExigerDAO().delete(exiger);
     }
+
 
 }

@@ -54,6 +54,14 @@ public class Pays {
         this.idPays = idPays;
         this.nomPaysFr = nomPaysFr;
         this.continent = continent;
+
+    }
+
+    public Pays(int idPays, String nomPaysFr, Continent continent, Ville ville) {
+        this.idPays = idPays;
+        this.nomPaysFr = nomPaysFr;
+        this.continent = continent;
+        this.ville = ville;
     }
 
     public Continent getContinent() {
@@ -88,18 +96,15 @@ public class Pays {
     {
         return new SimpleStringProperty(nomPaysFr);
     }
-    public StringProperty nomContinentProperty()
-    {
+
+    public StringProperty nomContinentProperty() {
         return new SimpleStringProperty(this.continent.getNomContinentFr());
     }
-    public StringProperty libelleMonnaieProperty()
-    {
-        return new SimpleStringProperty(this.monnaie.getLibelleMonnaie());
+
+    public StringProperty nomVilleProperty(){
+        return new SimpleStringProperty(this.ville.getNomVille());
     }
-    public StringProperty nationaliteProperty()
-    {
-        return new SimpleStringProperty(nationalite);
-    }
+
     public int getIdPays() {
         return idPays;
     }

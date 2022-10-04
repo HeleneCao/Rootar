@@ -38,7 +38,7 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#annuler" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font></Button>

@@ -41,6 +41,32 @@ public class PrioriteDAO extends DAO <Priorite, Priorite> {
         }
         return priorite;
     }
+    /*public Priorite getPrioriteFilterBySante(Sante sante) {
+        Priorite priorite= new Priorite();
+        String SQL= " select * from priorite where id_priorite=(select id_priorite from sante where id_sante= ?)";
+        try (PreparedStatement pstmt = connexion.prepareStatement(SQL)){
+
+
+            // Determine the column set column
+
+            pstmt.setInt(1,priorite.getIdPriorite());
+            rs = pstmt.executeQuery();
+
+
+            while (rs.next()) {
+
+                priorite = new Priorite(rs.getInt(1),rs.getString(2));
+            }
+            rs.close();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return priorite;
+    }*/
+
     @Override
     public Priorite getByID(int id) {
         return null;
@@ -91,4 +117,6 @@ public class PrioriteDAO extends DAO <Priorite, Priorite> {
     public boolean delete(Priorite object) {
         return false;
     }
+
+
 }

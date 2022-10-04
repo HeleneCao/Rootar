@@ -1,17 +1,12 @@
 package com.rootar.dao;
 
-import com.rootar.metier.Pays;
-import com.rootar.metier.Region;
-import com.rootar.metier.Themes;
-import com.rootar.metier.Ville;
+import com.rootar.metier.*;
+import com.rootar.service.RootarSearch;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
-public class ThemesDAO extends DAO <Themes, Themes> {
+public class ThemesDAO extends DAO <Themes, RootarSearch> {
     private ResultSet rs;
     protected ThemesDAO(Connection connexion) {
         super(connexion);
@@ -100,10 +95,40 @@ public class ThemesDAO extends DAO <Themes, Themes> {
     }
 
     @Override
-    public ArrayList<Themes> getLike(Themes objet) {
+    public ArrayList<Themes> getLike(RootarSearch rootarSearch) {
+        ArrayList<Themes> liste = new ArrayList<>();
+        String procedureStockee = "{call dbo.SP_RECHERCHE_PAYS (?,?,?,?,?)}";
+        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee))
+        {
 
-        return null;
+            cStmt.setString(1,rootarSearch.getLibRecherche());
+            cStmt.setInt(2,rootarSearch.getPays().getIdPays());
+            cStmt.setInt(3,rootarSearch.getContinent().getIdContinent());
+            cStmt.setInt(4,rootarSearch.getVille().getIdVille());
+            cStmt.setInt(5,rootarSearch.getTheme().getIdThemes());
+            // cStmt.setInt(6,rootarSearch.getTypeClimat().getIdTypeClimat());
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+            while(rs.next()) {
+                Themes newThemes= new Themes();
+                newThemes.setIdThemes(rs.getInt(9));
+                newThemes.setLibelleThemes(rs.getString(8));
+                liste.add(newThemes);
+            }
+
+            rs.close();
+        }
+
+        // Handle any errors that may have occurred.
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return liste;
     }
+
 
     @Override
     public boolean insert(Themes objet) {

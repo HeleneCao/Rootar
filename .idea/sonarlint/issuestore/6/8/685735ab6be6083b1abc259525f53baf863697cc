@@ -1,15 +1,0 @@
-
-p
-java:S1450"ZRemove the "dialogStage" field and declare it as a local variable in the relevant methods.(Ëù¥ä
-r
-java:S1450"\Remove the "serviceRootar" field and declare it as a local variable in the relevant methods.(ÛÉÀŸ
-P
-java:S1128"3Remove this unused import 'com.rootar.metier.Pays'.(×Ü¥8ä¥Â¢µ0
-Z
-java:S1128"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8ä¥Â¢µ0
-E
-java:S1068"/Remove this unused "dialogStage" private field.(Ëù¥ä
-G
-java:S1068"1Remove this unused "serviceRootar" private field.(ÛÉÀŸ
-F
-java:S1068"+Remove this unused "mapView" private field.(Ê¡ò®ûÿÿÿÿ

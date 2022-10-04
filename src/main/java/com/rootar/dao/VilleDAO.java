@@ -59,8 +59,6 @@ public class VilleDAO extends DAO <Ville, RootarSearch>{
                 if(villeLu.getIdVille() != rs.getInt(1)) {
                     villeLu = new Ville(rs.getInt(1),rs.getString(2));
                     liste.add(villeLu);
-                    //liste.add(new Ville(rs.getInt(1), rs.getString(2)));
-                    System.out.println(villeLu.getNomVille());
                     villeLu.getPays().add(new Pays(rs.getInt(3),rs.getString(4)));
                 }
             }

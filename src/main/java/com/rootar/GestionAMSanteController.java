@@ -28,6 +28,8 @@ public class GestionAMSanteController {
     private Stage dialogStage;
     private ServiceRootar serviceRootar;
     private Sante santeSelected;
+
+    private boolean confirmed;
     private FenetreAlert fenetreAlert;
     private Pays paysSelected;
     @FXML
@@ -80,7 +82,11 @@ public class GestionAMSanteController {
         idSante.setText(String.valueOf(santeSelected.getIdSante()));
         libelleSante.setText(santeSelected.getLibelleSante());
         comboPriorite.getSelectionModel().select(serviceRootar.getPrioriteBySante(santeSelected.getPriorite().getIdPriorite()));
+    }
 
-
+    @FXML
+    public void annuler() {
+        confirmed = false;
+        dialogStage.close();
     }
 }

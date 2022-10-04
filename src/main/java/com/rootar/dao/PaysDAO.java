@@ -69,6 +69,7 @@ public class PaysDAO extends DAO <Pays, RootarSearch>{
                 newPays.setIndicatifTel(rs.getString(20));
                 newPays.setFeteNationale(rs.getString(21));
                 newPays.setMonnaie(new Monnaie(rs.getInt(22),rs.getString(23)));
+                newPays.setVille(new Ville(rs.getInt(6), rs.getString(7)));
                 liste.add(newPays);
             }
 

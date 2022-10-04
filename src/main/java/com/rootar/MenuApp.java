@@ -248,6 +248,7 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
     }
+
     public void showEditSante(Sante santeSelected, String titre) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -272,43 +273,12 @@ public class MenuApp extends Application {
 
             }
 
-
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-    /*public void showEditMap(String titre) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("test1.fxml"));
-            AnchorPane anchorPane = (AnchorPane) loader.load();
-
-            dialogStage = new Stage();
-            dialogStage.setTitle(titre);
-
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(anchorPane);
-            TestController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-
-
-
-            dialogStage.setScene(scene);
-            dialogStage.showAndWait();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-
 
 }

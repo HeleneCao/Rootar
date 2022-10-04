@@ -1,5 +1,9 @@
 package com.rootar.metier;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
+
 import java.util.ArrayList;
 
 public class Ville {
@@ -56,4 +60,5 @@ public class Ville {
     public String toString() {
         return nomVille ;
     }
+
 }

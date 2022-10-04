@@ -5,6 +5,7 @@ import com.rootar.outils.FenetreAlert;
 import com.rootar.service.ServiceRootar;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
@@ -20,9 +21,9 @@ public class DetailsPLusController {
     private Ville villeSelected;
     private Pays paysSelected;
     private Evenements eventSelected;
-
     private Objet objetSelected;
-
+    private Stage dialogStage;
+    private Sante santeSelected;
     private FenetreAlert fenetreAlert;
     private Region regionSelected;
     private RepresentationEtrangere repEtrSelected;
@@ -41,6 +42,8 @@ public class DetailsPLusController {
     @FXML
     private TextArea detailsRepEtr;
     @FXML
+    private TextArea detailsPriorite;
+    @FXML
     private ListView<Objet> listeObjets;
     @FXML
     private ListView<RepresentationEtrangere> listeRepEtr;
@@ -48,20 +51,17 @@ public class DetailsPLusController {
     private ListView<Sante> listeSante;
     @FXML
     private ListView<Categories> listeCategories;
-
     @FXML
     private ListView<Aeroports> listeAeroport;
 
-    private Stage dialogStage;
-    private Sante santeSelected;
+
+
 
     @FXML
     private void initialize() {
         serviceRootar = new ServiceRootar();
         fieldArea = new StringBuilder("");
         fenetreAlert = new FenetreAlert();
-        System.out.println("jh");
-
     }
 
     public void afficherRegion(Pays paysSelected) {
@@ -70,11 +70,12 @@ public class DetailsPLusController {
         listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherVilles(newValue));
         listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherTypeClimat(newValue));
         listeRegion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherDonneesClimat(newValue));
-
-
         listeSante.setItems(FXCollections.observableArrayList(serviceRootar.getSantebyPays(paysSelected)));
         listeSante.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->setSanteSelected(newValue));
+        //afficherPriorite(santeSelected);
         afficherObjet(paysSelected);
+
+
     }
 
     public void afficherVilles(Region regionSelected) {
@@ -83,8 +84,9 @@ public class DetailsPLusController {
         listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherEvent(newValue));
         listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> afficherRepEtrByVille(newValue));
         listeVille.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setVilleSelected(newValue));
-        listeAeroport.setItems(FXCollections.observableArrayList(serviceRootar.getAeroportByVille(villeSelected)));
+        //listeAeroport.setItems(FXCollections.observableArrayList(serviceRootar.getAeroportByVille(villeSelected)));
         this.regionSelected=regionSelected;
+
     }
 
 
@@ -96,6 +98,9 @@ public class DetailsPLusController {
 
     }
 
+    /*public void afficherPriorite(Sante sante){
+        detailsPriorite.setText(serviceRootar.getPrioriteFilterBySante(sante).getLibellePriorite());
+    }*/
     public void afficherTypeClimat(Region region) {
         detailsTypeC.setText(serviceRootar.getTypeClimatFilterByRegion(region).getLibelleTypeClimat());
     }
@@ -148,6 +153,11 @@ public class DetailsPLusController {
         fieldArea.append(event.getDateFinEvenements() + "\n");
         fieldArea.append(event.getDescriptionEvenements() + "\n");
         detailsEvent.setText(fieldArea.toString());
+    }
+
+    @FXML
+    public void annuler(){
+
     }
 
 /* =================================================================================================

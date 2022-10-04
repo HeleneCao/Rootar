@@ -1,5 +1,6 @@
 package com.rootar;
 
+import com.rootar.dao.DAOFactory;
 import com.rootar.metier.Pays;
 import com.rootar.metier.Region;
 import com.rootar.metier.Ville;
@@ -11,6 +12,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class GestionAMSVilleController {
     @FXML
@@ -93,4 +96,6 @@ public class GestionAMSVilleController {
         if (serviceRootar.updateVille(ville) && insert)
             fenetreAlert.fenetreInformation("Modification ", "La ville " + ville.getNomVille() + " a été modifié.");
     }
+
+
 }
